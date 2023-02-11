@@ -1,0 +1,38 @@
+{% load static %}
+{% load articles_filters %}
+
+{% if popular_articles|length > 0 %}
+    <h1 class="projects_header popular_header">Популярные статьи</h1>
+    <hr>
+    {% for articles in popular_articles %}
+        <div class="row">
+            {% for article in articles|sort_by_creation_date %}
+                <div class="rel_array_element card shadow">
+                    <a href="{% url 'articles_detail' article.pk %}">
+                        <img class="card-img-top" src="{% static article.image_base %}">
+                        <div class="card-body">
+                            <h2 class="card-title project_card_title">
+                                {{ article.title }}
+                            </h2>
+                        </div>
+                    </a>
+                    <div class="card-article-detail">
+                        📅 Создано {{ article.created_on.date | date:"d-m-Y"}} <br>
+                        📅 Изменено {{ article.last_modified.date | date:"d-m-Y"}} <br>
+                        {% for category in article.categories.all %}
+                            <a href="{% url 'articles_category' category.name %}">
+                                <span class="badge badge-primary">
+                                    {{ category.name }}
+                                </span>
+                            </a>
+                        {% endfor %}
+                    </div>
+                    <p class="card-text project_card_text">
+                        {{ article.attractive_text | safe }}
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+{% endif %}
+

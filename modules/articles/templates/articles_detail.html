@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block page_content %}
+{% load static %}
+{% load articles_filters %}
+<div class="container article_detail">
+    <h1 class="article_detail_title">{{ article.title }}</h1>
+    <div class="article_detail_info">
+        📅 Создано {{ article.created_on.date | date:"d-m-Y"}} <br>
+        📅 Изменено {{ article.last_modified.date | date:"d-m-Y"}} <br>
+        {% for category in article.categories.all %}
+        <a href="{% url 'articles_category' category.name %}"><span class="badge badge-primary">{{ category.name }}</span></a>
+        {% endfor %}
+    </div>
+
+    <div class="row row_tight"> 
+        <img class="article_detail_img shadow bg-white rounded" src="{% static article.image_base %}" alt="" >
+        
+        {% if article.main_text_headers_list|length > 0 %}
+        <div class="leftbar_nav card shadow bg-white rounded">
+            
+            <h1>Содержание</h1>
+            
+            {% for queried_header in article.main_text_headers_list %}
+            <a href="/articles/{{article.pk}}#queried_header{{ forloop.counter }}">
+                <!-- <span class="badge badge-primary big_badge"> -->
+                    {{ forloop.counter }}. {{ queried_header  }}
+                <!-- </span> -->
+            </a><br>
+            {% endfor %}     
+            
+        </div>   
+        {% endif %}     
+    </div>
+
+
+    <div class="article_attractive_text">
+        {{ article.attractive_text | safe | linebreaks }}
+    </div>
+
+    
+
+    <div class="article_main_text">
+        {{ article.main_text | safe | linebreaks }}
+    </div>
+
+
+    {% if article|rel_articles|length > 0 %}
+
+        <div class="articles_header margin_top100">
+            <h1>Связанные статьи</h1>
+        </div>
+        
+        <hr>
+        <div class="row">
+            {% for rel_article in article|rel_articles %}
+            <div class="rel_array_element card shadow">
+                <img class="card-img-top" src="{% static rel_article.image_base %}" alt="" >
+                <h2 class="card-title project_card_title"><a href="{% url 'articles_detail' rel_article.pk%}">{{ rel_article.title }}</a></h2>
+                
+                📅 Создано {{ article.created_on.date | date:"d-m-Y"}} 
+                <br>
+                📅 Изменено {{ article.last_modified.date | date:"d-m-Y"}} 
+                <br>
+                
+                {% for category in rel_article.categories.all %}
+                    <a href="{% url 'articles_category' category.name %}"><span class="badge badge-primary">{{ category.name }}</span></a>
+                {% endfor %}
+                <br>
+                <p>{{ rel_article.attractive_text | safe }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}    
+
+
+    
+    <!-- <h3>Leave a comment:</h3>
+    <form action="/articles/{{ article.pk }}/" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.author }}
+        </div>
+        <div class="form-group">
+            {{ form.body }}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <h3>Comments:</h3>
+    {% for comment in comments %}
+    <p>
+        On {{comment.created_on.date }}&nbsp;
+        <b>{{ comment.author }}</b> wrote:
+    </p>
+    <p>{{ comment.body }}</p>
+    <hr>
+    {% endfor %} -->
+
+
+</div>
+
+{% endblock %}

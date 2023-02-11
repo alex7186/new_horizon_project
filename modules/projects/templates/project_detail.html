@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_content %}
+<div class="container article_detail">
+    <h1 class="article_detail_title">{{ project.title }}</h1>   
+    <br> 
+    <img class="article_detail_img shadow bg-white rounded" src="{% static project.image_base %}" alt="" >
+
+    <div class="article_attractive_text">
+        {{ project.attractive_text | safe | linebreaks }}
+    </div>
+    <div class="article_main_text">
+        {{ project.main_text | safe | linebreaks }}
+    </div>
+</div>
+{% endblock %}

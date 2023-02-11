@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% load projects_filters %}
+{% block page_content %}
+
+<div class="main_poster">
+    {% include 'main_poster.html' %}
+</div>
+<div class="main_description">
+    {% include 'main_description.html' %}
+</div>
+
+<div class="container">
+    <div class="popular_articles">
+        {% include 'popular_articles.html' %}
+    </div>
+    <div class="articles_array" id="projects">
+        <h1 class="projects_header">Материалы</h1>
+        <hr>
+        <div class="row">
+            {% for project in projects|reverse %}
+            <div class="rel_array_element card shadow">
+                <a href="{% url 'project_detail' project.pk %}">
+                    <img class="card-img-top" src="{% static project.image_base %}">
+                
+                    <div class="card-body">
+                        <h2 class="card-title project_card_title">
+                            {{ project.title }}
+                        </h2>
+                    </div>
+                </a>
+                <p class="card-text project_card_text">{{ project.attractive_text }}</p>
+                <div class="readmore-button">
+                    ⬇️<a href="">Читать подробнее ...</a>⬇️
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
