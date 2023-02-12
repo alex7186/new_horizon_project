@@ -70,6 +70,7 @@ def articles_detail(request, pk):
         "keys": article.main_text_headers_list_keys,
     }
 
+    # TODO make UserVisistor to be a decorator
     UserVisistor(request=request)
 
     return render(request, "articles_detail.html", context)
