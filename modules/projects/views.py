@@ -3,7 +3,7 @@ from modules.projects.models import Project
 from modules.popular_element.models import PopularArticle, PopularProject
 from modules.main.models import PosterDescription, MainDescription
 
-# from modules.main.views import UserVisistor
+from modules.main.views import UserVisistor
 
 # import logging
 # logger = logging.getLogger('logger')
@@ -24,8 +24,6 @@ def project_index(request):
         if popular_article.enabled:
             popular_articles.append(popular_article.articles.all())
 
-    # for popular_projet in popular_projects:
-    #     print('popular_projects', popular_projet, popular_projet.projects, dir(popular_projet.projects))
     context = {
         "projects": projects,
         "popular_articles": popular_articles,
@@ -33,7 +31,7 @@ def project_index(request):
         "main_description": main_description,
     }
 
-    # user_visitor = UserVisistor(request=request)
+    UserVisistor(request=request)
 
     return render(request, "project_index.html", context)
 

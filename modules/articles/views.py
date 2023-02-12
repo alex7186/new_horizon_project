@@ -15,7 +15,7 @@ from modules.articles.serializers import (
     ArticleSerializer,
 )
 
-# from modules.main.views import UserVisistor
+from modules.main.views import UserVisistor
 
 
 def articles_index(request):
@@ -30,7 +30,7 @@ def articles_index(request):
         "popular_projects": popular_projects,
     }
 
-    # user_visitor = UserVisistor(request=request)
+    UserVisistor(request=request)
 
     return render(request, "articles_index.html", context)
 
@@ -43,7 +43,7 @@ def articles_category(request, category):
     ).order_by("-created_on")
     context = {"category": category_decoded, "articles": articles}
 
-    # user_visitor = UserVisistor(request=request)
+    UserVisistor(request=request)
 
     return render(request, "articles_category.html", context)
 
@@ -70,7 +70,7 @@ def articles_detail(request, pk):
         "keys": article.main_text_headers_list_keys,
     }
 
-    # user_visitor = UserVisistor(request=request)
+    UserVisistor(request=request)
 
     return render(request, "articles_detail.html", context)
 

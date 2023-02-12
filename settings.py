@@ -15,7 +15,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BASE_DIR = os.path.join(BASE_DIR, "new_horizon_project")
+BASE_DIR = os.path.join(BASE_DIR, "new_horizon")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -158,5 +158,7 @@ STATIC_ROOT = "static/"
 STATIC_URL = "/static/"
 
 
-# LOG_FILENAME = "misc/users_logfile.log"
-LOG_FILEPATH = BASE_DIR
+LOG_FILENAME = "users_logfile.log"
+LOG_FILEPATH = f"{BASE_DIR}/misc"
+
+print("LOG_FILEPATH", LOG_FILEPATH)
