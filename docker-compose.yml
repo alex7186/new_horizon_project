@@ -21,16 +21,17 @@ services:
   #   command: postgres -c config_file=/etc/postgresql/postgresql.conf
 
 
-  new_horizon_migrations:
+  migrations:
     build: .
-    command: python manage.py migrate --noinput
+    command: python manage.py makemigrations; python manage.py migrate --noinput; 
     volumes:
       - .:/usr/src/new_horizon
     # depends_on:
     #   - new_horizon_db
 
 
-  new_horizon_site:
+
+  site:
     build: .
     command: python /usr/src/new_horizon/manage.py runserver 0.0.0.0:8000
     volumes:
@@ -46,7 +47,7 @@ services:
     #   POSTGRES_USER: postgres
     depends_on:
       # - new_horizon_db
-      - new_horizon_migrations
+      - migrations
 
 
 # volumes:

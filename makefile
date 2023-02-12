@@ -5,6 +5,8 @@ _branch_name = main
 _local_dir = $(CURDIR)
 _remote_dir = u1734296@31.31.196.21:www/xn-----dlccmbc8bcwbhe5aeehd9dxgi.xn--p1ai/
 
+_common-service-path = /etc/systemd/system/
+
 push:
 	@$(MAKE) --no-print-directory _black
 	@# @$(MAKE) --no-print-directory _touch_restart
@@ -52,11 +54,20 @@ update_local:
 	@rsync -r $(_remote_dir)/ $(_local_dir)
 	@echo " ✅  local update done! "
 
-runserver_local:
-	@cd new_horizon; python3 manage.py runserver
 
 migrate:
 	@cd new_horizon; python3 manage.py makemigrations; python3 manage.py migrate
 
-# cat-logs:
-	# @python3 log_reader.py | less
+
+copy_service:
+	@echo "\n⚙️  moving service from $(_local_dir)/service/ to $(_common-service-path)\n"
+	@sudo cp $(_local_dir)/service/$(app_name).service $(_common-service-path)/$(app_name).service
+	-@sudo systemctl daemon-reload
+	-@sudo systemctl enable $(app_name)
+
+start_service:
+	@sudo systemctl restart $(app_name)
+	@echo "\n✅  service (re)started\n"
+
+stop_service:
+	@sudo systemctl stop $(app_name)

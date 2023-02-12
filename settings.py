@@ -100,7 +100,6 @@ WSGI_APPLICATION = "wsgi.application"
 DB_DIR = f"{BASE_DIR}/misc/db.sqlite3"
 DB_DIR = f"/usr/src/new_horizon/misc/db.sqlite3"
 
-print(DB_DIR)
 
 DATABASES = {
     "default": {
@@ -161,4 +160,4 @@ STATIC_URL = "/static/"
 LOG_FILENAME = "users_logfile.log"
 LOG_FILEPATH = f"{BASE_DIR}/misc"
 
-print("LOG_FILEPATH", LOG_FILEPATH)
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
