@@ -58,5 +58,5 @@ runserver_local:
 migrate:
 	@cd new_horizon; python3 manage.py makemigrations; python3 manage.py migrate
 
-cat-logs:
-	@python3 log_reader.py | less
+# cat-logs:
+	# @python3 log_reader.py | less

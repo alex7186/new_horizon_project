@@ -31,6 +31,7 @@ ALLOWED_HOSTS = [
     "xn-----dlccmbc8bcwbhe5aeehd9dxgi.xn--p1ai",
     "127.0.0.1",
     "0.0.0.0",
+    "localhost",
 ]
 
 
@@ -95,10 +96,16 @@ WSGI_APPLICATION = "wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+# DB_DIR = f"{BASE_DIR}/misc/db.sqlite3"
+DB_DIR = f"{BASE_DIR}/misc/db.sqlite3"
+DB_DIR = f"/usr/src/new_horizon/misc/db.sqlite3"
+
+print(DB_DIR)
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": f"{BASE_DIR}/misc/db.sqlite3",
+        "NAME": DB_DIR,
     }
 }
 
@@ -151,5 +158,5 @@ STATIC_ROOT = "static/"
 STATIC_URL = "/static/"
 
 
-LOG_FILENAME = "misc/users_logfile.log"
+# LOG_FILENAME = "misc/users_logfile.log"
 LOG_FILEPATH = BASE_DIR

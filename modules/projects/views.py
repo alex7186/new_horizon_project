@@ -2,7 +2,8 @@ from django.shortcuts import render
 from modules.projects.models import Project
 from modules.popular_element.models import PopularArticle, PopularProject
 from modules.main.models import PosterDescription, MainDescription
-from modules.main.views import UserVisistor
+
+# from modules.main.views import UserVisistor
 
 # import logging
 # logger = logging.getLogger('logger')
@@ -32,7 +33,7 @@ def project_index(request):
         "main_description": main_description,
     }
 
-    user_visitor = UserVisistor(request=request)
+    # user_visitor = UserVisistor(request=request)
 
     return render(request, "project_index.html", context)
 

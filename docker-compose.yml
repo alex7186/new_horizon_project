@@ -25,17 +25,17 @@ services:
     build: .
     command: python manage.py migrate --noinput
     volumes:
-      - .:/usr/src/new_horizon_rest
+      - .:/usr/src/new_horizon
     # depends_on:
     #   - new_horizon_db
 
 
   new_horizon_site:
     build: .
-    command: python /usr/src/new_horizon_rest/manage.py runserver 0.0.0.0:8000
+    command: python /usr/src/new_horizon/manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/usr/src/new_horizon_rest
-      - ${PWD}/db.sqlite3:/usr/src/new_horizon_rest/db.sqlite3
+      - .:/usr/src/new_horizon
+      - /media/alex/drive_2tb/Documents/Mega/projects/WEB_django/new_horizon_project/misc/db.sqlite3:/usr/src/new_horizon/misc/db.sqlite3
     ports:
       - 8000:8000
     # environment:
@@ -48,5 +48,5 @@ services:
       - new_horizon_migrations
 
 
-volumes:
-  new_horizon_postgres_data:
+# volumes:
+#   new_horizon_postgres_data:
