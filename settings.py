@@ -154,7 +154,7 @@ USE_TZ = True
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_ROOT = "static/"
 
-STATIC_URL = "/usr/src/new_horizon/static/"
+STATIC_URL = "/static/"
 
 
 LOG_FILENAME = "users_logfile.log"
