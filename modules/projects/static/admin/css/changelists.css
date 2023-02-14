@@ -271,7 +271,6 @@
     background: var(--link-hover-color);
 }
 
-/* ACTIONS */
 
 .filtered .actions {
     border-right: none;
@@ -296,7 +295,7 @@
     width: 100%;
 }
 
-#changelist .actions.selected { /* XXX Probably unused? */
+#changelist .actions.selected { 
     background: var(--body-bg);
     border-top: 1px solid var(--body-bg);
     border-bottom: 1px solid #edecd6;
