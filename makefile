@@ -13,7 +13,7 @@ push:
 	@$(MAKE) --no-print-directory _git_commit
 	@echo " ⚙️  pushing as $(_commit_name) "
 	@git push origin $(_branch_name)
-	@echo " ✅  pushing done! "
+	@echo "\n ✅  pushing done! "
 
 push-force:
 	@$(MAKE) --no-print-directory _black
@@ -21,7 +21,7 @@ push-force:
 	@$(MAKE) --no-print-directory _git_commit
 	@echo " ⚙️  🚩FORCE🚩  pushing as $(_commit_name) "
 	@git push --force origin $(_branch_name)
-	@echo " ✅  🚩FORCE🚩 pushing done! "
+	@echo "\n ✅  🚩FORCE🚩 pushing done! "
 
 _black:
 	@echo " 🧹 cleaning the code... "
@@ -67,11 +67,11 @@ copy_service:
 
 start_service:
 	@sudo systemctl restart $(app_name)
-	@echo "\n✅  service (re)started\n"
+	@echo "\n ✅  service (re)started\n"
 
 stop_service:
 	@sudo systemctl stop $(app_name)
-	@echo "\n❌  service stopped\n"
+	@echo "\n ❌  service stopped\n"
 
 status:
 	@systemctl status new_horizon.service 
