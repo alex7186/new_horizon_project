@@ -5,6 +5,7 @@ from django.db import models
 
 
 class Project(models.Model):
+
     title = models.CharField(max_length=100)
 
     attractive_text = models.TextField(default="Завлекающий текст")
@@ -21,12 +22,14 @@ class Project(models.Model):
     last_modified = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
+
         article_inner_links = []
         # replace_attr_text_locators = []
 
         for locator_group in list(
             re.finditer(r"(<a[^<>]*>)([^<>]*)</a>", self.main_text)
         )[::-1]:
+
             project_a_class = "button_pr btn btn-primary button_center project_a"
 
             locator_open_tag = locator_group.start(1), locator_group.end(1)
@@ -35,6 +38,7 @@ class Project(models.Model):
             for tag_locator_group in list(
                 re.finditer(r'([\S]*)="([^"]*[\S^">])"', a_tag_attrs)
             ):
+
                 attr_name = tag_locator_group.group(1)
                 # attr_text = tag_locator_group.group(2)
 

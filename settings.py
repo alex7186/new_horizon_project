@@ -97,7 +97,7 @@ WSGI_APPLICATION = "wsgi.application"
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 # DB_DIR = f"{BASE_DIR}/misc/db.sqlite3"
-DB_DIR = f"{BASE_DIR}/misc/db.sqlite3"
+# DB_DIR = f"{BASE_DIR}/misc/db.sqlite3"
 DB_DIR = f"/usr/src/new_horizon/misc/db.sqlite3"
 
 
@@ -154,7 +154,7 @@ USE_TZ = True
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_ROOT = "static/"
 
-STATIC_URL = "/static/"
+STATIC_URL = "/usr/src/new_horizon/static/"
 
 
 LOG_FILENAME = "users_logfile.log"

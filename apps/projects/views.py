@@ -2,7 +2,6 @@ from django.shortcuts import render
 from apps.projects.models import Project
 from apps.popular_element.models import PopularArticle, PopularProject
 from apps.main.models import PosterDescription, MainDescription
-
 from apps.main.views import UserVisistor
 
 # import logging
@@ -24,6 +23,8 @@ def project_index(request):
         if popular_article.enabled:
             popular_articles.append(popular_article.articles.all())
 
+    # for popular_projet in popular_projects:
+    #     print('popular_projects', popular_projet, popular_projet.projects, dir(popular_projet.projects))
     context = {
         "projects": projects,
         "popular_articles": popular_articles,
@@ -31,7 +32,7 @@ def project_index(request):
         "main_description": main_description,
     }
 
-    UserVisistor(request=request)
+    user_visitor = UserVisistor(request=request)
 
     return render(request, "project_index.html", context)
 

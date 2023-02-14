@@ -17,6 +17,7 @@ class ProjectAdmin(admin.ModelAdmin):
     show_title.short_description = "Название 👇"
 
     def show_article_inner_links(self, obj):
+
         articles_pks = []
         articles_titles = []
         for article in Article.objects.all():
@@ -28,6 +29,7 @@ class ProjectAdmin(admin.ModelAdmin):
         links = []
         # print(articles_pk_titles)
         for link in obj.article_inner_links:
+
             pk = [el for el in link.split("/") if el][1]
             pk = int(pk)
 
