@@ -1,7 +1,7 @@
 from django.db import models
 
-from modules.projects.models import Project
-from modules.articles.models import Article
+from apps.projects.models import Project
+from apps.articles.models import Article
 
 
 # Create your models here.

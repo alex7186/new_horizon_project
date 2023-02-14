@@ -17,7 +17,7 @@ sys.path.insert(0, "~/Загрузки/teee/new_horizon_env")
 sys.path.insert(1, "~/Загрузки/teee/new_horizon")
 
 # os.environ.setdefault("DJANGO_SETTINGS_MODULE", "main.settings")
-os.environ["DJANGO_SETTINGS_MODULE"] = "modules.main.settings"
+os.environ["DJANGO_SETTINGS_MODULE"] = "apps.main.settings"
 
 
 from django.core.wsgi import get_wsgi_application

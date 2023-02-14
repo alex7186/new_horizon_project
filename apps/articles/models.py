@@ -6,7 +6,7 @@ from django_mysql.models import ListTextField
 
 from urllib.parse import unquote
 
-from modules.quiz.models import QuizPick4
+from apps.quiz.models import QuizPick4
 
 
 class Category(models.Model):

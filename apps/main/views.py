@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from settings import LOG_FILENAME, LOG_FILEPATH
-from modules.main.models import AboutInfo, PosterDescription
+from apps.main.models import AboutInfo, PosterDescription
 
 import os
 

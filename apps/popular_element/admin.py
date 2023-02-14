@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from django.utils.safestring import mark_safe
-from modules.popular_element.models import PopularProject, PopularArticle
+from apps.popular_element.models import PopularProject, PopularArticle
 
 
 # Register your models here.

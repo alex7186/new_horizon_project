@@ -1,5 +1,5 @@
 from django.contrib import admin
-from modules.quiz.models import QuizPick4
+from apps.quiz.models import QuizPick4
 
 
 # Register your models here.

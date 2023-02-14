@@ -1,7 +1,7 @@
 from cgitb import enable
 from django.contrib import admin
-from modules.articles.models import Article, Category, Comment
-from modules.projects.models import Project
+from apps.articles.models import Article, Category, Comment
+from apps.projects.models import Project
 
 from django.utils.safestring import mark_safe
 

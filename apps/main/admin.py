@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from modules.main.models import AboutInfo, PosterDescription, MainDescription
+from apps.main.models import AboutInfo, PosterDescription, MainDescription
 
 from django.utils.safestring import mark_safe
 

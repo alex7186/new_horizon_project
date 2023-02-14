@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
-from modules.quiz.models import QuizPick4
-from modules.articles.models import Article
+from apps.quiz.models import QuizPick4
+from apps.articles.models import Article
 
 
 # Create your views here.

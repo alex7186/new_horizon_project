@@ -18,16 +18,16 @@ from django.views.static import serve
 from django.urls import path, include, re_path
 import settings
 
-from modules.projects.views import project_index, project_detail
-from modules.main.views import about_page
-from modules.articles.views import ArticleAPIView, CategoryAPIView, ArticleByPKAPIView
+from apps.projects.views import project_index, project_detail
+from apps.main.views import about_page
+from apps.articles.views import ArticleAPIView, CategoryAPIView, ArticleByPKAPIView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("<int:pk>/", project_detail, name="project_detail"),
     path("", project_index, name="home"),
-    path("articles/", include("modules.articles.urls")),
-    path("quiz/", include("modules.quiz.urls")),
+    path("articles/", include("apps.articles.urls")),
+    path("quiz/", include("apps.quiz.urls")),
     path("about", about_page, name="about"),
     re_path(r"^static/(?P<path>.*)$", serve, {"document_root": settings.STATIC_ROOT}),
     path("api/v1/articles_list/", ArticleAPIView.as_view()),
@@ -36,5 +36,5 @@ urlpatterns = [
 ]
 
 
-handler404 = "modules.main.views.err404"
-handler500 = "modules.main.views.err500"
+handler404 = "apps.main.views.err404"
+handler500 = "apps.main.views.err500"

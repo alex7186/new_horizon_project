@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from modules.articles.models import Article, Category
+from apps.articles.models import Article, Category
 
 
 class ArticlePreviewSerializer(serializers.ModelSerializer):

@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from modules.projects.models import Project
-from modules.popular_element.models import PopularArticle, PopularProject
-from modules.main.models import PosterDescription, MainDescription
+from apps.projects.models import Project
+from apps.popular_element.models import PopularArticle, PopularProject
+from apps.main.models import PosterDescription, MainDescription
 
-from modules.main.views import UserVisistor
+from apps.main.views import UserVisistor
 
 # import logging
 # logger = logging.getLogger('logger')

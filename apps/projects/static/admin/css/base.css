@@ -559,9 +559,6 @@ input[type=button][disabled].default {
     opacity: 0.4;
 }
 
-
-/* MODULES */
-
 .module {
     border: none;
     margin-bottom: 30px;

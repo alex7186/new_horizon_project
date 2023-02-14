@@ -4,18 +4,18 @@ from django.shortcuts import render
 
 # from articles.forms import CommentForm
 # from articles.models import Comment
-from modules.articles.models import Article, Category
+from apps.articles.models import Article, Category
 
-from modules.popular_element.models import PopularProject
+from apps.popular_element.models import PopularProject
 
 from rest_framework import generics
-from modules.articles.serializers import (
+from apps.articles.serializers import (
     ArticlePreviewSerializer,
     CategorySerializer,
     ArticleSerializer,
 )
 
-from modules.main.views import UserVisistor
+from apps.main.views import UserVisistor
 
 
 def articles_index(request):

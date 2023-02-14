@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class QuizConfig(AppConfig):
+class PopularElementConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "modules.quiz"
+    name = "apps.popular_element"

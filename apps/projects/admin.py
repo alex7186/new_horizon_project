@@ -2,9 +2,9 @@ from django.contrib import admin
 
 from django.utils.safestring import mark_safe
 
-from modules.projects.models import Project
+from apps.projects.models import Project
 
-from modules.articles.models import Article
+from apps.articles.models import Article
 
 
 @admin.register(Project)

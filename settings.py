@@ -44,11 +44,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "modules.main",
-    "modules.projects",
-    "modules.articles",
-    "modules.quiz",
-    "modules.popular_element",
+    "apps.main",
+    "apps.projects",
+    "apps.articles",
+    "apps.quiz",
+    "apps.popular_element",
     "rest_framework",
 ]
 
@@ -62,12 +62,12 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "modules.main.urls"
+ROOT_URLCONF = "apps.main.urls"
 
 templates_dirs = [
-    "modules/main/templates/",
-    "modules/projects/templates/",
-    "modules/articles/templates/",
+    "apps/main/templates/",
+    "apps/projects/templates/",
+    "apps/articles/templates/",
 ]
 # if not DEBUG:
 #     templates_dirs = [f"new_horizon/{template_dir}" for template_dir in templates_dirs]

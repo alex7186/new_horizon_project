@@ -71,3 +71,7 @@ start_service:
 
 stop_service:
 	@sudo systemctl stop $(app_name)
+	@echo "\n❌  service stopped\n"
+
+status:
+	@systemctl status new_horizon.service 
