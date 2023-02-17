@@ -36,7 +36,6 @@ setup:
 	@echo " ✅  setup done! "
 
 update_hosting:
-	# @$(MAKE) --no-print-directory _touch_restart
 	@echo " ⚙️  pushing to hosting..."
 	@echo " ⚙️  $(_local_dir) ➡️  $(_remote_dir)"
 	@rsync -r $(_local_dir)/ $(_remote_dir)

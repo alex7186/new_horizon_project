@@ -25,7 +25,7 @@ services:
     build: .
     command: python manage.py makemigrations; python manage.py migrate --noinput; 
     volumes:
-      - .:/usr/src/new_horizon
+      - .:/usr/src/new_horizon_project
     # depends_on:
     #   - new_horizon_db
 
@@ -33,11 +33,11 @@ services:
 
   site:
     build: .
-    command: python /usr/src/new_horizon/manage.py runserver 0.0.0.0:8000
+    command: python /usr/src/new_horizon_project/manage.py runserver 194.87.191.45:8000
     volumes:
-      - .:/usr/src/new_horizon
-      - /media/alex/drive_2tb/Documents/Mega/projects/WEB_django/new_horizon_project/misc/db.sqlite3:/usr/src/new_horizon/misc/db.sqlite3
-      - /media/alex/drive_2tb/Documents/Mega/projects/WEB_django/new_horizon_project/misc/users_logfile.log:/usr/src/new_horizon/misc/users_logfile.log
+      - .:/usr/src/new_horizon_project
+      - /root/projects/WEB_django/new_horizon_project/misc/db.sqlite3:/usr/src/new_horizon_project/misc/db.sqlite3
+      - /root/new_horizon_project/misc/users_logfile.log:/usr/src/new_horizon_project/misc/users_logfile.log
     ports:
       - 8000:8000
     # environment:
