@@ -18,4 +18,4 @@ RUN chmod 777 /usr/src/new_horizon_project/db.sqlite3
 EXPOSE 8000
 
 
-CMD ["python", "manage.py", "runserver", "127.0.0.1:8000"]
+CMD ["python", "manage.py", "runserver", "0:8000"]

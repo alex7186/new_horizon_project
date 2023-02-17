@@ -33,7 +33,7 @@ services:
 
   site:
     build: .
-    command: python /usr/src/new_horizon_project/manage.py runserver 194.87.191.45:8000
+    command: python /usr/src/new_horizon_project/manage.py runserver 0:8000
     volumes:
       - .:/usr/src/new_horizon_project
       - /root/new_horizon_project/misc/db.sqlite3:/usr/src/new_horizon_project/misc/db.sqlite3
