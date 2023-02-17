@@ -9,7 +9,6 @@ _common-service-path = /etc/systemd/system/
 
 push:
 	@$(MAKE) --no-print-directory _black
-	@# @$(MAKE) --no-print-directory _touch_restart
 	@$(MAKE) --no-print-directory _git_commit
 	@echo " ⚙️  pushing as $(_commit_name) "
 	@git push origin $(_branch_name)
@@ -17,7 +16,6 @@ push:
 
 push-force:
 	@$(MAKE) --no-print-directory _black
-	@# @$(MAKE) --no-print-directory _touch_restart
 	@$(MAKE) --no-print-directory _git_commit
 	@echo " ⚙️  🚩FORCE🚩  pushing as $(_commit_name) "
 	@git push --force origin $(_branch_name)
@@ -32,17 +30,13 @@ _git_commit:
 	@git add .
 	-@git commit -m $(_commit_name)
 
-_touch_restart:
-	@echo " ⚙️  creating '.restart-app' file... "
-	@touch .restart-app
-
 setup:
 	@echo " ⚙️ installing pip dependencies "	
 	@pip install -r misc/requirements.txt
 	@echo " ✅  setup done! "
 
 update_hosting:
-	@$(MAKE) --no-print-directory _touch_restart
+	# @$(MAKE) --no-print-directory _touch_restart
 	@echo " ⚙️  pushing to hosting..."
 	@echo " ⚙️  $(_local_dir) ➡️  $(_remote_dir)"
 	@rsync -r $(_local_dir)/ $(_remote_dir)

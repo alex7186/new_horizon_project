@@ -24,7 +24,7 @@ BASE_DIR = os.path.join(BASE_DIR, "new_horizon")
 SECRET_KEY = "!^_6%0so9$a@u-w22nc56xcp0^spoo4k^3q!j016o5hll+#c#o"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     "повесть-лет-словесных.рф",
@@ -96,7 +96,6 @@ WSGI_APPLICATION = "wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-# DB_DIR = f"{BASE_DIR}/misc/db.sqlite3"
 # DB_DIR = f"{BASE_DIR}/misc/db.sqlite3"
 DB_DIR = f"/usr/src/new_horizon/misc/db.sqlite3"
 
