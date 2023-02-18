@@ -3,3 +3,4 @@ users_logfile.log
 *.sqlite3
 static/admin/
 apps/projects/static/admin/
+*.ipynb
