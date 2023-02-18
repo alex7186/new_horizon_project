@@ -3,7 +3,6 @@ _commit_name = "autocommit $(_today)"
 app_name = new_horizon
 _branch_name = main
 _local_dir = $(CURDIR)
-# _remote_dir = u1734296@31.31.196.21:www/xn-----dlccmbc8bcwbhe5aeehd9dxgi.xn--p1ai/
 _remote_dir = root@194.87.191.45:/root/new_horizon_project
 
 _common-service-path = /etc/systemd/system/
