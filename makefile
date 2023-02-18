@@ -47,10 +47,8 @@ update_local:
 	@rsync -r $(_remote_dir)/ $(_local_dir)
 	@echo "\n ✅  local update done! "
 
-
 migrate:
 	@cd new_horizon; python3 manage.py makemigrations; python3 manage.py migrate
-
 
 copy_service:
 	@echo "\n⚙️  moving service from $(_local_dir)/service/ to $(_common-service-path)\n"

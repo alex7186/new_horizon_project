@@ -29,8 +29,6 @@ services:
     # depends_on:
     #   - new_horizon_db
 
-
-
   site:
     build: .
     command: python /usr/src/new_horizon_project/manage.py runserver 0:8000
@@ -48,7 +46,6 @@ services:
     depends_on:
       # - new_horizon_db
       - migrations
-
 
 # volumes:
 #   new_horizon_postgres_data:
