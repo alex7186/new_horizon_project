@@ -28,7 +28,7 @@ this directory contains the starter.sh file and the system-d file of the service
 
 django application files are stored in the app directory
 
-### Articles
+#### Articles
 
 the structure of the article suggests the presence of:
   * subheadings in \<h6\> tags (this helps to automatically generate a block of content (with link navigation within the document)
@@ -36,20 +36,20 @@ the structure of the article suggests the presence of:
   * a block of enticing text that is displayed in the article card
   * an image that is displayed in the article card and in the text of the article itself
 
-### Projects
+#### Projects
 
 the structure of the project block assumes:
   * internal links to articles (optional)
   * a block of enticing text that is displayed in the article card
   * an image that is displayed in the article card and in the text of the article itself
 
-### popular_elements
+#### popular_elements
 
 this block contains
   * popular articles - listing of featured articles
   * popular projects - listing of selected projects
 
-### main
+#### main
 
 this block, in addition to the basic files of the project, contains the template of the page "about"
 
