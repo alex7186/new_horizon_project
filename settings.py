@@ -15,7 +15,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BASE_DIR = os.path.join(BASE_DIR, "new_horizon")
+BASE_DIR = os.path.join(BASE_DIR, "new_horizon_project")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -24,14 +24,12 @@ BASE_DIR = os.path.join(BASE_DIR, "new_horizon")
 SECRET_KEY = "!^_6%0so9$a@u-w22nc56xcp0^spoo4k^3q!j016o5hll+#c#o"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     "повесть-лет-словесных.рф",
+    "www.повесть-лет-словесных.рф",
     "194.87.191.45",
-    "127.0.0.1",
-    "0.0.0.0",
-    "localhost",
 ]
 
 
