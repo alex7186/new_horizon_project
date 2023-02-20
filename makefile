@@ -23,7 +23,7 @@ push-force:
 
 _black:
 	@echo " 🧹 cleaning the code... "
-	@python3 -m black .
+	@python3 -m black  .
 
 _git_commit:
 	@echo " ⚙️  pushing to git... "
