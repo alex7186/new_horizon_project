@@ -17,6 +17,10 @@ body{
 
 }
 
+.container{
+    width: min(960px, 80%) !important;
+}
+
 /* .navbar .container{
         max-width: none !important;
     } */
@@ -28,7 +32,7 @@ body{
 }
 
 .card-title{
-    margin-top: 10px;
+    /* margin-top: 10px; */
     margin-bottom: 0px !important;
 }
 
@@ -40,7 +44,7 @@ body{
 .card-article-detail{
     padding-left: 0.5rem;
     padding-right: 0.5rem;
-    margin-top: 10px;
+    margin-top: 5px;
     /* margin: 0px; */
 }
 
@@ -60,7 +64,7 @@ body{
 }
 
 #projects{
-    padding-top: 50px
+    padding-top: 0px
 }
 
 .btn{
@@ -82,9 +86,12 @@ body{
 
 .main-content{
     margin-bottom: auto;
-    padding-top: 50px;
+    padding-top: 45px;
 }
 
+.main-content h1{
+    font-size: 25px;
+}
 
 a{
     color: #5d8396;
@@ -130,7 +137,7 @@ a{
 
 .row{
     margin-bottom: 30px;
-    margin-top: 30px;
+    margin-top: 20px;
     max-width: max(95%, 800px);
     margin-left: auto;
     margin-right: auto;
@@ -138,7 +145,7 @@ a{
 
 
 .row img{
-    width: 280px;
+    width: 250px;
     height: 160px;
     margin: auto;
     object-fit: cover;
@@ -195,7 +202,7 @@ a{
 }
 
 .about_text{
-    margin-top: 70px;
+    /* margin-top: 70px; */
     padding-bottom: 40px;
 }
 
@@ -243,7 +250,7 @@ a{
 
 .project_card_title{
     font-size: 23px;
-    margin-top: 10px;
+    /* margin-top: 10px; */
 }
 
 .project_card_text{
@@ -263,7 +270,7 @@ a{
 }
 
 .main_description p {
-    font-size: 18px;
+    font-size: 14px;
 }
 
 .button_pr{
@@ -298,7 +305,7 @@ a{
 }
 
 .articles_header{
-    margin-top: 80px;
+    margin-top: 35px;
     text-align: center;
 }
 
@@ -399,13 +406,16 @@ a{
 }
 
 .article_attractive_text{
-    margin-top: 50px;
+    margin-top: 40px;
+    border-left: 5px solid #5d8396;
+    padding-left: 10px;
+    padding-bottom: 10px;
 }
 
 .article_detail_title{
     padding-bottom: 10px;
     border-bottom: 5px solid #5d8396;
-    margin-top: 30px;
+    /* margin-top: 30px; */
 }
 
 .article_detail{
@@ -413,23 +423,25 @@ a{
 }
 
 .article_detail p, li{
-    font-size: 18px !important;
+    font-size: 14px !important;
 }
 
 .article_detail_info{
     text-align: left;
+    font-size: 12px;
 }
 
 .article_main_text{
-    margin-top: 70px;
+    margin-top: 30px;
     margin-bottom: 70px;
+    font-size: 14px;
 }
 
 .article_main_text h6{
     text-align: left;
     margin-top: 40px;
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 20px;
+    /* font-weight: bold; */
 }
 
 .margin_top100{
@@ -441,22 +453,22 @@ a{
 }
 
 .rel_array_element{
-    font-size: 15px;
+    font-size: 12px;
     padding: 1rem;
     margin-bottom: 40px;
-    max-width: 328px;
+    max-width: 300px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .rel_array_element p{
-    font-size: 15px;
-    margin-top: 10px;
+    font-size: 12px;
+    margin-top: 5px;
     margin-bottom: 15px !important;
 }
 
 .rel_array_element h2{
-    font-size: 20px;
+    font-size: 17px;
 }
 
 .rel_array_element a{
@@ -470,8 +482,8 @@ a{
     width: 100%;
     z-index: 6;
     font-family: 'Arial Narrow Bold', sans-serif;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
 }
 
 .nav-link{
@@ -640,9 +652,9 @@ a{
     .row_head h2{
         font-size: 40px;
     }
-    .navbar-brand {
+    /* .navbar-brand {
         font-size: 1.9rem !important;
-    }
+    } */
 
     :target {
         scroll-margin-top: 120px;
@@ -674,7 +686,7 @@ a{
 }
 
 @media (min-width: 800px) {
-    .main-poster-main-poster{
+    /* .main-poster-main-poster{
         height: 29rem;
     }
     .main-poster-text{
@@ -685,13 +697,13 @@ a{
     }
     .main-poster-secondary-text{
         font-size: 1.5rem;
-    }
+    } */
     .row_head h2{
         font-size: 40px;
     }
 }
 
-@media (min-width: 1000px) {
+/* @media (min-width: 1000px) {
     .main-poster-main-poster{
         height: 31rem;
     }
@@ -725,7 +737,7 @@ a{
     .row_head h2{
         font-size: 40px;
     }
-}
+} */
 
 blockquote{
     margin-left: 2rem;
