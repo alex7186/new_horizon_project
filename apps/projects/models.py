@@ -74,6 +74,11 @@ class Project(models.Model):
         article_inner_links = article_inner_links[::-1]
         self.article_inner_links = article_inner_links
 
+        self.main_text = self.main_text.strip()
+        self.main_text = self.main_text.replace("<br>", "")
+        self.main_text = self.main_text.replace("<p></p>", "")
+        self.main_text = self.main_text.replace("\n", "")
+
         super().save(*args, **kwargs)
 
     def __str__(self):

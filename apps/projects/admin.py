@@ -34,11 +34,11 @@ class ProjectAdmin(admin.ModelAdmin):
             pk = int(pk)
 
             links.append(
-                '<p style="background-color:#264b5d;'
-                + "padding:5px;margin:5px;"
+                '<p style="'
+                + "padding:0px;margin:0px;"
                 + '"><a href="'
                 + f"/admin/articles/article/{pk}/change/"
-                + f'">➡️ #{int(pk)} {articles_pk_titles[int(pk)]}</a></p>'
+                + f'">#{int(pk)} {articles_pk_titles[int(pk)]}</a></p>'
             )
 
         res = "".join(links)
@@ -57,9 +57,12 @@ class ProjectAdmin(admin.ModelAdmin):
     def show_edited_created_time(self, obj):
         res = "".join(
             (
-                "<p>E " + obj.last_modified.strftime("%Y.%m.%d %H:%M:%S") + "</p>",
-                "<br>",
-                "<p>C " + obj.created_on.strftime("%Y.%m.%d %H:%M:%S") + "</p>",
+                '<p style="padding:0px;">'
+                + obj.last_modified.strftime("%H:%M %d.%m.%Y")
+                + "</p>",
+                '<p style="padding:0px;">'
+                + obj.created_on.strftime("%H:%M %d.%m.%Y")
+                + "</p>",
             )
         )
 
@@ -79,9 +82,9 @@ class ProjectAdmin(admin.ModelAdmin):
         "main_text",
     )
 
-    list_filter = (
-        "created_on",
-        "last_modified",
-    )
+    # list_filter = (
+    #     "created_on",
+    #     "last_modified",
+    # )
 
     readonly_fields = ("article_inner_links",)

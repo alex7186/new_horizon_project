@@ -7,9 +7,11 @@
     {% for articles in popular_articles %}
         <div class="row">
             {% for article in articles|sort_by_creation_date %}
-                <div class="rel_array_element card shadow">
+                <div class="rel_array_element">
+                <img class="card-img-top" src="{% static article.image_base %}">
+                <div class="card shadow undercower_card">
                     <a href="{% url 'articles_detail' article.pk %}">
-                        <img class="card-img-top" src="{% static article.image_base %}">
+                        
                         <div class="card-body">
                             <h2 class="card-title project_card_title">
                                 {{ article.title }}
@@ -30,6 +32,7 @@
                     <p class="card-text project_card_text">
                         {{ article.attractive_text | safe }}
                     </p>
+                </div>
                 </div>
             {% endfor %}
         </div>

@@ -19,9 +19,11 @@
         <hr>
         <div class="row">
             {% for project in projects|reverse %}
-            <div class="rel_array_element card shadow">
+            <div class="rel_array_element">
+            <img class="card-img-top" src="{% static project.image_base %}">
+            <div class="card shadow undercower_card">
                 <a href="{% url 'project_detail' project.pk %}">
-                    <img class="card-img-top" src="{% static project.image_base %}">
+                    
                 
                     <div class="card-body">
                         <h2 class="card-title project_card_title">
@@ -33,6 +35,7 @@
                 <div class="readmore-button">
                     ⬇️<a href="">Читать подробнее ...</a>⬇️
                 </div>
+            </div>
             </div>
             {% endfor %}
         </div>
