@@ -15,9 +15,9 @@ from apps.articles.serializers import (
     ArticleSerializer,
 )
 
-from apps.main.views import UserVisistor
+from apps.main.scripts import register_user_activity
 
-
+@register_user_activity
 def articles_index(request):
     popular_projects = []
     for popular_projet in PopularProject.objects.all():
@@ -30,11 +30,9 @@ def articles_index(request):
         "popular_projects": popular_projects,
     }
 
-    UserVisistor(request=request)
-
     return render(request, "articles_index.html", context)
 
-
+@register_user_activity
 def articles_category(request, category):
     category_decoded = urllib.parse.unquote(category)
 
@@ -43,11 +41,10 @@ def articles_category(request, category):
     ).order_by("-created_on")
     context = {"category": category_decoded, "articles": articles}
 
-    UserVisistor(request=request)
 
     return render(request, "articles_category.html", context)
 
-
+@register_user_activity
 def articles_detail(request, pk):
     article = Article.objects.get(pk=pk)
     # comments = Comment.objects.filter(article=article)
@@ -70,9 +67,7 @@ def articles_detail(request, pk):
         "keys": article.main_text_headers_list_keys,
     }
 
-    # TODO make UserVisistor to be a decorator
-    UserVisistor(request=request)
-
+ 
     return render(request, "articles_detail.html", context)
 
 
