@@ -24,7 +24,9 @@ class Article(models.Model):
 
     attractive_text = models.TextField(default="Завлекающий текст")
     categories = models.ManyToManyField("Category", related_name="articles")
-    quizzes = models.ManyToManyField(QuizPick4, related_name="quizzes", default='', blank=True)
+    quizzes = models.ManyToManyField(
+        QuizPick4, related_name="quizzes", default="", blank=True
+    )
     image_base = models.ImageField(upload_to="img", default="img/placeholder.png")
     main_text = models.TextField(default="Основной текст")
 
@@ -67,7 +69,7 @@ class Article(models.Model):
 
         # forming the inner subtitles
         def make_inner_titles():
-        
+
             text_inner_titles = []
             count_of_h6 = self.main_text.count("<h6")
 
@@ -90,7 +92,7 @@ class Article(models.Model):
             text_inner_titles = text_inner_titles[::-1]
 
             return text_inner_titles
-        
+
         self.main_text_headers_list = make_inner_titles()
 
         self.main_text_headers_list_keys = get_main_text_headers_list_keys(
@@ -102,7 +104,6 @@ class Article(models.Model):
         self.main_text = self.main_text.replace("<br>", "")
         self.main_text = self.main_text.replace("<p></p>", "")
         self.main_text = self.main_text.replace("\n", "")
-        
 
         super().save(*args, **kwargs)
 

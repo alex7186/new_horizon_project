@@ -35,8 +35,12 @@ class ArticleAdmin(admin.ModelAdmin):
     def show_edited_created_time(self, obj):
         res = "".join(
             (
-                '<p style="padding:0px;">' + obj.created_on.strftime("%H:%M %d.%m.%Y") + "</p>",
-                '<p style="padding:0px;">' + obj.last_modified.strftime("%H:%M %d.%m.%Y") + "</p>",
+                '<p style="padding:0px;">'
+                + obj.created_on.strftime("%H:%M %d.%m.%Y")
+                + "</p>",
+                '<p style="padding:0px;">'
+                + obj.last_modified.strftime("%H:%M %d.%m.%Y")
+                + "</p>",
             )
         )
 
@@ -140,10 +144,10 @@ class ArticleAdmin(admin.ModelAdmin):
     def show_main_text_headers_list_keys(self, obj):
         res = []
 
-        for i, element in enumerate(obj.main_text_headers_list_keys.split(',')):
+        for i, element in enumerate(obj.main_text_headers_list_keys.split(",")):
             res.append(f"{i+1}) {element}<br>")
 
-        res[-1] = res[-1][:-4] 
+        res[-1] = res[-1][:-4]
 
         return mark_safe(" ".join(res))
 
@@ -222,7 +226,7 @@ class CategoryAdmin(admin.ModelAdmin):
             res.append(
                 f'<a style="padding:0px;margin:0px;margin-top:5px;" href="'
                 + f'/admin/articles/article/{article.pk}/change/">'
-                + f'#{article.pk} {article.title}</a><br>'
+                + f"#{article.pk} {article.title}</a><br>"
             )
 
         res = " ".join(res)

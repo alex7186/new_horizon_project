@@ -18,7 +18,7 @@ body{
 }
 
 .container{
-    width: min(960px, 80%) !important;
+    width: min(1000px, 80%) !important;
 }
 
 /* .navbar .container{
@@ -386,7 +386,7 @@ a{
 }
 
 .popular_header{
-    margin-top: 80px;
+    margin-top: 50px;
 }
 
 .articles_array{
