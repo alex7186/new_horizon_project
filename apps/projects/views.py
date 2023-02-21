@@ -1,13 +1,14 @@
 from django.shortcuts import render
+
 from apps.projects.models import Project
 from apps.popular_element.models import PopularArticle, PopularProject
 from apps.main.models import PosterDescription, MainDescription
-from apps.main.views import UserVisistor
+from apps.main.scripts import register_user_activity
 
 # import logging
 # logger = logging.getLogger('logger')
 
-
+@register_user_activity
 def project_index(request):
     projects = Project.objects.all()
     poster_description = PosterDescription.objects.all()
@@ -31,8 +32,6 @@ def project_index(request):
         "poster_description": poster_description,
         "main_description": main_description,
     }
-
-    user_visitor = UserVisistor(request=request)
 
     return render(request, "project_index.html", context)
 
