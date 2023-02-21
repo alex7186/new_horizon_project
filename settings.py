@@ -26,7 +26,7 @@ SECRET_KEY = "!^_6%0so9$a@u-w22nc56xcp0^spoo4k^3q!j016o5hll+#c#o"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-DEV = True
+DEV = False
 
 ALLOWED_HOSTS = [
     "повесть-лет-словесных.рф",
@@ -35,7 +35,7 @@ ALLOWED_HOSTS = [
 ]
 
 if DEV:
-    ALLOWED_HOSTS = [*ALLOWED_HOSTS, '0.0.0.0', 'localhost', '127.0.0.1']
+    ALLOWED_HOSTS = [*ALLOWED_HOSTS, "0.0.0.0", "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -72,8 +72,6 @@ templates_dirs = [
     "apps/projects/templates/",
     "apps/articles/templates/",
 ]
-# if not DEBUG:
-#     templates_dirs = [f"new_horizon/{template_dir}" for template_dir in templates_dirs]
 
 TEMPLATES = [
     {

@@ -5,10 +5,9 @@ from datetime import datetime
 
 
 def register_user_activity(function):
-    
     def wrapper(*args, **kwargs):
         request = args[0]
-        
+
         # getting api
         adress = request.META.get("HTTP_X_FORWARDED_FOR")
         if adress:
@@ -24,10 +23,13 @@ def register_user_activity(function):
 
         # appending log file
         message = (
-            "\t".join([
-                datetime.now().strftime("%Y.%m.%d %H:%M:%S"), 
-                f"{user_ip}\t{user_agent}\t{opened}"
-            ]) + "\n"
+            "\t".join(
+                [
+                    datetime.now().strftime("%Y.%m.%d %H:%M:%S"),
+                    f"{user_ip}\t{user_agent}\t{opened}",
+                ]
+            )
+            + "\n"
         )
 
         # loacal data is not interested
@@ -37,5 +39,5 @@ def register_user_activity(function):
         with open(os.path.join(LOG_FILEPATH, LOG_FILENAME), "a") as file:
             file.write(message)
         return function(*args, **kwargs)
-    
+
     return wrapper

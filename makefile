@@ -56,6 +56,14 @@ copy_service:
 	-@sudo systemctl daemon-reload
 	-@sudo systemctl enable $(app_name)
 
+copy_service_gunicorn:
+	@echo "\n⚙️  moving gunicorn services from $(_local_dir)/service/ to $(_common-service-path)\n"
+	@sudo cp $(_local_dir)/service/$(app_name)_gunicorn.service $(_common-service-path)/$(app_name)_gunicorn.service
+	@sudo cp $(_local_dir)/service/$(app_name)_gunicorn.socket $(_common-service-path)/$(app_name)_gunicorn.socket
+	-@sudo systemctl daemon-reload
+	-@sudo systemctl enable $(app_name)_gunicorn.socket
+	-@sudo systemctl enable $(app_name)_gunicorn.service
+
 start_service:
 	@sudo systemctl restart $(app_name)
 	@echo "\n ✅  service (re)started\n"

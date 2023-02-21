@@ -6,12 +6,11 @@ from apps.main.scripts import register_user_activity
 from apps.main.models import AboutInfo, PosterDescription
 
 
-
 @register_user_activity
 def about_page(request):
     about_info = AboutInfo.objects.all()
     poster_description = PosterDescription.objects.all()
-    
+
     context = {
         "about_info": about_info,
         "poster_description": poster_description,

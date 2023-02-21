@@ -8,6 +8,7 @@ from apps.main.scripts import register_user_activity
 # import logging
 # logger = logging.getLogger('logger')
 
+
 @register_user_activity
 def project_index(request):
     projects = Project.objects.all()

@@ -17,6 +17,7 @@ from apps.articles.serializers import (
 
 from apps.main.scripts import register_user_activity
 
+
 @register_user_activity
 def articles_index(request):
     popular_projects = []
@@ -32,6 +33,7 @@ def articles_index(request):
 
     return render(request, "articles_index.html", context)
 
+
 @register_user_activity
 def articles_category(request, category):
     category_decoded = urllib.parse.unquote(category)
@@ -41,8 +43,8 @@ def articles_category(request, category):
     ).order_by("-created_on")
     context = {"category": category_decoded, "articles": articles}
 
-
     return render(request, "articles_category.html", context)
+
 
 @register_user_activity
 def articles_detail(request, pk):
@@ -67,7 +69,6 @@ def articles_detail(request, pk):
         "keys": article.main_text_headers_list_keys,
     }
 
- 
     return render(request, "articles_detail.html", context)
 
 
