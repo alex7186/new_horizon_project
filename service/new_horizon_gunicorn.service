@@ -1,0 +1,17 @@
+[Unit]
+Description=gunicorn daemon
+Requires=new_horizon_gunicorn.socket
+After=network.target
+
+[Service]
+User=alex
+Group=www-data
+WorkingDirectory=/home/alex/MEGAsync/projects/WEB_django/new_horizon_project
+ExecStart=/home/alex/MEGAsync/projects/WEB_django/new_horizon_project/env/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/run/new_horizon_gunicorn.sock \
+          wsgi:application
+
+[Install]
+WantedBy=multi-user.target

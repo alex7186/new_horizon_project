@@ -1,0 +1,8 @@
+[Unit]
+Description=gunicorn socket
+
+[Socket]
+ListenStream=/run/new_horizon_gunicorn.sock
+
+[Install]
+WantedBy=sockets.target
