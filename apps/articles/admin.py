@@ -9,7 +9,7 @@ from django.utils.safestring import mark_safe
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
     def show_title(self, obj):
-        res = f'<p style="font-size:15px;">#{obj.pk} {obj.title}</p>'
+        res = f'<p style="font-size:14px;padding:0px;">#{obj.pk} {obj.title}</p>'
 
         return mark_safe(res)
 
@@ -21,7 +21,7 @@ class ArticleAdmin(admin.ModelAdmin):
         for category in obj.categories.all():
             res.append(
                 '<p style="background-color:#264b5d;'
-                + 'padding:5px;margin:5px;"><a href="'
+                + 'padding:5px;margin-bottom:5px;"><a href="'
                 + f'/admin/articles/category/{category.pk}/change/">'
                 + f"{category.name}</a></p>"
             )
@@ -35,8 +35,8 @@ class ArticleAdmin(admin.ModelAdmin):
     def show_edited_created_time(self, obj):
         res = "".join(
             (
-                "<p>E " + obj.last_modified.strftime("%Y.%m.%d %H:%M:%S") + "</p>",
-                "<p>C " + obj.created_on.strftime("%Y.%m.%d %H:%M:%S") + "</p>",
+                '<p style="padding:0px;">' + obj.created_on.strftime("%H:%M %d.%m.%Y") + "</p>",
+                '<p style="padding:0px;">' + obj.last_modified.strftime("%H:%M %d.%m.%Y") + "</p>",
             )
         )
 
@@ -46,7 +46,7 @@ class ArticleAdmin(admin.ModelAdmin):
 
     def show_main_text_headers_list(self, obj):
         headers = [
-            f'<a href="/articles/{obj.pk}#queried_header{i+1}">➡️ {header}</a>'
+            f'{i+1}) <a style="font-size:14px;" href="/articles/{obj.pk}#queried_header{i+1}">{header}</a>'
             for i, header in enumerate(obj.main_text_headers_list)
         ]
 
@@ -69,8 +69,7 @@ class ArticleAdmin(admin.ModelAdmin):
                 )
             )
             for index, element in headirs_indicated_dict.items():
-                current_pk = (index + 1) + i * (delimiter - 1)
-                res += "".join(f"#{current_pk} {element} ")
+                res += "".join(f"{element} ")
 
             res += "<br>"
 
@@ -114,14 +113,13 @@ class ArticleAdmin(admin.ModelAdmin):
             if current_article_link in project.article_inner_links:
                 mentions.append((project.pk, project.title))
 
-        for mention in mentions:
+        for i, mention in enumerate(mentions):
             res.append(
-                f'<a style="padding:5px;margin:5px;'
-                + "font-size:15px;"
-                + "margin-left:0px;padding-left:0px;"
-                + 'height:20px;padding:5px;"'
+                f'{1+i}) <a style="padding:0px;margin:0px;'
+                + "font-size:14px;"
+                + 'height:20px;"'
                 + f' href="/{mention[0]}"'
-                + f">➡️ {mention[1]}</a>"
+                + f">{mention[1]}</a>"
             )
 
         if len(res) == 0:
@@ -140,9 +138,14 @@ class ArticleAdmin(admin.ModelAdmin):
     show_count_of_mentions.short_description = "Упоминания 👇"
 
     def show_main_text_headers_list_keys(self, obj):
-        return mark_safe(
-            "<br>".join(obj.main_text_headers_list_keys.replace(",", " ").split())
-        )
+        res = []
+
+        for i, element in enumerate(obj.main_text_headers_list_keys.split(',')):
+            res.append(f"{i+1}) {element}<br>")
+
+        res[-1] = res[-1][:-4] 
+
+        return mark_safe(" ".join(res))
 
     show_main_text_headers_list_keys.short_description = "Ключевые слова"
     list_display = (
@@ -154,10 +157,10 @@ class ArticleAdmin(admin.ModelAdmin):
         "show_main_text_headers_list_keys",
     )
 
-    list_filter = (
-        "created_on",
-        "last_modified",
-    )
+    # list_filter = (
+    #     "created_on",
+    #     "last_modified",
+    # )
 
     search_fields = (
         "title",
@@ -217,10 +220,9 @@ class CategoryAdmin(admin.ModelAdmin):
 
         for article in obj.articles.all():
             res.append(
-                '<p style="background-color:#264b5d;'
-                + "max-width:400px;"  # + "font-size:15px;" \
-                + 'padding:5px;margin:5px;"><a href="'
-                + f'/admin/articles/article/{article.pk}/change/">➡️ #{article.pk} {article.title}</a></p>'
+                f'<a style="padding:0px;margin:0px;margin-top:5px;" href="'
+                + f'/admin/articles/article/{article.pk}/change/">'
+                + f'#{article.pk} {article.title}</a><br>'
             )
 
         res = " ".join(res)

@@ -55,18 +55,22 @@
             {% for rel_article in article|rel_articles %}
             <div class="rel_array_element card shadow">
                 <img class="card-img-top" src="{% static rel_article.image_base %}" alt="" >
-                <h2 class="card-title project_card_title"><a href="{% url 'articles_detail' rel_article.pk%}">{{ rel_article.title }}</a></h2>
-                
-                📅 Создано {{ article.created_on.date | date:"d-m-Y"}} 
+                <div class="card-body">
+                    <h2 class="card-title project_card_title"><a href="{% url 'articles_detail' rel_article.pk%}">{{ rel_article.title }}</a></h2>
+                </div>
+                <div class="card-article-detail">
+                    📅 Создано {{ article.created_on.date | date:"d-m-Y"}} 
+                    <br>
+                    📅 Изменено {{ article.last_modified.date | date:"d-m-Y"}} 
+                    <br>
+                    {% for category in rel_article.categories.all %}
+                        <a href="{% url 'articles_category' category.name %}"><span class="badge badge-primary">{{ category.name }}</span></a>
+                    {% endfor %}
+                </div>
                 <br>
-                📅 Изменено {{ article.last_modified.date | date:"d-m-Y"}} 
-                <br>
-                
-                {% for category in rel_article.categories.all %}
-                    <a href="{% url 'articles_category' category.name %}"><span class="badge badge-primary">{{ category.name }}</span></a>
-                {% endfor %}
-                <br>
-                <p>{{ rel_article.attractive_text | safe }}</p>
+                <p class="card-text project_card_text">
+                    {{ rel_article.attractive_text | safe }}
+                </p>
             </div>
             {% endfor %}
         </div>

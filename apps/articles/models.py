@@ -24,7 +24,7 @@ class Article(models.Model):
 
     attractive_text = models.TextField(default="Завлекающий текст")
     categories = models.ManyToManyField("Category", related_name="articles")
-    quizzes = models.ManyToManyField(QuizPick4, related_name="quizzes", default=None)
+    quizzes = models.ManyToManyField(QuizPick4, related_name="quizzes", default='', blank=True)
     image_base = models.ImageField(upload_to="img", default="img/placeholder.png")
     main_text = models.TextField(default="Основной текст")
 
@@ -40,6 +40,8 @@ class Article(models.Model):
     last_modified = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
+
+        # forming the key_word_headers
         def get_main_text_headers_list_keys(arr_of_headers):
             word_length_min = 4
             word_count_min = 2
@@ -54,7 +56,6 @@ class Article(models.Model):
 
             wordlist = []
             for word, count in c.most_common():
-                # if len(word) > (word_length_min-1) and count > (word_count_min-1):
                 wordlist.append(word)
 
             if len(wordlist) > 3:
@@ -64,36 +65,44 @@ class Article(models.Model):
                 print(wordlist)
                 return "филология,язык,русский"
 
-        text_inner_titles = []
-        count_of_h6 = self.main_text.count("<h6")
+        # forming the inner subtitles
+        def make_inner_titles():
+        
+            text_inner_titles = []
+            count_of_h6 = self.main_text.count("<h6")
 
-        for i, locator_group in enumerate(
-            list(re.finditer(r"(<h6[^<>]*>)([^<>]*)</h6>", self.main_text))[::-1]
-        ):
-            locator_open_tag = locator_group.start(1), locator_group.end(1)
-            self.main_text = (
-                ""
-                + self.main_text[: locator_open_tag[0]]
-                + '<h6 id="queried_header'
-                + f"{count_of_h6 - i}"
-                + '"  class="queried_header">'
-                + self.main_text[locator_open_tag[1] :]
-            )
+            for i, locator_group in enumerate(
+                list(re.finditer(r"(<h6[^<>]*>)([^<>]*)</h6>", self.main_text))[::-1]
+            ):
+                locator_open_tag = locator_group.start(1), locator_group.end(1)
+                self.main_text = (
+                    ""
+                    + self.main_text[: locator_open_tag[0]]
+                    + '<h6 id="queried_header'
+                    + f"{count_of_h6 - i}"
+                    + '"  class="queried_header">'
+                    + self.main_text[locator_open_tag[1] :]
+                )
 
-            locator_inner_content = locator_group.group(2).replace(".", "")
-            text_inner_titles.append(locator_inner_content)
+                locator_inner_content = locator_group.group(2).replace(".", "")
+                text_inner_titles.append(locator_inner_content)
 
-        text_inner_titles = text_inner_titles[::-1]
-        self.main_text_headers_list = text_inner_titles
+            text_inner_titles = text_inner_titles[::-1]
+
+            return text_inner_titles
+        
+        self.main_text_headers_list = make_inner_titles()
 
         self.main_text_headers_list_keys = get_main_text_headers_list_keys(
-            text_inner_titles
+            self.main_text_headers_list
         )
 
+        # reshaping the input text
+        self.main_text = self.main_text.strip()
         self.main_text = self.main_text.replace("<br>", "")
         self.main_text = self.main_text.replace("<p></p>", "")
-        self.main_text = self.main_text.replace("\n\n", "\n")
-        self.main_text = self.main_text.strip()
+        self.main_text = self.main_text.replace("\n", "")
+        
 
         super().save(*args, **kwargs)
 
