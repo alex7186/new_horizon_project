@@ -18,7 +18,7 @@ body{
 }
 
 .container{
-    width: min(960px, 80%) !important;
+    width: min(960px, 90%) !important;
 }
 
 /* .navbar .container{
@@ -138,7 +138,7 @@ a{
 .row{
     margin-bottom: 30px;
     margin-top: 20px;
-    max-width: max(95%, 800px);
+    max-width: 690px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -479,12 +479,10 @@ a{
 
 .rel_array_element{
     font-size: 12px !important;
-    padding: 1rem;
     margin-bottom: 0px;
     max-width: 300px;
     margin-left: auto;
     margin-right: auto;
-
     position: relative;
     height: 450px;
 
@@ -518,18 +516,20 @@ a{
 .nav-link{
     margin: 5px;
     color: #ffffff !important;
-    padding-left: 12px !important;
-    padding-right: 12px !important;
+    /* padding-left: 12px !important; */
+    /* padding-right: 12px !important; */
+    font-size: 10px !important;
 }
+
 
 .navbar-brand{
     font-size: 28px;
     font-family: "Banner Font", Arial, sans-serif;
+    font-size: 2rem;
+    padding-top: 7px;
+    padding-bottom: 7px;
 }
 
-.navbar-brand{
-    font-size: 2rem;
-}
 
 .navbar-collapse{
     flex-grow: 0;
