@@ -4,7 +4,7 @@ Initially, this site was written to participate in the "knowledge" competition i
 
 The source code of the platform is distributed under the license ..., but the texts of articles and other educational materials are not published.
 
----
+
 ## common directory files
 
 makefile - control scripts for:
@@ -19,16 +19,17 @@ makefile - control scripts for:
   * updating files on the server using rsync<br>
     `make update_hosting`<br>
     `make update_local`
-
+  <br>
+  <br>
   * nginx setup and run option<br>
     `make gunicorn_nginx_start`
 
----
+
 ## service
 
 this directory contains the starter.sh file and the system-d file of the service that starts it
 
----
+
 ## django apps
 
 django application files are stored in the app directory
