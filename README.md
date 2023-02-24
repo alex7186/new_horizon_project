@@ -19,8 +19,6 @@ makefile - control scripts for:
   * updating files on the server using rsync<br>
     `make update_hosting`<br>
     `make update_local`
-  
-
   * nginx setup and run option<br>
     `make gunicorn_nginx_start`
 
