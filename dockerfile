@@ -8,8 +8,8 @@ WORKDIR /usr/src/new_horizon_project
 COPY ./misc/requirements.txt /usr/src/requirements.txt
 RUN pip install -r /usr/src/requirements.txt
 
-COPY . /usr/src/new_horizon_project
 
+COPY . /usr/src/new_horizon_project
 COPY ./misc/db.sqlite3 /usr/src/new_horizon_project/misc/db.sqlite3
 COPY ./misc/db.sqlite3 /usr/src/new_horizon_project/db.sqlite3
 

@@ -25,8 +25,8 @@ SECRET_KEY = "!^_6%0so9$a@u-w22nc56xcp0^spoo4k^3q!j016o5hll+#c#o"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
 DEV = False
+PROD_NO_DOCKER = True
 
 ALLOWED_HOSTS = [
     "повесть-лет-словесных.рф",
@@ -107,6 +107,9 @@ DB_DIR = f"/usr/src/new_horizon_project/misc/db.sqlite3"
 
 if DEV:
     DB_DIR = f"{BASE_DIR}/misc/db.sqlite3"
+
+if PROD_NO_DOCKER:
+    DB_DIR = f"/root/new_horizon_project/misc/db.sqlite3"
 
 DATABASES = {
     "default": {

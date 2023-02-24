@@ -6,8 +6,8 @@ After=network.target
 [Service]
 User=alex
 Group=www-data
-WorkingDirectory=/home/alex/MEGAsync/projects/WEB_django/new_horizon_project
-ExecStart=/home/alex/MEGAsync/projects/WEB_django/new_horizon_project/env/bin/gunicorn \
+WorkingDirectory=/root/new_horizon_project
+ExecStart=gunicorn \
           --access-logfile - \
           --workers 3 \
           --bind unix:/run/new_horizon_gunicorn.sock \
