@@ -86,7 +86,7 @@ body{
 
 .main-content{
     margin-bottom: auto;
-    padding-top: 45px;
+    padding-top: 40px;
 }
 
 .main-content h1{
@@ -286,7 +286,7 @@ a{
     font-weight: 700;
     margin-right: auto;
     /* margin-left: 0px; */
-    max-width: 400px;
+    /* max-width: 400px; */
     margin-bottom: 100px;
 }
 
