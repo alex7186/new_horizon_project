@@ -18,7 +18,7 @@
         {% if article.main_text_headers_list|length > 0 %}
         <div class="leftbar_nav card shadow bg-white rounded">
             
-            <h1>Содержание</h1>
+            <h2>Содержание</h2>
             
             {% for queried_header in article.main_text_headers_list %}
             <a href="/articles/{{article.pk}}#queried_header{{ forloop.counter }}">
