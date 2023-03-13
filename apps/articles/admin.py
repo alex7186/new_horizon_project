@@ -97,11 +97,12 @@ class ArticleAdmin(admin.ModelAdmin):
 
         if not headers:
             res = (
-                '<p style="background-color:red;'
-                + "padding:5px;margin:5px;width:170px;"
+                f'<p style="padding:5px;margin:5px;'
+                + "background-color:red;width: 100px;"
+                + "margin-right: auto;"
                 + "text-align:center;font-size:15px;"
-                + 'height:20px;padding:5px;">'
-                + "НЕТ</p>"
+                + 'height:20px;padding:5px;border-radius:25px;"'
+                + f">НЕТ</p>"
             )
 
         return mark_safe(res)
@@ -129,9 +130,10 @@ class ArticleAdmin(admin.ModelAdmin):
         if len(res) == 0:
             res.append(
                 f'<p style="padding:5px;margin:5px;'
-                + "background-color:red;"
+                + "background-color:red;width: 100px;"
+                + "margin-right: auto;"
                 + "text-align:center;font-size:15px;"
-                + 'height:20px;padding:5px;"'
+                + 'height:20px;padding:5px;border-radius:25px;"'
                 + f">НЕТ</p>"
             )
 
@@ -198,11 +200,13 @@ class CategoryAdmin(admin.ModelAdmin):
 
         res = (
             ""
-            + f'<p style="background-color:{color};'
-            + "padding:5px;margin:5px;width:150px;"
-            + f'text-align:center;font-size:15px;">'
+            + f'<div style="background-color:{color};'
+            + "padding:5px;margin-left:auto;margin-right:auto;"
+            + "text-align:center;font-size:15px;"
+            + "border-radius:25px;"
+            + '">'
             + f"{articles_count}{warnig_msg}"
-            + "</p>"
+            + "</div>"
         )
 
         obj._show_articles_count = res
@@ -210,7 +214,6 @@ class CategoryAdmin(admin.ModelAdmin):
         return mark_safe(res)
 
     show_articles_count.short_description = "Число статей по категории"
-    # show_articles_count.admin_order_field = "articles_count"
 
     def show_name(self, obj):
         res = f'<p style="font-size:15px;">{obj.name}</p>'
@@ -236,19 +239,18 @@ class CategoryAdmin(admin.ModelAdmin):
     show_articles.short_description = "Статьи 👇"
 
     def show_color(self, obj):
-        res = f'<div style="width:40px;' + f'height:40px;background-color:{obj.color};"'
+        res = (
+            ""
+            + '<div style="width:20px;'
+            + f"height:20px;background-color:{obj.color};"
+            + 'border-radius:20px;border:2px solid grey;"></div>'
+        )
 
         return mark_safe(res)
 
     show_color.short_description = "Цвет"
 
     form = CategoryForm
-    # filter_horizontal = ('questions',)
-    # fieldsets = (
-    #     (None, {
-    #         'fields': (('name', 'letter'), 'questions', 'color')
-    #         }),
-    #     )
 
     list_display = ("show_name", "show_articles_count", "show_articles", "show_color")
 
