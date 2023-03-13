@@ -172,7 +172,7 @@ class ArticleAdmin(admin.ModelAdmin):
         "main_text",
     )
 
-    readonly_fields = ("main_text_headers_list",)
+    readonly_fields = ("main_text_headers_list", "main_text_headers_list_keys")
 
 
 @admin.register(Category)

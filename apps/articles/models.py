@@ -30,13 +30,12 @@ class Article(models.Model):
     image_base = models.ImageField(upload_to="img", default="img/placeholder.png")
     main_text = models.TextField(default="Основной текст")
 
-    main_text_headers_list_keys = models.CharField(max_length=200, default=" ")
-
     main_text_headers_list = ListTextField(
         base_field=models.CharField(max_length=40, default=""),
         size=100,  # Maximum of 100 ids in list
         default=None,
     )
+    main_text_headers_list_keys = models.CharField(max_length=200, default=" ")
 
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
@@ -61,10 +60,8 @@ class Article(models.Model):
                 wordlist.append(word)
 
             if len(wordlist) > 3:
-                print(wordlist)
                 return ",".join(wordlist[:8])
             else:
-                print(wordlist)
                 return "филология,язык,русский"
 
         # forming the inner subtitles
@@ -100,11 +97,12 @@ class Article(models.Model):
         )
 
         # reshaping the input text
-        self.main_text = self.main_text.strip()
-        self.main_text = self.main_text.replace("<br>", "")
-        self.main_text = self.main_text.replace("<p></p>", "")
-        self.main_text = self.main_text.replace("\n", "")
-
+        self.main_text = (
+            self.main_text.strip()
+            .replace("<br>", "")
+            .replace("<p></p>", "")
+            .replace("\n", "")
+        )
         super().save(*args, **kwargs)
 
     def __str__(self):
