@@ -1,4 +1,5 @@
 from django.utils.safestring import mark_safe
+from django.utils.html import escape
 from django.contrib import admin
 
 from apps.articles.models import Article, Category, Comment
@@ -155,11 +156,19 @@ class ArticleAdmin(admin.ModelAdmin):
 
     # show_main_text_headers_list_keys.short_description = "Ключевые слова"
 
+    def image_tag(self, obj):
+        url = "/static" + obj.image_base.url
+        return mark_safe('<img src="%s" style="width:200px"/>' % escape(url))
+
+    image_tag.short_description = "Image"
+    image_tag.allow_tags = True
+
     list_display = (
         "show_title",
         "show_categories",
         "show_edited_created_time",
-        "show_main_text_headers_list",
+        # 'image_tag',
+        # "show_main_text_headers_list",
         "show_count_of_mentions",
         # "show_main_text_headers_list_keys",
     )
@@ -175,7 +184,11 @@ class ArticleAdmin(admin.ModelAdmin):
         "main_text",
     )
 
-    readonly_fields = ("main_text_headers_list", "main_text_headers_list_keys")
+    readonly_fields = (
+        "image_tag",
+        "main_text_headers_list",
+        "main_text_headers_list_keys",
+    )
 
 
 @admin.register(Category)
