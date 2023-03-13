@@ -16,29 +16,29 @@
             <div class="rel_array_element">
                 <img class="card-img-top" src="{% static article.image_base %}">
                 <div class="card shadow undercower_card">
-                <a href="{% url 'articles_detail' article.pk %}">
-                    
-                    <div class="card-body">
-                        <h2 class="card-title project_card_title">
-                            {{ article.title }}
-                        </h2>
+                    <a href="{% url 'articles_detail' article.pk %}">
+                        
+                        <div class="card-body">
+                            <h2 class="card-title project_card_title">
+                                {{ article.title }}
+                            </h2>
+                        </div>
+                    </a>
+                    <div class="card-article-detail">
+                        📅 Создано {{ article.created_on.date | date:"d-m-Y"}} <br>
+                        📅 Изменено {{ article.last_modified.date | date:"d-m-Y"}} <br>
+                        {% for category in article.categories.all %}
+                            <a href="{% url 'articles_category' category.name %}">
+                                <span class="badge badge-primary" style="background-color: {{ category.color }}">
+                                    {{ category.name }}
+                                </span>
+                            </a>
+                        {% endfor %}
                     </div>
-                </a>
-                <div class="card-article-detail">
-                    📅 Создано {{ article.created_on.date | date:"d-m-Y"}} <br>
-                    📅 Изменено {{ article.last_modified.date | date:"d-m-Y"}} <br>
-                    {% for category in article.categories.all %}
-                        <a href="{% url 'articles_category' category.name %}">
-                            <span class="badge badge-primary" style="background-color: {{ category.color }}">
-                                {{ category.name }}
-                            </span>
-                        </a>
-                    {% endfor %}
+                    <p class="card-text project_card_text">
+                        {{ article.attractive_text | safe }}
+                    </p>
                 </div>
-                <p class="card-text project_card_text">
-                    {{ article.attractive_text | safe }}
-                </p>
-            </div>
             </div>
         {% endfor %}
     </div>
