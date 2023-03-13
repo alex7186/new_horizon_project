@@ -11,6 +11,7 @@ from apps.quiz.models import QuizPick4
 
 class Category(models.Model):
     name = models.CharField(max_length=20)
+    color = models.CharField(max_length=7, default='#ffffff')
 
     def __str__(self):
         return f"{self.pk} - {self.name}"

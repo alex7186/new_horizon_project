@@ -1,9 +1,11 @@
-from cgitb import enable
+from django.utils.safestring import mark_safe
 from django.contrib import admin
+
 from apps.articles.models import Article, Category, Comment
+from apps.articles.forms import CategoryForm
 from apps.projects.models import Project
 
-from django.utils.safestring import mark_safe
+
 
 
 @admin.register(Article)
@@ -213,7 +215,7 @@ class CategoryAdmin(admin.ModelAdmin):
     # show_articles_count.admin_order_field = "articles_count"
 
     def show_name(self, obj):
-        res = f'<p style="font-size:15px;">#{obj.pk} {obj.name}</p>'
+        res = f'<p style="font-size:15px;">{obj.name}</p>'
 
         return mark_safe(res)
 
@@ -235,10 +237,27 @@ class CategoryAdmin(admin.ModelAdmin):
 
     show_articles.short_description = "Статьи 👇"
 
+    def show_color(self, obj):
+        res = f'<div style="width:40px;' \
+            + f'height:40px;background-color:{obj.color};"'
+
+        return mark_safe(res)
+
+    show_color.short_description = "Цвет"
+
+    form = CategoryForm
+    # filter_horizontal = ('questions',)
+    # fieldsets = (
+    #     (None, {
+    #         'fields': (('name', 'letter'), 'questions', 'color')
+    #         }),
+    #     )
+
     list_display = (
         "show_name",
         "show_articles_count",
         "show_articles",
+        'show_color'
     )
 
     search_fields = ("name",)

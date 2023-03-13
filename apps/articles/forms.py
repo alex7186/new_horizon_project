@@ -1,5 +1,7 @@
 from django import forms
+from django.forms.widgets import TextInput
 
+from apps.articles.models import Category
 
 class CommentForm(forms.Form):
     author = forms.CharField(
@@ -13,3 +15,11 @@ class CommentForm(forms.Form):
             attrs={"class": "form-control", "placeholder": "Leave a comment!"}
         )
     )
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = '__all__'
+        widgets = {
+            'color': TextInput(attrs={'type': 'color'}),
+        }

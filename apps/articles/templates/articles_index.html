@@ -23,7 +23,7 @@
                     📅 Изменено {{ article.last_modified.date | date:"d-m-Y"}} <br>
                     {% for category in article.categories.all %}
                         <a href="{% url 'articles_category' category.name %}">
-                            <span class="badge badge-primary">
+                            <span class="badge badge-primary" style="background-color: {{ category.color }}">
                                 {{ category.name }}
                             </span>
                         </a>
