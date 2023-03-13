@@ -40,13 +40,11 @@ def articles_category(request, category):
     category_decoded = urllib.parse.unquote(category)
 
     articles = Article.objects.filter(
-        categories__name__contains=category_decoded).order_by("-created_on")
+        categories__name__contains=category_decoded
+    ).order_by("-created_on")
 
     category_object = Category.objects.get(name=category)
-    context = {
-        "category": category_object, 
-        "articles": articles
-    }
+    context = {"category": category_object, "articles": articles}
 
     return render(request, "articles_category.html", context)
 
