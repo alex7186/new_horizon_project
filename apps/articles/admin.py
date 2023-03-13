@@ -6,8 +6,6 @@ from apps.articles.forms import CategoryForm
 from apps.projects.models import Project
 
 
-
-
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
     def show_title(self, obj):
@@ -238,8 +236,7 @@ class CategoryAdmin(admin.ModelAdmin):
     show_articles.short_description = "Статьи 👇"
 
     def show_color(self, obj):
-        res = f'<div style="width:40px;' \
-            + f'height:40px;background-color:{obj.color};"'
+        res = f'<div style="width:40px;' + f'height:40px;background-color:{obj.color};"'
 
         return mark_safe(res)
 
@@ -253,12 +250,7 @@ class CategoryAdmin(admin.ModelAdmin):
     #         }),
     #     )
 
-    list_display = (
-        "show_name",
-        "show_articles_count",
-        "show_articles",
-        'show_color'
-    )
+    list_display = ("show_name", "show_articles_count", "show_articles", "show_color")
 
     search_fields = ("name",)
 

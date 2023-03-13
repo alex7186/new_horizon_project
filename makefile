@@ -7,6 +7,29 @@ _remote_dir = root@194.87.191.45:/root/new_horizon_project
 
 _common-service-path = /etc/systemd/system/
 
+_black:
+	@echo " 🧹 cleaning the code... "
+	@python3 -m black .
+
+push:
+	@$(MAKE) --no-print-directory _black
+	@$(MAKE) --no-print-directory _git_commit
+	@echo " ⚙️  pushing as $(_commit_name) "
+	@git push origin $(_branch_name)
+	@echo "\n ✅  pushing done! "
+
+push-force:
+	@$(MAKE) --no-print-directory _black
+	@$(MAKE) --no-print-directory _git_commit
+	@echo " ⚙️  🚩FORCE🚩  pushing as $(_commit_name) "
+	@git push --force origin $(_branch_name)
+	@echo "\n ✅  🚩FORCE🚩 pushing done! "
+
+_git_commit:
+	@echo " ⚙️  pushing to git... "
+	@git add .
+	-@git commit -m $(_commit_name)
+
 
 black:
 	@echo " 🧹 cleaning the code... "

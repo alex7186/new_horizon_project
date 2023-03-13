@@ -3,6 +3,7 @@ from django.forms.widgets import TextInput
 
 from apps.articles.models import Category
 
+
 class CommentForm(forms.Form):
     author = forms.CharField(
         max_length=60,
@@ -16,10 +17,11 @@ class CommentForm(forms.Form):
         )
     )
 
+
 class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
-        fields = '__all__'
+        fields = "__all__"
         widgets = {
-            'color': TextInput(attrs={'type': 'color'}),
+            "color": TextInput(attrs={"type": "color"}),
         }
