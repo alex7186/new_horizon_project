@@ -9,7 +9,7 @@ from apps.projects.models import Project
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
     def show_title(self, obj):
-        res = f'<p style="font-size:14px;padding:0px;">#{obj.pk} {obj.title}</p>'
+        res = f'<p style="font-size:14px;padding:0px;">{obj.pk} - {obj.title}</p>'
 
         return mark_safe(res)
 
@@ -143,24 +143,25 @@ class ArticleAdmin(admin.ModelAdmin):
 
     show_count_of_mentions.short_description = "Упоминания 👇"
 
-    def show_main_text_headers_list_keys(self, obj):
-        res = []
+    # def show_main_text_headers_list_keys(self, obj):
+    #     res = []
 
-        for i, element in enumerate(obj.main_text_headers_list_keys.split(",")):
-            res.append(f"{i+1}) {element}<br>")
+    #     for i, element in enumerate(obj.main_text_headers_list_keys.split(",")):
+    #         res.append(f"{i+1}) {element}<br>")
 
-        res[-1] = res[-1][:-4]
+    #     res[-1] = res[-1][:-4]
 
-        return mark_safe(" ".join(res))
+    #     return mark_safe(" ".join(res))
 
-    show_main_text_headers_list_keys.short_description = "Ключевые слова"
+    # show_main_text_headers_list_keys.short_description = "Ключевые слова"
+
     list_display = (
         "show_title",
         "show_categories",
         "show_edited_created_time",
         "show_main_text_headers_list",
         "show_count_of_mentions",
-        "show_main_text_headers_list_keys",
+        # "show_main_text_headers_list_keys",
     )
 
     # list_filter = (
@@ -216,7 +217,7 @@ class CategoryAdmin(admin.ModelAdmin):
     show_articles_count.short_description = "Число статей по категории"
 
     def show_name(self, obj):
-        res = f'<p style="font-size:15px;">{obj.name}</p>'
+        res = f'<p style="font-size:15px;">{obj.pk} - {obj.name}</p>'
 
         return mark_safe(res)
 
