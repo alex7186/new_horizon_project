@@ -24,9 +24,9 @@ BASE_DIR = os.path.join(BASE_DIR, "new_horizon_project")
 SECRET_KEY = "!^_6%0so9$a@u-w22nc56xcp0^spoo4k^3q!j016o5hll+#c#o"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-DEV = False
+DEV = True
 PROD_NO_DOCKER = True
 
 ALLOWED_HOSTS = [

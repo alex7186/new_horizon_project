@@ -36,12 +36,17 @@ def articles_index(request):
 
 @register_user_activity
 def articles_category(request, category):
+
     category_decoded = urllib.parse.unquote(category)
 
     articles = Article.objects.filter(
-        categories__name__contains=category_decoded
-    ).order_by("-created_on")
-    context = {"category": category_decoded, "articles": articles}
+        categories__name__contains=category_decoded).order_by("-created_on")
+
+    category_object = Category.objects.get(name=category)
+    context = {
+        "category": category_object, 
+        "articles": articles
+    }
 
     return render(request, "articles_category.html", context)
 

@@ -4,7 +4,12 @@
 {% load articles_filters %}
 <div class="container">
     <!-- <div class="articles_array"> -->
-        <h1 class="articles_header">В категории <span class="badge badge-primary" style="background-color: {{ category.color }}">{{ category | title }}</span></h1>
+        <h1 class="articles_header">В категории 
+            <span 
+                class="badge badge-primary" 
+                style="background-color: {{ category.color }};"
+            >{{ category.name }}</span>
+        </h1>
         <hr>
     <div class="row">
         {% for article in articles|sort_by_creation_date %}
