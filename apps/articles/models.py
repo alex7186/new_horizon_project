@@ -28,7 +28,7 @@ class Article(models.Model):
     quizzes = models.ManyToManyField(
         QuizPick4, related_name="quizzes", default="", blank=True
     )
-    image_base = models.ImageField(upload_to="img", default="img/placeholder.png")
+    image_base = models.ImageField(upload_to="img", default="img/placeholder_6.png")
     main_text = models.TextField(default="Основной текст")
 
     main_text_headers_list = ListTextField(
