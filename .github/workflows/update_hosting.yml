@@ -12,6 +12,7 @@ jobs:
       - name: start gunicorn
         run: |
           cd ~/new_horizon_project; make gunicorn_start_service 
+      
       - name: ✅ done!
         run: |
           echo "✅ done!"
