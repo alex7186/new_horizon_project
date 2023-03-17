@@ -1,0 +1,17 @@
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: stop gunicorn
+        run: |
+          cd ~/new_horizon_project; make gunicorn_stop_service 
+      
+      - name: start gunicorn
+        run: |
+          cd ~/new_horizon_project; make gunicorn_start_service 
+      - name: ✅ done!
+        run: |
+          echo "✅ done!"
