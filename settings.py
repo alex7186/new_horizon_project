@@ -92,13 +92,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "wsgi.application"
 
-# ❌ ну нет
-# ✅ верно
-
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-# DB_DIR = f"{BASE_DIR}/misc/db.sqlite3"
+
 DB_DIR = f"/usr/src/new_horizon_project/misc/db.sqlite3"
 
 if DEV:
@@ -148,9 +145,7 @@ LANGUAGE_CODE = "RU"
 TIME_ZONE = "Europe/Moscow"
 
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
