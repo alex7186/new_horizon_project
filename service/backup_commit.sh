@@ -15,7 +15,7 @@ git push --set-upstream origin $backup_branch_name
 
 
 # go to main branch and push changes 
-#git checkout $main_branch_name
-#git merge $backup_branch_name
+git checkout $main_branch_name
+git merge $backup_branch_name
 
-#git push origin $main_branch_name
+git push origin $main_branch_name
