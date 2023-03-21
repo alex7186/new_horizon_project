@@ -17,7 +17,7 @@ setup:
 
 	@echo " ⚙️ setting up nginx "	
 	@apt install nginx
-	@cp $(_local_dir)/service/$(app_name)_nginx /etc/nginx/sites-enabled/new_horizon_project
+	@cp $(_local_dir)/service/$(app_name)_nginx.config /etc/nginx/sites-enabled/new_horizon_project
 	@echo " ⚙️ enabling nginx service "	
 	@systemctl restart nginx
 	@ufw allow 'Nginx Full'
