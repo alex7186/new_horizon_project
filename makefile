@@ -3,7 +3,6 @@ _commit_name = "autocommit $(_today)"
 app_name = new_horizon
 _branch_name = main
 _local_dir = $(CURDIR)
-_remote_dir = root@194.87.191.45:/root/new_horizon_project
 
 _common-service-path = /etc/systemd/system/
 
@@ -39,13 +38,6 @@ setup:
 	@echo " ⚙️ installing pip dependencies "	
 	@pip install -r misc/requirements.txt
 	@echo "\n ✅  setup done! "
-
-update_hosting:
-	@echo " ⚙️  pushing to hosting..."
-	@echo " ⚙️  $(_local_dir) ➡️  $(_remote_dir)"
-	@rsync -r $(_local_dir)/ $(_remote_dir)
-	@echo "\n ✅  hosting update done! "
-
 
 copy_service:
 	@echo "\n⚙️  moving service from $(_local_dir)/service/ to $(_common-service-path)\n"
