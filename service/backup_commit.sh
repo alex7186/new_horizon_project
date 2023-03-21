@@ -1,4 +1,4 @@
-commit_name="autocommit $(date +'%Y-%m-%d %H:%M:%S')"
+commit_name="backup autocommit $(date +'%Y-%m-%d %H:%M:%S')"
 
 backup_branch_name="backup"
 main_branch_name="main"
