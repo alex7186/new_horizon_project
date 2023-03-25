@@ -2,10 +2,12 @@ commit_name="\"backup autocommit $(date +'%Y-%m-%d %H:%M:%S')\""
 
 backup_branch_name="backup"
 main_branch_name="main"
+BASE_DIR="/root/new_horizon_project"
 
 
 # go to backup branch
 #git branch $backup_branch_name
+cd $BASE_DIR
 git checkout $backup_branch_name
 
 # save changes to backup branch
