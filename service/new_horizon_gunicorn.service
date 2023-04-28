@@ -4,14 +4,13 @@ Requires=new_horizon_gunicorn.socket
 After=network.target
 
 [Service]
-User=alex
-Group=www-data
 WorkingDirectory=/root/new_horizon_project
 ExecStart=gunicorn \
-          --access-logfile - \
-          --workers 3 \
-          --bind unix:/run/new_horizon_gunicorn.sock \
-          wsgi:application
+    --preload \
+    --access-logfile - \
+    --workers 3 \
+    --bind unix:/run/new_horizon_gunicorn.sock \
+    wsgi:application
 
 [Install]
 WantedBy=multi-user.target
