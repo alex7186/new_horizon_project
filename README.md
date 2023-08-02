@@ -16,27 +16,13 @@ The source code of the platform is distributed under the license ..., but the te
 ![3](./misc/description_images/Screenshot%20from%202023-08-02%2004-55-34.png)
 
 
-## common directory files
+## setup & start
 
 makefile - control scripts for:
-  * start, stop, copy systemd service<br>
-    `make start_service`<br>
-    `make stop_service`<br>
-    `make status`<br>
-    `make copy_service`
-  * auto push commits to github<br>
-    `make push`<br>
-    `make push-force`
-  * updating files on the server using rsync<br>
-    `make update_hosting`<br>
-    `make update_local`
-  * nginx setup and run option<br>
-    `make gunicorn_nginx_start`
-
-
-## service
-
-this directory contains the starter.sh file and the system-d file of the service that starts it
+  * start, stop systemd service<br>
+    `make setup`<br>
+    `make start`<br>
+    `make stop`
 
 
 ## django apps
