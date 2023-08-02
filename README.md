@@ -4,6 +4,17 @@ Initially, this site was written to participate in the "knowledge" competition i
 
 The source code of the platform is distributed under the license ..., but the texts of articles and other educational materials are not published.
 
+## screenshots
+
+1. Main page
+![1](./misc/description_images/Screenshot%20from%202023-08-02%2004-55-22.png)
+
+
+<!-- ![2](./misc/description_images/Screenshot%20from%202023-08-02%2004-55-28.png) -->
+
+2. The page with the article
+![3](./misc/description_images/Screenshot%20from%202023-08-02%2004-55-34.png)
+
 
 ## common directory files
 
