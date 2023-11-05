@@ -9,9 +9,7 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-        ("quiz", "__first__"),
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
@@ -95,11 +93,11 @@ class Migration(migrations.Migration):
                 related_name="articles", to="articles.category"
             ),
         ),
-        migrations.AddField(
-            model_name="article",
-            name="quizzes",
-            field=models.ManyToManyField(
-                blank=True, default="", related_name="quizzes", to="quiz.quizpick4"
-            ),
-        ),
+        # migrations.AddField(
+        #     model_name="article",
+        #     name="quizzes",
+        #     field=models.ManyToManyField(
+        #         blank=True, default="", related_name="quizzes", to="quiz.quizpick4"
+        #     ),
+        # ),
     ]

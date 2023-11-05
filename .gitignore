@@ -1,6 +1,7 @@
 __pycache__
 users_logfile.log
-# *.sqlite3
 static/admin/
 apps/projects/static/admin/
 *.ipynb
+apps/main/static
+hints

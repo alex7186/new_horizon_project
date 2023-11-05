@@ -13,8 +13,8 @@
 }
 
 .footer_row h6{
-    color: #737373 !important;
-    border-bottom: 1px solid #737373;
+    color: #ffffff !important;
+    border-bottom: 1px solid #ffffff;
 }
 
 .footer{
@@ -24,11 +24,11 @@
 
 .site-footer
 {
-  background-color:#26272b;
+  background-color:#353535;
   padding:25px 0 10px;
   font-size:15px !important;
   line-height:24px;
-  color:#737373;
+  color:#ffffff;
   display: flex;
   flex-direction: column;
 }
@@ -39,7 +39,7 @@
 
 .site-footer hr
 {
-  border-top-color:#bbb;
+  border-top-color:#ffffff;
   opacity:0.5
 }
 .site-footer hr.small
@@ -56,11 +56,11 @@
 }
 .site-footer a
 {
-  color:#737373;
+  color:#ffffff;
 }
 .site-footer a:hover
 {
-  color:#3366cc;
+  color:#ffffff;
   text-decoration:none;
 }
 .site-footer .social-icons

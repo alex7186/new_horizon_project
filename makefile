@@ -8,34 +8,28 @@ setup:
 	@echo " ⚙️ installing pip dependencies "	
 	@pip install -r misc/requirements.txt
 
-	@echo "\n⚙️  moving gunicorn services from $(_local_dir)/service/ to $(_common-service-path)\n"
-	@cp $(_local_dir)/service/$(app_name)_gunicorn.service $(_common-service-path)/$(app_name)_gunicorn.service
-	@cp $(_local_dir)/service/$(app_name)_gunicorn.socket $(_common-service-path)/$(app_name)_gunicorn.socket
+	@echo "\n⚙️  moving systemd services from $(_local_dir)/service/ to $(_common-service-path)\n"
+	@sudo cp $(_local_dir)/service/$(app_name).service $(_common-service-path)/$(app_name).service
 	@python3 manage.py collectstatic    
 	
-	@systemctl daemon-reload
-	@systemctl enable $(app_name)_gunicorn.socket
-	@systemctl enable $(app_name)_gunicorn.service
+	@sudo systemctl daemon-reload
+	@sudo systemctl enable $(app_name).service
 
-	@echo " ⚙️ setting up nginx "	
-	@apt install nginx
-	@cp $(_local_dir)/service/$(app_name)_nginx.config /etc/nginx/sites-enabled/new_horizon_project
-	@echo " ⚙️ enabling nginx service "	
-	@systemctl restart nginx
-	@ufw allow 'Nginx Full'
 
 	@echo "\n ✅  setup done "
 
-
 start:
-	-@systemctl start $(app_name)_gunicorn.socket
-	-@systemctl start $(app_name)_gunicorn.service
 	@python3 manage.py migrate
+	-@sudo systemctl start $(app_name).service
 	@echo "\n ✅  started "
 
 stop:
-	-@systemctl stop $(app_name)_gunicorn.socket
-	-@systemctl stop $(app_name)_gunicorn.service
+	-@sudo systemctl stop $(app_name).service
 	@echo "\n ❌  stopped "
+	
+cat-service:
+	@systemctl cat $(app_name)
 
+cat-log:
+	@journalctl --unit=$(app_name)
 

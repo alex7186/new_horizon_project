@@ -1,0 +1,13 @@
+[Unit]
+Description=gunicorn daemon
+Wants=network-online.target
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/scripts/new_horizon_project
+ExecStart=/bin/bash /home/pi/scripts/new_horizon_project/service/starter.sh
+
+[Install]
+WantedBy=multi-user.target

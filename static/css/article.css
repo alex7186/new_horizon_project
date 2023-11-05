@@ -48,8 +48,8 @@
 }
 
 .card-text{
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    /* padding-left: 0.5rem;
+    padding-right: 0.5rem; */
     margin: 0px;
 }
 
@@ -168,27 +168,16 @@ blockquote{
 }
 
 .project_card_title{
-    font-size: 23px;
+    font-size: 17px;
     /* margin-top: 10px; */
 }
 
 .project_card_text{
-    font-size: 15px;
+    font-size: 14px;
 }
 
-.project_detail{
-    padding-top: 70px;
-    
-}
 
-.project_detail p{
-    font-size: 20px;
-}
 
-.project_detail_title{
-    text-align: center;
-    margin: 30px;
-}
 
 .projects_header{
     display: flex;
@@ -270,8 +259,8 @@ blockquote{
     padding-bottom: 0px;
 
     max-width: min(70%, 500px);
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 0px;
+    /* margin-right: auto; */
 }
 
 .article_attractive_text p{
@@ -286,15 +275,21 @@ blockquote{
 
 .article_detail{
     padding-top: 50px;
+    max-width:800px;
 }
 
 .article_detail p, li{
     font-size: 14px !important;
 }
 
+.article_detailed_badge{
+    float:right;
+    margin-left: 3px;
+}
+
 .article_detail_info{
     text-align: left;
-    font-size: 12px;
+    font-size: 15px;
 }
 
 .article_main_text{

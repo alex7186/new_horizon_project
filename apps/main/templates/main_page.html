@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_content %}
+
+<div class="main_poster">
+    <span class="main_poster_header_primary">
+        Lorem ipsum dolor
+    </span>
+    <br>
+    <span class="main_poster_header_secondary">
+        Lorem ipsum dolor
+    </span>
+</div>
+
+{% for about_info_object in about_info %}
+<div class="container">
+    <h1 class="articles_header">
+        {{ about_info_object.title }}
+    </h1>
+    <hr>
+    <div class="about_text">
+        {{ about_info_object.main_text|safe }}
+    </div>
+</div>
+{% endfor %}
+
+<div class="container">
+    <div class="popular_articles">
+        {% include 'popular_articles.html' %}
+    </div>
+    
+</div>
+{% endblock %}

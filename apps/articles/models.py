@@ -6,8 +6,6 @@ from django_mysql.models import ListTextField
 
 from urllib.parse import unquote
 
-from apps.quiz.models import QuizPick4
-
 
 class Category(models.Model):
     name = models.CharField(max_length=20)
@@ -25,9 +23,7 @@ class Article(models.Model):
 
     attractive_text = models.TextField(default="Завлекающий текст")
     categories = models.ManyToManyField("Category", related_name="articles")
-    quizzes = models.ManyToManyField(
-        QuizPick4, related_name="quizzes", default="", blank=True
-    )
+
     image_base = models.ImageField(upload_to="img", default="img/placeholder_6.png")
     main_text = models.TextField(default="Основной текст")
 
@@ -40,6 +36,8 @@ class Article(models.Model):
 
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
+
+    flag_article_enabled = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
 

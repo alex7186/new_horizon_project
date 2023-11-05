@@ -18,17 +18,14 @@ from django.views.static import serve
 from django.urls import path, include, re_path
 import settings
 
-from apps.projects.views import project_index, project_detail
-from apps.main.views import about_page
+
+from apps.main.views import about_page, main_page
 from apps.articles.views import ArticleAPIView, CategoryAPIView, ArticleByPKAPIView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("<int:pk>/", project_detail, name="project_detail"),
-    path("", project_index, name="home"),
+    path("", main_page, name="home"),
     path("articles/", include("apps.articles.urls")),
-    path("quiz/", include("apps.quiz.urls")),
-    path("about", about_page, name="about"),
     re_path(r"^static/(?P<path>.*)$", serve, {"document_root": settings.STATIC_ROOT}),
     path("api/v1/articles_list/", ArticleAPIView.as_view()),
     path("api/v1/article_by_pk/<int:pk>/", ArticleByPKAPIView.as_view()),

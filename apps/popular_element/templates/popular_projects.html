@@ -1,35 +1,3 @@
+
 {% load static %}
 
-{% if popular_projects|length > 0 %}
-<div class="popular_projects_header">
-    <h1 class="projects_header popular_header">Популярные материалы</h1>
-    <hr>
-    <div class="row">
-        
-        {% for projects in popular_projects %}
-            {% for project in projects %}
-            <div class="rel_array_element">
-                <img class="card-img-top" src="{% static project.image_base %}">
-                <div class="card shadow undercower_card">
-                <a href="{% url 'project_detail' project.pk %}">
-                    
-                
-                    <div class="card-body">
-                        <h2 class="card-title project_card_title">
-                            {{ project.title }}
-                        </h2>
-                    </div>
-                </a>
-                <p class="card-text project_card_text">{{ project.attractive_text }}</p>
-                <div class="readmore-button">
-                    ⬇️<a href="">Читать подробнее ...</a>⬇️
-                </div>
-            </div>
-            </div>
-            {% endfor %}
-        {% endfor %}
-            
-    </div>
-
-</div>
-{% endif %}

@@ -11,11 +11,12 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import pathlib
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BASE_DIR = os.path.join(BASE_DIR, "new_horizon_project")
+BASE_DIR = pathlib.Path().resolve()
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -24,20 +25,10 @@ BASE_DIR = os.path.join(BASE_DIR, "new_horizon_project")
 SECRET_KEY = "!^_6%0so9$a@u-w22nc56xcp0^spoo4k^3q!j016o5hll+#c#o"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-DEV = True
-PROD_NO_DOCKER = True
 
-ALLOWED_HOSTS = [
-    "повесть-лет-словесных.рф",
-    "www.повесть-лет-словесных.рф",
-    "193.124.33.25",
-]
-
-if DEV:
-    ALLOWED_HOSTS = [*ALLOWED_HOSTS, "0.0.0.0", "localhost", "127.0.0.1"]
-
+ALLOWED_HOSTS = ["10.8.0.8", "0.0.0.0", "192.168.0.17"]
 
 # Application definition
 
@@ -49,9 +40,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "apps.main",
-    "apps.projects",
+    # "apps.projects",
     "apps.articles",
-    "apps.quiz",
     "apps.popular_element",
     "rest_framework",
 ]
@@ -70,7 +60,7 @@ ROOT_URLCONF = "apps.main.urls"
 
 templates_dirs = [
     "apps/main/templates/",
-    "apps/projects/templates/",
+    # "apps/projects/templates/",
     "apps/articles/templates/",
 ]
 
@@ -96,32 +86,13 @@ WSGI_APPLICATION = "wsgi.application"
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 
-DB_DIR = f"/usr/src/new_horizon_project/misc/db.sqlite3"
-
-if DEV:
-    DB_DIR = f"{BASE_DIR}/misc/db.sqlite3"
-
-elif PROD_NO_DOCKER:
-    DB_DIR = f"/root/new_horizon_project/misc/db.sqlite3"
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": DB_DIR,
+        "NAME": os.path.join(BASE_DIR, "misc", "db.sqlite3"),
     }
 }
 
-
-# DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': 'postgres',
-#        'USER': 'postgres',
-#        'PASSWORD': 'postgres',
-#        'HOST': '0.0.0.0',
-#        'PORT': '5432',
-#    }
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -157,6 +128,6 @@ STATIC_URL = "/static/"
 
 
 LOG_FILENAME = "users_logfile.log"
-LOG_FILEPATH = f"{BASE_DIR}/misc"
+LOG_FILEPATH = os.path.join(BASE_DIR, "misc")
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
