@@ -7,7 +7,7 @@
     {% for articles in popular_articles %}
         <div class="uicore-grid-container uicore-blog-grid uicore-grid-row uicore-masonry uicore-landscape-ratio uicore-medium-space animate-3 ui-st-boxed " data-grid="masonryb" data-col="3" data-space="30">
             {% for article in articles|sort_by_creation_date %}
-                <div class="uicore-grid-item uicore-col-md-6 uicore-col-lg-4  uicore-float uicore-animate post-15671 post type-post status-publish format-standard has-post-thumbnail hentry category-smm category-lichnyj-opyt category-nejroseti" style="max-width: 33.333333%;">
+                <div class="uicore-grid-item uicore-col-md-6 uicore-col-lg-4  uicore-float uicore-animate post-15671 post type-post status-publish format-standard has-post-thumbnail hentry category-smm category-lichnyj-opyt category-nejroseti"  >
                     <article class="uicore-post">
                         <div class="uicore-post-wrapper">
                             <a href="{% url 'articles_detail' article.pk %}" title=" View Post: {{ article.title }}">  

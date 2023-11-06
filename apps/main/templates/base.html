@@ -9,6 +9,7 @@
   <link href="{% static 'css/card.css' %}" rel="stylesheet" />
   <link href="{% static 'css/footer.css' %}" rel="stylesheet" />
   <link href="{% static 'css/article.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/popular_element.css' %}" rel="stylesheet" />
 
   <link href="{% static 'favicon/favicon.ico' %}" rel="icon" type="image/x-icon"/>
   <title>Повесть лет словесных</title>
@@ -22,18 +23,27 @@
   <nav class="navbar navbar-expand-md navbar-light bg-light p-3 mb-5 bg-white">
     <div class="container" style="width:100% !important;">
       <!-- <a class="navbar-brand" href="{% url 'home' %}#top">Наш образовательный поратл</a> -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <p class="nav-link" style="min-width: 250px;padding-left: 0px; margin-left: 0px;" >Повесть лет словесных</p>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" 
+        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+        aria-expanded="false" aria-label="Toggle navigation"
+        style="margin-left: auto;">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto" style="width: 100%;">
           <li class="nav-item active">
-            <a class="nav-link btn" href="{% url 'home' %}">Главная</a>
+            <div class="nav_btn">
+              <a class="nav-link btn" href="{% url 'home' %}">Главная</a>
+            </div>
           </li>
           <li class="nav-item active">
-            <a class="nav-link btn" href="{% url 'articles_index' %}">Статьи</a>
-          </li>
+            <div class="nav_btn">
+              <a class="nav-link btn" href="{% url 'articles_index' %}">Статьи</a>
+            </div>
+            </li>
         </ul>
       </div>
       
@@ -43,11 +53,11 @@
   </div>
 
   <!-- <div class="container"> -->
-    <div id="top" class="main-content">
+    <div id="top" class="main-content" >
       {% block page_content %}{% endblock %}
     </div>
   <!-- </div> -->
-  <button onclick="topFunction()" id="myBtn" title="Наверх" class="button_up card mb-2 shadow p-2 mb-5 bg-white rounded decorations_non">⬆️</button>
+  <!-- <button onclick="topFunction()" id="myBtn" title="Наверх" class="button_up card mb-2 shadow p-2 mb-5 bg-white rounded decorations_non">⬆️</button> -->
   <div class="footer">
     {% include 'footer.html' %}
   </div>

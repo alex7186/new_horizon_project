@@ -8,7 +8,9 @@
     --animation-duration:0;
     position:relative;
     display:flex;
-    flex-wrap:wrap
+    flex-wrap:wrap;
+    justify-content: center;
+
   }
   
   .uicore-full-width .site-main.elementor-section.elementor-section-boxed .elementor-container .uicore-grid-container {
@@ -533,8 +535,8 @@
   }
   
 .uicore-grid-item {
-    margin-left: auto;
-    margin-right: auto;
+    /* margin-left: auto;
+    margin-right: auto; */
 }
 
 .uicore-grid-item a{
@@ -686,19 +688,6 @@
     font-size:11px;
     font-weight:600
   }
-  
-  
-  .uicore-grid-container {
-    --hgap: 0;
-    --vgap: 0;
-    --columns: 0;
-    --rows: 0;
-    --gap-count: 0;
-    --container-aspect-ratio: 0;
-    --animation-duration: 0;
-  }
-  
-  
 
   
   
@@ -784,3 +773,77 @@
     font-weight:600
   }
   
+
+
+
+.card-body{
+  padding: 0.5rem;
+}
+
+.card-body p{
+  margin-bottom: 0px !important;
+}
+
+.card-img-top{
+  margin: 0px !important;
+  border-top-left-radius: calc(.75rem - 1px);
+  border-top-right-radius: calc(.75rem - 1px);
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
+}
+
+.undercower_card{
+  position: absolute;
+  top: 90px;
+  bottom: 100px;
+  background: rgba(255, 255, 255, 0.85);
+  width: 260px;
+  height: 340px;
+  margin-left: 10px;
+}
+
+.card-text{
+  /* padding-left: 0.5rem;
+  padding-right: 0.5rem; */
+  margin: 0px;
+}
+
+.card-text p{
+  margin-bottom: 0px !important;
+}
+
+.card-title{
+  /* margin-top: 10px; */
+  font-size: 20px;
+  margin-bottom: 0px !important;
+}
+
+.card-body{
+  padding-bottom: 0px !important;
+  padding-top: 6px !important;
+}
+
+.card-article-detail{
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin-top: 5px;
+  /* margin: 0px; */
+}
+
+.card-article-detail .badge{
+  font-size: 12px;
+}
+
+
+.rounded{
+  border-left: 5px solid #353535;
+}
+
+.uicore-grid-item{
+  max-width: calc(max(25%, 350px));
+}
+
+.uicore-cover-img{
+  height: 250px !important;
+  width: 100% !important;
+  object-fit: cover !important;
+}

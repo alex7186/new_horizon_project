@@ -50,3 +50,8 @@ def sort_by_date(articles):
                 new_articles_list.append(article)
 
     return new_articles_list[::-1]
+
+
+@register.filter(name="categories_count")
+def get_categories_count(articles):
+    return len(article.categories.all())

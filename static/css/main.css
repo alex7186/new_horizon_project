@@ -17,8 +17,10 @@ body{
 }
 
 
-.btn{
-    border: none !important;
+.nav_btn{
+    border-radius: 15px;
+    border: 3px solid white !important;
+    --uicore-blog--radius: 15px;
 }
 
 .btn a:hover{
@@ -36,7 +38,7 @@ body{
 }
 
 a{
-    color: #5d8396;
+    color: #035353;
 }
 
 :target {
@@ -52,6 +54,7 @@ a{
     padding: 16px !important;
     background-color: #fcfaf5;;
     display: block;
+    width: 100%;
 }
 
 .leftbar_nav a{
@@ -94,7 +97,7 @@ a{
 
 .button_pr{
     font-size: 15px !important;
-    background-color: #5d8396 !important;
+    background-color: #353535 !important;
     font-weight: 700;
     margin-right: auto;
     margin-bottom: 100px;
@@ -107,14 +110,21 @@ a{
     width: 100%;
     z-index: 6;
     font-family: 'Arial Narrow Bold', sans-serif;
-    padding-top: 0px !important;
-    padding-bottom: 0px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    padding-left: 0px  !important;
+    padding-right: 0px !important;
+    margin:0px !important;
 }
 
 .nav-link{
     margin: 5px;
     color: #ffffff !important;
     font-size: 18px !important;
+}
+
+.nav-link p{
+    min-width: 300px !important;
 }
 
 .navbar-brand{
@@ -140,9 +150,6 @@ a{
         margin-bottom: 0px !important;
         width: 300px !important;
     }
-    .leftbar_nav{
-        width: 300px;
-    }
 }
 
 @media (min-width: 300px) {
@@ -163,9 +170,6 @@ a{
     }
     .article_detail_img{
         width: 360px !important;
-    }
-    .leftbar_nav{
-        width: 360px;
     }
 }
 
@@ -194,23 +198,38 @@ a{
 }
 
 .main_poster_header_primary{
-    position:absolute;
-    /* margin-top: 120px; */
-    /* margin-left: 60px; */
-    top: 90px;
-    left: 60px;
+    position:relative;
+    top: 60px;
+    margin-top:40px;
+    left: calc(5% + 15px);
     font-size: 80px !important;
 }
 
 .main_poster_header_secondary{
-    position:absolute;
-    /* margin-top: 20px; */
-    /* margin-left: 60px; */
-    top: 220px;
-    left: 60px;
+    position:relative;
+    top: 50px;
+    left: calc(5% + 15px);
     font-size: 20px !important;
 }
 
 #navbarSupportedContent{
-    margin-left: auto !important;
+    width: 100%;
+}
+
+.nav-item {
+    text-align: right;
+    width: 150px;
+    margin-left: 0px;
+    margin-right: 20px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+
+.navbar-nav{
+    justify-content: end;
+}
+
+.navbar-toggler{
+    background-color: #fcfaf5;
 }

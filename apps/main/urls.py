@@ -19,7 +19,7 @@ from django.urls import path, include, re_path
 import settings
 
 
-from apps.main.views import about_page, main_page
+from apps.main.views import main_page
 from apps.articles.views import ArticleAPIView, CategoryAPIView, ArticleByPKAPIView
 
 urlpatterns = [

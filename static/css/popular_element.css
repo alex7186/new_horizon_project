@@ -1,0 +1,46 @@
+
+.popular_element{
+    padding: 0px !important;
+    margin: 0 auto;
+}
+
+
+.popular_element h5{
+    font-size: 2rem;
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    transform: translate(20%, -160px);
+    
+    color: white;
+    width: 280px;
+    height: 160px;
+}
+
+.popular_element img{
+    filter: brightness(60%);
+    margin: 0px !important;
+    margin: 0.25rem;
+    position:relative;
+    display: block;
+    z-index:-1;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    object-fit: cover;
+
+    max-width: 500px;
+    max-height: 500px;
+}
+
+
+.popular_header{
+    margin-top: 50px;
+}
+
+.projects_header{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}

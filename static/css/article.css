@@ -1,11 +1,8 @@
-.margin_top100{
-    margin-top: 100px;
-}
-
 .articles_header{
     margin-top: 35px;
     text-align: center;
     margin-bottom: 0px;
+    margin-top: 130px;
 }
 
 .rel_array_element p{
@@ -22,83 +19,12 @@
     width: 100%;
 }
 
-.card-body{
-    padding: 0.5rem;
-}
-
-.card-body p{
-    margin-bottom: 0px !important;
-}
-
-.card-img-top{
-    margin: 0px !important;
-    border-top-left-radius: calc(.75rem - 1px);
-    border-top-right-radius: calc(.75rem - 1px);
-    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
-}
-
-.undercower_card{
-    position: absolute;
-    top: 90px;
-    bottom: 100px;
-    background: rgba(255, 255, 255, 0.85);
-    width: 260px;
-    height: 340px;
-    margin-left: 10px;
-}
-
-.card-text{
-    /* padding-left: 0.5rem;
-    padding-right: 0.5rem; */
-    margin: 0px;
-}
-
-.card-text p{
-    margin-bottom: 0px !important;
-}
-
-.card-title{
-    /* margin-top: 10px; */
-    margin-bottom: 0px !important;
-}
-
-.card-body{
-    padding-bottom: 0px !important;
-    padding-top: 6px !important;
-}
-
-.card-article-detail{
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-    margin-top: 5px;
-    /* margin: 0px; */
-}
-
-.card-article-detail .badge{
-    font-size: 12px;
-}
-
-
-.readmore-button{
-    text-align: center;
-    display: none;
-}
-
-.readmore-button a{
-    margin-left: 5px;
-    margin-right: 5px;
-}
-
-#projects{
-    padding-top: 0px
-}
-
 blockquote{
     margin-left: 2rem;
     
     font-size: 14px;
     padding-left: 10px;
-    border-left: 5px solid #5d8396;
+    border-left: 5px solid #353535;
 }
 
 .rel_array_element{
@@ -125,12 +51,12 @@ blockquote{
 
 .queried_header{
     padding-bottom: 10px;
-    border-bottom: 5px solid #5d8396;
+    border-bottom: 5px solid #353535;
 }
 
 .row{
     margin-bottom: 30px;
-    margin-top: 20px;
+    margin-top: 0px;
     /* max-width: 690px; */
     margin-left: auto;
     margin-right: auto;
@@ -150,40 +76,6 @@ blockquote{
     margin-bottom: 0px !important;
 }
 
-.button_center{
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 50px;
-}
-
-.button_project_center{
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    justify-content: center;
-}
-
-.project_card_title{
-    font-size: 17px;
-    /* margin-top: 10px; */
-}
-
-.project_card_text{
-    font-size: 14px;
-}
-
-
-
-
-.projects_header{
-    display: flex;
-    justify-content: center;
-    text-align: center;
-}
 
 .main_description{
     margin-top: 40px;
@@ -193,45 +85,6 @@ blockquote{
     font-size: 14px;
 }
 
-.popular_element{
-    padding: 0px !important;
-    margin: 0 auto;
-}
-
-
-.popular_element h5{
-    font-size: 2rem;
-    margin: 0px;
-    padding: 0px;
-    position: absolute;
-    transform: translate(20%, -160px);
-    
-    color: white;
-    width: 280px;
-    height: 160px;
-}
-
-.popular_element img{
-    filter: brightness(60%);
-    margin: 0px !important;
-    margin: 0.25rem;
-    position:relative;
-    display: block;
-    z-index:-1;
-
-    margin-left: auto;
-    margin-right: auto;
-
-    object-fit: cover;
-
-    max-width: 500px;
-    max-height: 500px;
-}
-
-
-.popular_header{
-    margin-top: 50px;
-}
 
 .articles_array{
     text-align: left;
@@ -254,7 +107,7 @@ blockquote{
 
 .article_attractive_text{
     margin-top: 40px;
-    border-left: 5px solid #5d8396;
+    border-left: 5px solid #353535;
     padding-left: 10px;
     padding-bottom: 0px;
 
@@ -269,8 +122,9 @@ blockquote{
 
 .article_detail_title{
     padding-bottom: 10px;
-    border-bottom: 5px solid #5d8396;
+    border-bottom: 5px solid #353535;
     /* margin-top: 30px; */
+    margin-bottom: 20px;
 }
 
 .article_detail{
@@ -279,12 +133,16 @@ blockquote{
 }
 
 .article_detail p, li{
-    font-size: 14px !important;
+    font-size: 16px !important;
+}
+
+.article_detail .article_detail_title{
+    font-size: 35px;
 }
 
 .article_detailed_badge{
     float:right;
-    margin-left: 3px;
+    margin-left: 15px;
 }
 
 .article_detail_info{
@@ -295,11 +153,11 @@ blockquote{
 .article_main_text{
     margin-top: 30px;
     margin-bottom: 70px;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .article_main_text li::marker{
-    color: #5d8396;
+    color: #353535;
     font-weight: bold;
     display: none;
 }
@@ -314,7 +172,12 @@ blockquote{
 
 .article_main_text h6{
     text-align: left;
-    margin-top: 40px;
-    font-size: 20px;
+    margin-top: 35px;
+    font-size: 26px;
     /* font-weight: bold; */
+}
+
+
+.article_main_text br{
+    display:none;
 }
