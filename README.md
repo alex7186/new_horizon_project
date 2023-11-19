@@ -23,11 +23,13 @@ makefile - control scripts for:
 ## screenshots
 
 1. Main page
-![1](./misc/description_images/image1.png)
+![Alt text](<Screenshot 2023-11-20 at 00-15-57 Повесть лет словесных.png>)
 
-2. The page with the article
-![2](./misc/description_images/image2.png)
+2. Articles index page
+![Alt text](<Screenshot 2023-11-20 at 00-16-08 Повесть лет словесных.png>)
 
-3. The page with the article
-![3](./misc/description_images/image3.png)
+3. Detailed articles page
+![Alt text](<Screenshot 2023-11-20 at 00-16-16 поэтических текстов использовании образовательном процессе рекомендации подбору заключение.png>)
 
+4. Categories articles page
+![Alt text](<Screenshot 2023-11-20 at 00-16-28 Повесть лет словесных.png>)
