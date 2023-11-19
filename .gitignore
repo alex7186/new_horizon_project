@@ -1,7 +1,4 @@
 __pycache__
 users_logfile.log
-static/admin/
-apps/projects/static/admin/
-*.ipynb
 apps/main/static
 hints

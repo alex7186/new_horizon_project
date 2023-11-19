@@ -10,7 +10,7 @@
     display:flex;
     flex-wrap:wrap;
     justify-content: center;
-
+    margin-bottom: 40px;
   }
   
   .uicore-full-width .site-main.elementor-section.elementor-section-boxed .elementor-container .uicore-grid-container {
@@ -835,7 +835,7 @@
 
 
 .rounded{
-  border-left: 5px solid #353535;
+  border-left: 8px solid #353535;
 }
 
 .uicore-grid-item{
@@ -843,7 +843,8 @@
 }
 
 .uicore-cover-img{
-  height: 250px !important;
+  /* height: 250px !important; */
   width: 100% !important;
   object-fit: cover !important;
+  filter: brightness(80%)
 }

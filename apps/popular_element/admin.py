@@ -16,16 +16,35 @@ class PopularArticleAdmin(admin.ModelAdmin):
 
     def show_artcles(self, obj):
         res = []
-        for artcle in obj.articles.all():
-            res.append(f"#{artcle.pk} - {artcle.title}")
+        for article in obj.articles.all():
 
-        res = "<br>".join(res)
+            res.append(
+                f"""<div style="background-color: #353535;display: inline-block;
+                padding: .25em .4em;font-size: 75%;font-weight: 700; margin-bottom:5px;
+                line-height: 1;text-align: left;min-width:50px;border-left:5px solid yellow;
+                vertical-align: baseline;border-radius: .25rem;font-size: 12px;"><a 
+                href="/admin/articles/article/{article.pk}/change/"
+                style="color:white;font-size:14px;padding:0px;">{article.pk} - {article.title}</a></div><br>"""
+            )
 
-        return mark_safe(res)
+        return mark_safe(" ".join(res))
 
     show_artcles.short_description = "Избранные статьи (pk)"
 
-    # def show_enabled
+    def show_enabled(self, obj):
+
+        color = "green" if obj.enabled else "red"
+        text = "Да" if obj.enabled else "Нет"
+
+        return mark_safe(
+            f"""<div style="background-color: {color};display: inline-block;
+            padding: .25em .4em;font-size: 75%;font-weight: 700; margin-bottom:5px;
+            line-height: 1;text-align: center;white-space: nowrap;min-width:50px;
+            vertical-align: baseline;border-radius: .25rem;font-size: 12px;">{text}</div>"""
+        )
+
+    show_enabled.short_description = "Показывается"
+
     def show_count(self, obj):
         return str(len(obj.articles.all()))
 
@@ -33,7 +52,7 @@ class PopularArticleAdmin(admin.ModelAdmin):
 
     list_display = (
         "show_artcles",
-        "enabled",
+        "show_enabled",
         "show_count",
     )
 

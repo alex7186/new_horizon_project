@@ -5,13 +5,6 @@ from django.shortcuts import render
 from apps.articles.models import Article, Category
 
 
-from rest_framework import generics
-from apps.articles.serializers import (
-    ArticlePreviewSerializer,
-    CategorySerializer,
-    ArticleSerializer,
-)
-
 from apps.main.scripts import register_user_activity
 
 
@@ -52,21 +45,3 @@ def articles_detail(request, pk):
     }
 
     return render(request, "articles_detail.html", context)
-
-
-class ArticleAPIView(generics.ListAPIView):
-    queryset = Article.objects.all()
-    serializer_class = ArticlePreviewSerializer
-
-
-class CategoryAPIView(generics.ListAPIView):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializer
-
-
-class ArticleByPKAPIView(generics.ListAPIView):
-    serializer_class = ArticleSerializer
-
-    def get_queryset(self):
-        queryset = Article.objects.filter(pk=self.kwargs["pk"])
-        return queryset

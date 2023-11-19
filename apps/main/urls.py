@@ -20,16 +20,12 @@ import settings
 
 
 from apps.main.views import main_page
-from apps.articles.views import ArticleAPIView, CategoryAPIView, ArticleByPKAPIView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", main_page, name="home"),
     path("articles/", include("apps.articles.urls")),
-    re_path(r"^static/(?P<path>.*)$", serve, {"document_root": settings.STATIC_ROOT}),
-    path("api/v1/articles_list/", ArticleAPIView.as_view()),
-    path("api/v1/article_by_pk/<int:pk>/", ArticleByPKAPIView.as_view()),
-    path("api/v1/categories_list/", CategoryAPIView.as_view()),
+    # re_path(r"^static/(?P<path>.*)$", serve, {"document_root": settings.STATIC_ROOT}),
 ]
 
 

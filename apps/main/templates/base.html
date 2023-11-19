@@ -21,7 +21,7 @@
 </head>
 <body>
   <nav class="navbar navbar-expand-md navbar-light bg-light p-3 mb-5 bg-white">
-    <div class="container" style="width:100% !important;">
+    <div class="container nav-container">
       <!-- <a class="navbar-brand" href="{% url 'home' %}#top">Наш образовательный поратл</a> -->
       <p class="nav-link" style="min-width: 250px;padding-left: 0px; margin-left: 0px;" >Повесть лет словесных</p>
 
@@ -33,15 +33,15 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto" style="width: 100%;">
+        <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
             <div class="nav_btn">
-              <a class="nav-link btn" href="{% url 'home' %}">Главная</a>
+              <a class="nav-link" href="{% url 'home' %}">Главная</a>
             </div>
           </li>
           <li class="nav-item active">
             <div class="nav_btn">
-              <a class="nav-link btn" href="{% url 'articles_index' %}">Статьи</a>
+              <a class="nav-link" href="{% url 'articles_index' %}">Статьи</a>
             </div>
             </li>
         </ul>

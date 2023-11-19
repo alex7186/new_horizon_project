@@ -33,11 +33,15 @@ def register_user_activity(function):
         )
 
         # loacal data is not interested
-        # if "127.0.0.1" in str(self.user_ip):
-        #     return None
+        if "127.0.0.1" in str(user_ip):
+            flag_skip_local_usage = True
+        elif "10.8.0." in str(user_ip):
+            flag_skip_local_usage = True
 
-        with open(os.path.join(LOG_FILEPATH, LOG_FILENAME), "a") as file:
-            file.write(message)
+        if not flag_skip_local_usage:
+            with open(os.path.join(LOG_FILEPATH, LOG_FILENAME), "a") as file:
+                file.write(message)
+
         return function(*args, **kwargs)
 
     return wrapper

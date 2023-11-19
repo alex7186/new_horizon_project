@@ -12,7 +12,12 @@
                     <div class="uicore-post-wrapper">
                         <a href="{% url 'articles_detail' article.pk %}" title=" View Post: {{ article.title }}">  
                             <div class="uicore-blog-img-container uicore-zoom-wrapper">
-                                <img class="uicore-cover-img" src="{% static article.image_base %}" alt="{{ article.title }}">
+                                <img 
+                                    class="uicore-cover-img" 
+                                    src="{{ article.image_base.url }}" 
+                                    alt="{{ article.title }}"
+                                    style="height:128px"
+                                >
                             </div>
                         </a>
                         <div class="uicore-post-info">

@@ -24,7 +24,10 @@ class Article(models.Model):
     attractive_text = models.TextField(default="Завлекающий текст")
     categories = models.ManyToManyField("Category", related_name="articles")
 
-    image_base = models.ImageField(upload_to="img", default="img/placeholder_6.png")
+    image_base = models.ImageField(
+        upload_to="static/img", default="img/solid-color-image.png"
+    )
+
     main_text = models.TextField(default="Основной текст")
 
     main_text_headers_list = ListTextField(
@@ -109,13 +112,3 @@ class Article(models.Model):
 
     def get_absolute_url(self):
         return f"/articles/{self.pk}"
-
-
-class Comment(models.Model):
-    author = models.CharField(max_length=60)
-    body = models.TextField()
-    created_on = models.DateTimeField(auto_now_add=True)
-    article = models.ForeignKey("Article", on_delete=models.CASCADE)
-
-    def get_absolute_url(self):
-        return f"/articles/{self.article.pk}"

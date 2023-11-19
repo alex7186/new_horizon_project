@@ -7,7 +7,7 @@ html, body{
 
     display: flex;
     flex-direction: column;
-    min-width: 360px;
+    min-width: 380px !important;
 }
 
 body{
@@ -20,7 +20,7 @@ body{
 .nav_btn{
     border-radius: 15px;
     border: 3px solid white !important;
-    --uicore-blog--radius: 15px;
+    /* --uicore-blog--radius: 15px; */
 }
 
 .btn a:hover{
@@ -121,6 +121,7 @@ a{
     margin: 5px;
     color: #ffffff !important;
     font-size: 18px !important;
+    text-align: center;
 }
 
 .nav-link p{
@@ -194,7 +195,6 @@ a{
     /* margin-top: 45px; */
     background-color: #353535;
     color:white;
-    height:300px;
 }
 
 .main_poster_header_primary{
@@ -202,7 +202,6 @@ a{
     top: 60px;
     margin-top:40px;
     left: calc(5% + 15px);
-    font-size: 80px !important;
 }
 
 .main_poster_header_secondary{
@@ -214,8 +213,9 @@ a{
 
 #navbarSupportedContent{
     width: 100%;
+    /* border-bottom: 3px solid #fff !important; */
+    /* padding-bottom: 5px; */
 }
-
 .nav-item {
     text-align: right;
     width: 150px;
@@ -228,8 +228,62 @@ a{
 
 .navbar-nav{
     justify-content: end;
+    margin-left: auto;
+    margin-right: 0px !important;
 }
 
 .navbar-toggler{
     background-color: #fcfaf5;
+    border: none;
+}
+
+.nav-container{
+    width:100% !important; 
+    /* max-width: 800px !important; */
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+
+
+@media (min-width: 300px) {
+    .main_poster_header_primary{
+        font-size: 40px !important;
+    }
+    .main_poster{
+        height: 250px;
+    }
+}
+
+@media (min-width: 400px) {
+    .main_poster_header_primary{
+        font-size: 40px !important;
+    }
+    .main_poster{
+        height: 250px;
+    }
+}
+
+
+@media (min-width: 500px) {
+    .main_poster_header_primary{
+        font-size: 50px !important;
+    }
+    .main_poster{
+        height: 250px;
+    }
+}
+
+
+@media (min-width: 738px) {
+    .main_poster_header_primary{
+        font-size: 80px !important;
+    }
+    .main_poster{
+        height:300px;
+    }
+}
+
+
+.mr-auto{
+    float: right;
 }

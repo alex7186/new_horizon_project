@@ -26,10 +26,6 @@ class Migration(migrations.Migration):
                 ),
                 ("title", models.CharField(max_length=100)),
                 ("attractive_text", models.TextField(default="Завлекающий текст")),
-                (
-                    "image_base",
-                    models.ImageField(default="img/placeholder.png", upload_to="img"),
-                ),
                 ("main_text", models.TextField(default="Основной текст")),
                 (
                     "main_text_headers_list",
@@ -62,30 +58,6 @@ class Migration(migrations.Migration):
                 ("name", models.CharField(max_length=20)),
             ],
         ),
-        migrations.CreateModel(
-            name="Comment",
-            fields=[
-                (
-                    "id",
-                    models.AutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
-                    ),
-                ),
-                ("author", models.CharField(max_length=60)),
-                ("body", models.TextField()),
-                ("created_on", models.DateTimeField(auto_now_add=True)),
-                (
-                    "article",
-                    models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE,
-                        to="articles.article",
-                    ),
-                ),
-            ],
-        ),
         migrations.AddField(
             model_name="article",
             name="categories",
@@ -93,11 +65,14 @@ class Migration(migrations.Migration):
                 related_name="articles", to="articles.category"
             ),
         ),
-        # migrations.AddField(
-        #     model_name="article",
-        #     name="quizzes",
-        #     field=models.ManyToManyField(
-        #         blank=True, default="", related_name="quizzes", to="quiz.quizpick4"
-        #     ),
-        # ),
+        migrations.AddField(
+            model_name="article",
+            name="flag_article_enabled",
+            field=models.BooleanField(default=False),
+        ),
+        migrations.AddField(
+            model_name="category",
+            name="color",
+            field=models.CharField(default="#ffffff", max_length=7),
+        ),
     ]
