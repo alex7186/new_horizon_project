@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import auth
 
 from apps.main.scripts import register_user_activity
 from apps.main.models import AboutInfo
@@ -29,6 +30,10 @@ def main_page(request):
     }
 
     return render(request, "main_page.html", context)
+
+# def logout(request):
+#     auth.logout(request)
+#     return main_page(request)
 
 
 def err404(request, exception):

@@ -1,8 +1,8 @@
 from django.urls import path
-from apps.articles import views
+from apps.articles.views import articles_index, articles_detail, articles_category
 
 urlpatterns = [
-    path("", views.articles_index, name="articles_index"),
-    path("<int:pk>/", views.articles_detail, name="articles_detail"),
-    path("<category>/", views.articles_category, name="articles_category"),
+    path("", articles_index, name="articles_index"),
+    path("<int:pk>/", articles_detail, name="articles_detail"),
+    path("<category>/", articles_category, name="articles_category"),
 ]
