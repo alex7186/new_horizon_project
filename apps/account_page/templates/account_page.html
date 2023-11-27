@@ -1,14 +1,54 @@
 {% extends "base.html" %}
 {% load static %}
 {% block page_content %}
+<link href="{% static 'css/profile_page.css' %}" rel="stylesheet" />
 
-<div class="container">
-    <h1 class="articles_header">Account</h1>
-    <a class="" style="padding:5px; background-color: aqua; border-left:5px solid black; border-radius: 5px;" href="{% url 'logout' %}">Logout</a>
-
-    <h3>hello</h3>
-    <p>{{ request.user.name }}</p>
-    <p>{{ request.user.email }}</p>
+<div class="container profile_page_container">
+    <p class="articles_header"></p>
+    
+    <div class="profile_card">
+        <!-- <h3>hello</h3> -->
+        <div class="greeting_row">
+            <div class="profile_picture">👤</div>
+            <div class="account_data">
+                <ul>
+                    <li>{{ request.user.first_name }}</li>
+                    <li>{{ request.user.last_name }}</li>
+                    <li>{{ request.user.email }}</li>
+                </ul>
+            </div>
+            <div class="logout_toggler">
+                <a class="logout_button" href="{% url 'logout' %}">Выйти</a>
+            </div>
+        </div>
+        <div class="tests_array">
+            <div class="show_test_passing">
+                <div class="test_card_name">
+                    <div class="test_id">#335</div>
+                    <div class="test_name">РКИ. Модуль 4. Контрольное тестирование</div>
+                </div>
+                <div class="test_description">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</div>
+                <div class="test_result">
+                    <div class="test_result_green">
+                        <p>Пройдено</p>
+                    </div> 
+                </div>
+            </div>
+            <div class="show_test_passing">
+                <div class="test_card_name">
+                    <div class="test_id">#256</div>
+                    <div class="test_name">РКИ. Модуль 4. Промежуточное тестирование</div>
+                </div>
+                <div class="test_description">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</div>
+                <div class="test_result">
+                    <div class="test_progress_frame">
+                        <div class="test_progress_bar" style="background-color: red;"></div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </div>
 
 {% endblock %}

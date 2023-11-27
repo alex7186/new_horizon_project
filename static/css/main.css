@@ -18,10 +18,28 @@ body{
 
 
 .nav_btn{
-    border-radius: 15px;
-    border: 3px solid white !important;
+    /* border-radius: 10px;
+    border-top: 3px solid white !important;
+    border-bottom: 3px solid white !important; */
     /* --uicore-blog--radius: 15px; */
+
+    /* padding: 0px; */
+    background-color: gray;
+    border-left: 5px solid white;
+    border-radius: 5px;
+    padding: 4px;
 }
+
+.article_hover:hover{
+    border-left: 5px solid rgb(83, 206, 89);
+    background-color: #b2b2b2;
+}
+
+.login_cabinet_hover:hover{
+    border-left: 5px solid rgb(83, 206, 89);
+    background-color: #b2b2b2;
+}
+
 
 .btn a:hover{
     display: none;

@@ -20,12 +20,13 @@ import settings
 
 
 from apps.main.views import main_page
+
 # from apps.main.views import logout
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", main_page, name="home"),
-    path("", include('apps.account_page.urls'), name='account_page'),
+    path("", include("apps.account_page.urls"), name="account_page"),
     path("articles/", include("apps.articles.urls")),
     re_path(r"^static/(?P<path>.*)$", serve, {"document_root": settings.STATIC_ROOT}),
 ]

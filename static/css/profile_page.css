@@ -1,0 +1,129 @@
+
+.profile_page_container{
+    max-width: 800px;
+}
+
+.logout_button{
+    padding:5px; 
+    background-color: #989898; 
+    border-left:8px solid #780000;
+    border-radius: 5px;
+    color:white;
+    text-decoration: none;
+    height: 35px;
+    width: 70px;
+}
+
+.greeting_row ul{
+    padding: 0px;
+    margin: 0px;
+}
+
+.greeting_row li{
+    margin-bottom: 0px;
+    list-style-type: none;
+}
+
+.logout_button:hover {
+    background-color: #d9d9d9;
+    border-left: 8px solid #b30000;
+    color:grey;
+    text-decoration: none;
+}
+
+.profile_card{
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    
+
+}
+
+.greeting_row{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-items: center;
+    
+    /* border-left: 10px solid black; */
+    border-radius: 10px;
+    background-color: #f7f7f7;
+    border: 2px solid #e1e1e1;
+}
+
+.profile_picture{
+    float: left;
+    margin-left: 0px;
+    margin-right: 16px;
+    font-size: 60px;
+}
+
+.account_data{
+    float:left
+}
+
+.logout_toggler{
+    float: right;
+    margin-left: auto;
+    margin-right: 10px;
+    margin-top: 12px;
+    margin-bottom: auto;
+}
+
+
+
+.tests_array{
+    margin-top: 30px;
+}
+
+.show_test_passing{
+    border: 2px solid #e1e1e1;
+    border-radius: 10px;  
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.test_card_name{
+    display: flex;
+}
+
+.test_id{
+    margin-right: 10px;
+}
+
+.test_description{
+    font-size: 14px;
+    margin-left: 45px;
+    margin-bottom: 20px;
+}
+
+.test_result_green{
+    background-color: green;
+    height: 30px;
+    width: 400px;
+    margin-left: 45px;
+    margin-right: auto;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    padding-top: 3px;
+    border-radius: 5px;   
+}
+
+.test_progress_frame{
+    margin-left: 45px;
+    margin-right: auto;
+    text-align: center;
+    width: 400px;
+    border: 1px solid grey;
+    border-radius: 5px; 
+}
+
+.test_progress_bar{
+    height: 30px;
+    padding-top: 3px;
+    border-top-right-radius: 5px;   
+    border-bottom-right-radius: 5px;   
+    width:20%
+}

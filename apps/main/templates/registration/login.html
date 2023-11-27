@@ -1,14 +1,15 @@
 {% extends "base.html" %}
 {% load static %}
 {% block page_content %}
+<link href="{% static 'css/login.css' %}" rel="stylesheet" />
 
 <div class="container">
-<h1 class="articles_header">Log In</h1>
+<p class="articles_header"></p>
 
-<form method="post">
+<form method="post" class="login_form">
   {% csrf_token %}
   {{ form.as_p }}
-  <button type="submit">Log In</button>
+  <button type="submit">Войти в аккаунт</button>
 </form>
 </div>
 {% endblock %}

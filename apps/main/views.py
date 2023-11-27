@@ -31,6 +31,7 @@ def main_page(request):
 
     return render(request, "main_page.html", context)
 
+
 # def logout(request):
 #     auth.logout(request)
 #     return main_page(request)
