@@ -8,13 +8,22 @@ from apps.articles.forms import CategoryForm
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
+    @admin.action(description="Показывать статьи")
+    def make_arcicle_enabled(modeladmin, request, queryset):
+        queryset.update(flag_article_enabled=True)
+
+    @admin.action(description="Скрыть статьи")
+    def make_arcicle_disabled(modeladmin, request, queryset):
+        queryset.update(flag_article_enabled=False)
+
     def show_title(self, obj):
 
         return mark_safe(
             f"""<div style="background-color: #353535;display: inline-block;
-            padding: .25em .4em;font-size: 75%;font-weight: 700; margin-bottom:5px;
+            padding:5px;font-size: 75%;font-weight: 700; margin-bottom:5px;
             line-height: 1;text-align: left;min-width:50px;border-left:5px solid yellow;
-            vertical-align: baseline;border-radius: .25rem;font-size: 12px;">
+            width: 350px;min-height: 50px;
+            vertical-align: baseline;border-radius:5px;font-size: 12px;">
             <a href="/admin/articles/article/{obj.pk}/change/"
             style="color:white;font-size:14px;padding:0px;">{obj.pk} - {obj.title}</a>
             </div><br>"""
@@ -22,33 +31,67 @@ class ArticleAdmin(admin.ModelAdmin):
 
     show_title.short_description = "Название 👇"
 
+    def show_flag_article_enabled(self, obj):
+
+        color = "green" if obj.flag_article_enabled else "red"
+        text = "Да" if obj.flag_article_enabled else "Нет"
+
+        return mark_safe(
+            f"""<div style="background-color: {color};display: inline-block;
+            padding: .25em .4em;font-size: 75%;font-weight: 700; margin-bottom:5px;
+            line-height: 1;text-align: center;white-space: nowrap;min-width:50px;
+            vertical-align: baseline;border-radius: .25rem;font-size: 12px;">{text}</div>"""
+        )
+
+    show_flag_article_enabled.short_description = "Показывается"
+
     def show_categories(self, obj):
         res = []
 
         for category in obj.categories.all():
             res.append(
                 f"""<div style="background-color: {category.color};display: inline-block;
-                padding: .25em .4em;font-size: 75%;font-weight: 700; margin-bottom:5px;
+                padding:5px;font-size: 75%;font-weight: 700; margin-bottom:5px;
                 line-height: 1;text-align: center;white-space: nowrap;border-left:5px solid yellow;
-                vertical-align: baseline;border-radius: .25rem;font-size: 12px;">
-                <a style="color:white" href="/admin/articles/category/{category.pk}/change/">{category.name}</a></div>"""
+                vertical-align: baseline;border-radius:5px;font-size: 12px;">
+                <a style="color:white" href="/admin/articles/category/{category.pk}/change/">
+                {category.name}</a></div><br>"""
             )
 
-        res = " ".join(res)
-
-        return mark_safe(res)
+        return mark_safe(" ".join(res))
 
     show_categories.short_description = "Категории 👇"
 
     def show_edited_created_time(self, obj):
 
         return mark_safe(
-            '<p style="padding:0px;margin:0px">{}</p>'.format(
-                obj.last_modified.strftime("%d.%m.%Y %H:%M")
-            )
+            f"""<p style="padding:0px;margin:0px">
+            {obj.last_modified.strftime("%H:%M")}</p>
+            <p style="padding:0px;margin:0px">
+            {obj.last_modified.strftime("%d.%m.%Y")}</p>
+            """
         )
 
     show_edited_created_time.short_description = "Изменено"
+
+    def image_tag(self, obj):
+
+        img_show_tag = f'<img src="{escape(obj.image_base.url)}" style="height:60px"/>'
+        img_show_desc = f"""
+            <p style="padding:0px; margin:0px;border-top-right-radius: 10px;
+            padding-right: 2px;padding-top: 2px;display: inline-flex;font-size:14px;
+            background: gray;display: inline-flex;position: relative;top: -21px;">
+            {obj.image_base.height} x {obj.image_base.width}</p>"""
+
+        return mark_safe(
+            '<div style="height:60px;width:120px">'
+            + img_show_tag
+            + img_show_desc
+            + "</div>"
+        )
+
+    image_tag.short_description = "Изображение"
+    image_tag.allow_tags = True
 
     def show_main_text_headers_list(self, obj):
         headers = [
@@ -72,95 +115,13 @@ class ArticleAdmin(admin.ModelAdmin):
             vertical-align: baseline;border-radius: .25rem;font-size: 12px;">{len(headers)}</div>"""
         )
 
-    show_main_text_headers_list.short_description = "Подзаголовки"
-
-    # def show_count_of_mentions(self, obj):
-    #     mentions = []
-    #     res = []
-
-    #     for project in Project.objects.all():
-    #         current_article_link = f"/articles/{obj.pk}/"
-    #         if current_article_link in project.article_inner_links:
-    #             mentions.append((project.pk, project.title))
-
-    #     for i, mention in enumerate(mentions):
-    #         res.append(
-    #             f'{1+i}) <a style="padding:0px;margin:0px;'
-    #             + "font-size:14px;"
-    #             + 'height:20px;"'
-    #             + f' href="/{mention[0]}"'
-    #             + f">{mention[1]}</a>"
-    #         )
-
-    #     if len(res) == 0:
-    #         res.append(
-    #             f'<p style="padding:0px;margin:5px;'
-    #             + "background-color:red;width: 100px;"
-    #             + "margin-right: auto;"
-    #             + "text-align:center;font-size:15px;"
-    #             + 'height:20px;border-radius:25px;"'
-    #             + f">НЕТ</p>"
-    #         )
-
-    #     res = "<br>".join(res)
-
-    #     return mark_safe(res)
-
-    # show_count_of_mentions.short_description = "Упоминания 👇"
-
-    # def show_main_text_headers_list_keys(self, obj):
-    #     res = []
-
-    #     for i, element in enumerate(obj.main_text_headers_list_keys.split(",")):
-    #         res.append(f"{i+1}) {element}<br>")
-
-    #     res[-1] = res[-1][:-4]
-
-    #     return mark_safe(" ".join(res))
-
-    # show_main_text_headers_list_keys.short_description = "Ключевые слова"
-
-    def image_tag(self, obj):
-
-        return mark_safe(
-            f'<img src="{escape(obj.image_base.url)}" style="height:60px"/>'
-            + f'<p style="padding:0px; margin:0px">{obj.image_base.height} x {obj.image_base.width}</p'
-        )
-
-    image_tag.short_description = "Изображение"
-    image_tag.allow_tags = True
+    show_main_text_headers_list.short_description = mark_safe("Число<br>подзаголовков")
 
     def show_text_length(self, obj):
 
         return mark_safe(f"<p>{len(obj.main_text)}</p>")
 
-    show_text_length.short_description = "Длинна текста"
-
-    def show_flag_article_enabled(self, obj):
-
-        color = "green" if obj.flag_article_enabled else "red"
-        text = "Да" if obj.flag_article_enabled else "Нет"
-
-        return mark_safe(
-            f"""<div style="background-color: {color};display: inline-block;
-            padding: .25em .4em;font-size: 75%;font-weight: 700; margin-bottom:5px;
-            line-height: 1;text-align: center;white-space: nowrap;min-width:50px;
-            vertical-align: baseline;border-radius: .25rem;font-size: 12px;">{text}</div>"""
-        )
-
-    show_flag_article_enabled.short_description = "Показывается"
-
-    @admin.action(description="Показывать статьи")
-    def make_arcicle_enabled(modeladmin, request, queryset):
-        for obj in queryset:
-            obj.flag_article_enabled = True
-            obj.save()
-
-    @admin.action(description="Скрыть статьи")
-    def make_arcicle_disabled(modeladmin, request, queryset):
-        for obj in queryset:
-            obj.flag_article_enabled = False
-            obj.save()
+    show_text_length.short_description = mark_safe("Длинна<br>текста")
 
     list_display = (
         "show_title",
@@ -169,8 +130,7 @@ class ArticleAdmin(admin.ModelAdmin):
         "show_edited_created_time",
         "image_tag",
         "show_main_text_headers_list",
-        "show_text_length"
-        # "show_main_text_headers_list_keys",
+        "show_text_length",
     )
 
     list_filter = (
@@ -226,10 +186,11 @@ class CategoryAdmin(admin.ModelAdmin):
 
         return mark_safe(
             f"""<div style="background-color: #353535;display: inline-block;
-            padding: .25em .4em;font-size: 75%;font-weight: 700; margin-bottom:5px;
+            padding:5px;font-size: 75%;font-weight: 700; margin-bottom:5px;
             line-height: 1;text-align: left;min-width:50px;border-left:5px solid yellow;
-            vertical-align: baseline;border-radius: .25rem;font-size: 12px;">
-            <a href="/admin/articles/article/{obj.pk}/change/"
+            width: 350px;min-height: 50px;
+            vertical-align: baseline;border-radius:5px;font-size: 12px;">
+            <a href="/admin/articles/category/{obj.pk}/change/"
             style="color:white;font-size:14px;padding:0px;">{obj.pk} - {obj.name}</a>
             </div><br>"""
         )
@@ -241,18 +202,17 @@ class CategoryAdmin(admin.ModelAdmin):
 
         for article in obj.articles.all():
             res.append(
-                f"""<div style="background-color: #353535;display: inline-block;border-left:5px solid yellow;
-                padding: .25em .4em;font-size: 75%;font-weight: 700; margin-bottom:5px;
-                line-height: 1;text-align: center;white-space: nowrap;min-width:50px;
-                vertical-align: baseline;border-radius: .25rem;font-size: 12px;">
+                f"""<div style="background-color: #353535;
+                padding:5px;font-size: 75%;font-weight: 700; margin-bottom:5px;
+                line-height: 1;text-align: left;min-width:50px;border-left:5px solid yellow;
+                width: 350px;
+                vertical-align: baseline;border-radius:5px;font-size: 12px;">
                 <a href="/admin/articles/article/{article.pk}/change/"
                 style="color:white;font-size:14px;padding:0px;">{article.pk} - {article.title}</a>
-                </div><br>"""
+                </div>"""
             )
 
-        res = " ".join(res)
-
-        return mark_safe(res)
+        return mark_safe(" ".join(res))
 
     show_articles.short_description = "Статьи 👇"
 

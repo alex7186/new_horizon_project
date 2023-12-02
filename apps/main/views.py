@@ -20,21 +20,13 @@ def main_page(request):
             )
 
     about_info = AboutInfo.objects.all()
-    # poster_description = PosterDescription.objects.all()
 
-    # for popular_projet in popular_projects:
-    #     print('popular_projects', popular_projet, popular_projet.projects, dir(popular_projet.projects))
     context = {
         "popular_articles": popular_articles,
         "about_info": about_info,
     }
 
     return render(request, "main_page.html", context)
-
-
-# def logout(request):
-#     auth.logout(request)
-#     return main_page(request)
 
 
 def err404(request, exception):

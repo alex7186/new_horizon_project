@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "apps.main",
     "apps.account_page",
+    "apps.test_progress",
     "apps.articles",
     "apps.popular_element",
 ]

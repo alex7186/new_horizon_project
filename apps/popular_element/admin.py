@@ -19,17 +19,18 @@ class PopularArticleAdmin(admin.ModelAdmin):
         for article in obj.articles.all():
 
             res.append(
-                f"""<div style="background-color: #353535;display: inline-block;
-                padding: .25em .4em;font-size: 75%;font-weight: 700; margin-bottom:5px;
+                f"""<div style="background-color: #353535;
+                padding:5px;font-size: 75%;font-weight: 700; margin-bottom:5px;
                 line-height: 1;text-align: left;min-width:50px;border-left:5px solid yellow;
-                vertical-align: baseline;border-radius: .25rem;font-size: 12px;"><a 
-                href="/admin/articles/article/{article.pk}/change/"
-                style="color:white;font-size:14px;padding:0px;">{article.pk} - {article.title}</a></div><br>"""
+                width: 350px;
+                vertical-align: baseline;border-radius:5px;font-size: 12px;">
+                <a href="/admin/articles/article/{article.pk}/change/"
+                style="color:white;font-size:14px;padding:0px;">{article.pk} - {article.title}</a>
+                </div>"""
             )
-
         return mark_safe(" ".join(res))
 
-    show_artcles.short_description = "Избранные статьи (pk)"
+    show_artcles.short_description = "Статьи 👇"
 
     def show_enabled(self, obj):
 

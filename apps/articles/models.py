@@ -17,6 +17,10 @@ class Category(models.Model):
     def get_absolute_url(self):
         return unquote(f"/articles/{self.name}")
 
+    class Meta:
+        verbose_name = "Категория"
+        verbose_name_plural = "Категории"
+
 
 class Article(models.Model):
     title = models.CharField(max_length=100)
@@ -112,3 +116,7 @@ class Article(models.Model):
 
     def get_absolute_url(self):
         return f"/articles/{self.pk}"
+
+    class Meta:
+        verbose_name = "Статья"
+        verbose_name_plural = "Статьи"

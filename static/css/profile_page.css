@@ -88,18 +88,35 @@
     display: flex;
 }
 
-.test_id{
-    margin-right: 10px;
-}
-
 .test_description{
     font-size: 14px;
     margin-left: 45px;
     margin-bottom: 20px;
 }
 
+.test_status{
+    font-size: 14px;
+    margin-left: 45px;
+    color:#6e7a84;
+    font-size:11px
+    /* margin-bottom: 20px; */
+}
+
 .test_result_green{
     background-color: green;
+    height: 30px;
+    width: 400px;
+    margin-left: 45px;
+    margin-right: auto;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    padding-top: 3px;
+    border-radius: 5px;   
+}
+
+.test_result_red{
+    background-color: red;
     height: 30px;
     width: 400px;
     margin-left: 45px;
@@ -126,4 +143,12 @@
     border-top-right-radius: 5px;   
     border-bottom-right-radius: 5px;   
     width:20%
+}
+
+.test_progress_bar_green{
+    background-color: green;
+}
+
+.test_progress_bar_red{
+    background-color: red;
 }
