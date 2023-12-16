@@ -2,6 +2,13 @@ from django.utils.safestring import mark_safe
 from django.utils.html import escape
 from django.contrib import admin
 
+from misc.admin_styling_components import (
+    show_data_colored_block,
+    show_data_colored_badge,
+    show_data_colored_border_block,
+    arange_block_box,
+)
+
 from apps.articles.models import Article, Category
 from apps.articles.forms import CategoryForm
 
@@ -18,15 +25,11 @@ class ArticleAdmin(admin.ModelAdmin):
 
     def show_title(self, obj):
 
-        return mark_safe(
-            f"""<div style="background-color: #353535;display: inline-block;
-            padding:5px;font-size: 75%;font-weight: 700; margin-bottom:5px;
-            line-height: 1;text-align: left;min-width:50px;border-left:5px solid yellow;
-            width: 350px;min-height: 50px;
-            vertical-align: baseline;border-radius:5px;font-size: 12px;">
-            <a href="/admin/articles/article/{obj.pk}/change/"
-            style="color:white;font-size:14px;padding:0px;">{obj.pk} - {obj.title}</a>
-            </div><br>"""
+        return show_data_colored_border_block(
+            text=obj.title,
+            text_bold=True,
+            color="yellow",
+            link_href=f"/admin/articles/article/{obj.pk}/change/",
         )
 
     show_title.short_description = "Название 👇"
@@ -36,12 +39,7 @@ class ArticleAdmin(admin.ModelAdmin):
         color = "green" if obj.flag_article_enabled else "red"
         text = "Да" if obj.flag_article_enabled else "Нет"
 
-        return mark_safe(
-            f"""<div style="background-color: {color};display: inline-block;
-            padding: .25em .4em;font-size: 75%;font-weight: 700; margin-bottom:5px;
-            line-height: 1;text-align: center;white-space: nowrap;min-width:50px;
-            vertical-align: baseline;border-radius: .25rem;font-size: 12px;">{text}</div>"""
-        )
+        return show_data_colored_badge(text=text, color=color, text_bold=True)
 
     show_flag_article_enabled.short_description = "Показывается"
 
@@ -49,16 +47,16 @@ class ArticleAdmin(admin.ModelAdmin):
         res = []
 
         for category in obj.categories.all():
-            res.append(
-                f"""<div style="background-color: {category.color};display: inline-block;
-                padding:5px;font-size: 75%;font-weight: 700; margin-bottom:5px;
-                line-height: 1;text-align: center;white-space: nowrap;border-left:5px solid yellow;
-                vertical-align: baseline;border-radius:5px;font-size: 12px;">
-                <a style="color:white" href="/admin/articles/category/{category.pk}/change/">
-                {category.name}</a></div><br>"""
-            )
 
-        return mark_safe(" ".join(res))
+            res.append(
+                show_data_colored_block(
+                    text=category.name,
+                    text_bold=True,
+                    color=category.color,
+                    link_href=f"/admin/articles/category/{category.pk}/change/",
+                )
+            )
+        return arange_block_box(elements=res)
 
     show_categories.short_description = "Категории 👇"
 
@@ -72,7 +70,7 @@ class ArticleAdmin(admin.ModelAdmin):
             """
         )
 
-    show_edited_created_time.short_description = "Изменено"
+    show_edited_created_time.short_description = mark_safe("Дата<br>изменения")
 
     def image_tag(self, obj):
 
@@ -108,11 +106,8 @@ class ArticleAdmin(admin.ModelAdmin):
         else:
             headers_count_color = "red"
 
-        return mark_safe(
-            f"""<div style="background-color: {headers_count_color};display: inline-block;
-            padding: .25em .4em;font-size: 75%;font-weight: 700; margin-bottom:5px;
-            line-height: 1;text-align: center;white-space: nowrap;min-width:50px;
-            vertical-align: baseline;border-radius: .25rem;font-size: 12px;">{len(headers)}</div>"""
+        return show_data_colored_badge(
+            color=headers_count_color, text=len(headers), text_bold=True
         )
 
     show_main_text_headers_list.short_description = mark_safe("Число<br>подзаголовков")
@@ -173,26 +168,17 @@ class CategoryAdmin(admin.ModelAdmin):
         else:
             color = "red"
 
-        return mark_safe(
-            f"""<div style="background-color: {color};display: inline-block;
-            padding: .25em .4em;font-size: 75%;font-weight: 700; margin-bottom:5px;
-            line-height: 1;text-align: center;white-space: nowrap;min-width:50px;
-            vertical-align: baseline;border-radius: .25rem;font-size: 12px;">{articles_count}</div>"""
-        )
+        return show_data_colored_badge(color=color, text=articles_count, text_bold=True)
 
     show_articles_count.short_description = "Число статей"
 
     def show_name(self, obj):
 
-        return mark_safe(
-            f"""<div style="background-color: #353535;display: inline-block;
-            padding:5px;font-size: 75%;font-weight: 700; margin-bottom:5px;
-            line-height: 1;text-align: left;min-width:50px;border-left:5px solid yellow;
-            width: 350px;min-height: 50px;
-            vertical-align: baseline;border-radius:5px;font-size: 12px;">
-            <a href="/admin/articles/category/{obj.pk}/change/"
-            style="color:white;font-size:14px;padding:0px;">{obj.pk} - {obj.name}</a>
-            </div><br>"""
+        return show_data_colored_block(
+            link_href=f"/admin/articles/category/{obj.pk}/change/",
+            text_bold=True,
+            text=obj.name,
+            color=obj.color,
         )
 
     show_name.short_description = "Название 👇"
@@ -202,36 +188,22 @@ class CategoryAdmin(admin.ModelAdmin):
 
         for article in obj.articles.all():
             res.append(
-                f"""<div style="background-color: #353535;
-                padding:5px;font-size: 75%;font-weight: 700; margin-bottom:5px;
-                line-height: 1;text-align: left;min-width:50px;border-left:5px solid yellow;
-                width: 350px;
-                vertical-align: baseline;border-radius:5px;font-size: 12px;">
-                <a href="/admin/articles/article/{article.pk}/change/"
-                style="color:white;font-size:14px;padding:0px;">{article.pk} - {article.title}</a>
-                </div>"""
+                show_data_colored_border_block(
+                    link_href=f"/admin/articles/article/{article.pk}/change/",
+                    text=article.title,
+                    color="yellow",
+                )
             )
 
-        return mark_safe(" ".join(res))
+        return arange_block_box(elements=res, min_width=250, max_width=450)
 
     show_articles.short_description = "Статьи 👇"
-
-    def show_color(self, obj):
-        return mark_safe(
-            f"""<div style="background-color: {obj.color};display: inline-block;
-            padding: .25em .4em;font-size: 75%;font-weight: 700; margin-bottom:5px;
-            line-height: 1;text-align: center;white-space: nowrap;min-width:50px;min-height:12px;
-            vertical-align: baseline;border-radius: .25rem;font-size: 12px;"></div>"""
-        )
-
-    show_color.short_description = "Цвет"
 
     form = CategoryForm
 
     list_display = (
         "show_name",
         "show_articles_count",
-        "show_color",
         "show_articles",
     )
 

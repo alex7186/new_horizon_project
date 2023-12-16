@@ -19,13 +19,21 @@ setup:
 	@echo "\n ✅  setup done "
 
 start:
-	@python3 manage.py migrate
 	-@sudo systemctl start $(app_name).service
 	@echo "\n ✅  started "
 
 stop:
 	-@sudo systemctl stop $(app_name).service
 	@echo "\n ❌  stopped "
+
+makemigrations:
+	
+
+migrate:
+	@python3 manage.py makemigrations
+	@echo "\n ✅  migrations made "
+	@python3 manage.py migrate
+	@echo "\n ✅  migrations done "
 	
 cat-service:
 	@systemctl cat $(app_name)

@@ -4,20 +4,14 @@ from apps.test_progress.models import Test
 from django.utils.safestring import mark_safe
 
 
+from misc.admin_styling_components import show_user_profile_card
+
+
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     def show_linked_user(self, obj):
-        text = f"{obj.user.email}<br><br>{obj.user.first_name}<br>{obj.user.last_name}"
 
-        return mark_safe(
-            f"""<div style="background-color: #353535;display: inline-block;
-            padding: 5px;font-size: 75%;font-weight: 700; margin-bottom:5px;
-            line-height: 1;text-align: left;min-width:50px;border-left:5px solid yellow;
-            vertical-align: baseline;border-radius: .25rem;font-size: 12px;">
-            <a href="/admin/account_page/profile/{obj.pk}/change/"
-            style="color:white;font-size:14px!important;padding:0px;">{text}</a>
-            </div><br>"""
-        )
+        return show_user_profile_card(user=obj.user)
 
     show_linked_user.short_description = "Пользователь 👇"
 
@@ -144,18 +138,7 @@ class AccountTestAdmin(admin.ModelAdmin):
 
     def show_linked_user(self, obj):
 
-        user = list(obj.profile.all())[0].user
-
-        return mark_safe(
-            f"""<div style="background-color: #353535;display: inline-block;
-            padding: 5px;font-size: 75%;font-weight: 700; margin-bottom:5px;
-            line-height: 1;text-align: left;min-width:50px;border-left:5px solid yellow;
-            vertical-align: baseline;border-radius: .25rem;font-size: 12px;">
-            <a href="/admin/account_page/profile/{user.pk}/change/"
-            style="color:white;font-size:14px!important;padding:0px;">
-            {user.email}<br><br>{user.first_name}<br>{user.last_name}</a>
-            </div><br>"""
-        )
+        return show_user_profile_card(user=list(obj.profile.all())[0].user)
 
     show_linked_user.short_description = "Пользователь 👇"
 

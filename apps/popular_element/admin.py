@@ -3,6 +3,12 @@ from django.contrib import admin
 from django.utils.safestring import mark_safe
 from apps.popular_element.models import PopularArticle
 
+from misc.admin_styling_components import (
+    show_data_colored_badge,
+    show_data_colored_border_block,
+    arange_block_box,
+)
+
 
 @admin.register(PopularArticle)
 class PopularArticleAdmin(admin.ModelAdmin):
@@ -19,16 +25,17 @@ class PopularArticleAdmin(admin.ModelAdmin):
         for article in obj.articles.all():
 
             res.append(
-                f"""<div style="background-color: #353535;
-                padding:5px;font-size: 75%;font-weight: 700; margin-bottom:5px;
-                line-height: 1;text-align: left;min-width:50px;border-left:5px solid yellow;
-                width: 350px;
-                vertical-align: baseline;border-radius:5px;font-size: 12px;">
-                <a href="/admin/articles/article/{article.pk}/change/"
-                style="color:white;font-size:14px;padding:0px;">{article.pk} - {article.title}</a>
-                </div>"""
+                show_data_colored_border_block(
+                    link_href=f"/admin/articles/article/{article.pk}/change/",
+                    text=article.title,
+                    color="yellow",
+                    text_bold=True,
+                )
             )
-        return mark_safe(" ".join(res))
+
+        # return mark_safe(" ".join(res))
+
+        return arange_block_box(elements=res, max_width=500)
 
     show_artcles.short_description = "Статьи 👇"
 
@@ -37,12 +44,7 @@ class PopularArticleAdmin(admin.ModelAdmin):
         color = "green" if obj.enabled else "red"
         text = "Да" if obj.enabled else "Нет"
 
-        return mark_safe(
-            f"""<div style="background-color: {color};display: inline-block;
-            padding: .25em .4em;font-size: 75%;font-weight: 700; margin-bottom:5px;
-            line-height: 1;text-align: center;white-space: nowrap;min-width:50px;
-            vertical-align: baseline;border-radius: .25rem;font-size: 12px;">{text}</div>"""
-        )
+        return show_data_colored_badge(color=color, text=text, text_bold=True)
 
     show_enabled.short_description = "Показывается"
 
