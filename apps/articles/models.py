@@ -18,8 +18,8 @@ class Category(models.Model):
         return unquote(f"/articles/{self.name}")
 
     class Meta:
-        verbose_name = "Категория"
-        verbose_name_plural = "Категории"
+        verbose_name = "2.2. Категория"
+        verbose_name_plural = "2.2. Категории"
 
 
 class Article(models.Model):
@@ -118,5 +118,5 @@ class Article(models.Model):
         return f"/articles/{self.pk}"
 
     class Meta:
-        verbose_name = "Статья"
-        verbose_name_plural = "Статьи"
+        verbose_name = "2.1. Статья"
+        verbose_name_plural = "2.1. Статьи"

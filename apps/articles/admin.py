@@ -2,9 +2,13 @@ from django.utils.safestring import mark_safe
 from django.utils.html import escape
 from django.contrib import admin
 
-from misc.admin_styling_components import (
+from apps.articles.admin_filters import DateFieldListFilter, ShowingFieldListFilter
+
+from misc.admin_supprotive_blocks import (
     show_data_colored_block,
     show_data_colored_badge,
+)
+from misc.admin_styling_components import (
     show_data_colored_border_block,
     arange_block_box,
 )
@@ -113,7 +117,6 @@ class ArticleAdmin(admin.ModelAdmin):
     show_main_text_headers_list.short_description = mark_safe("Число<br>подзаголовков")
 
     def show_text_length(self, obj):
-
         return mark_safe(f"<p>{len(obj.main_text)}</p>")
 
     show_text_length.short_description = mark_safe("Длинна<br>текста")
@@ -129,8 +132,8 @@ class ArticleAdmin(admin.ModelAdmin):
     )
 
     list_filter = (
-        "last_modified",
-        "flag_article_enabled",
+        DateFieldListFilter,
+        ShowingFieldListFilter,
     )
 
     search_fields = (
@@ -207,4 +210,7 @@ class CategoryAdmin(admin.ModelAdmin):
         "show_articles",
     )
 
-    search_fields = ("name",)
+    search_fields = (
+        "name",
+        # "show_articles",
+    )

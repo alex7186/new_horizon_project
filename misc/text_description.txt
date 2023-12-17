@@ -1,0 +1,10 @@
+Описание структуры Связка 'Профиль' - 'Тест' Result
+
+
+{
+    "test_opened_date": "202312211200",
+    "test_closed_date": "202312261200",
+    "test_passed_date": "202312231145",
+    "test_type": "bar",
+    "test_req_result": 75
+}

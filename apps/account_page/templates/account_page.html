@@ -30,7 +30,7 @@
                     <div class="test_description">{{ test.detailed_text }}</div>
                     <div class="test_status">{{ test.current_status }}</div>
                     <div class="test_result">
-                        {% if test.type == 2 %}
+                        {% if test.type == "bar" %}
                             {% if test.result > 50 %}
                                 <div class="test_result_green"><p>Пройдено</p></div> 
                             {% else %}

@@ -1,10 +1,9 @@
 from django.contrib import admin
 
-from django.utils.safestring import mark_safe
 from apps.popular_element.models import PopularArticle
 
+from misc.admin_supprotive_blocks import show_data_colored_badge
 from misc.admin_styling_components import (
-    show_data_colored_badge,
     show_data_colored_border_block,
     arange_block_box,
 )
