@@ -1,8 +1,9 @@
 from django.contrib import admin
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.utils.safestring import mark_safe
 
 from apps.account_page.models import Profile, AccountTestProgress
+from apps.account_page.forms import AccountTestProgressForm
 from apps.test_progress.models import TestObject
 
 from misc.admin_styling_components import (
@@ -28,9 +29,20 @@ class ProfileAdmin(admin.ModelAdmin):
 
     show_linked_user.short_description = "Пользователь 👇"
 
-    list_display = (show_linked_user,)
+    fields = ("email", "first_name", "last_name", "password")
 
-    inlines = (ProfileInlineAdmin,)
+    exclude = (
+        "user_permissions",
+        "username",
+        "last_login",
+        "is_superuser",
+        "is_staff",
+        "is_active",
+        "groups",
+        "date_joined",
+    )
+
+    list_display = (show_linked_user,)
 
 
 @admin.register(AccountTestProgress)
@@ -44,18 +56,15 @@ class AccountTestProgressAdmin(admin.ModelAdmin):
     def show_connection(self, obj):
         return show_linker_block(linker=obj)
 
-    show_connection.short_description = mark_safe("Связывающий<br>объект 👇")
+    show_connection.short_description = mark_safe("Связывающий объект 👇")
 
     def show_test(self, obj):
 
-        res = []
-        for test in list(TestObject.objects.filter(id=obj.id)):
-
-            res.append(show_test_block(test))
-
-        return arange_block_box(elements=res)
+        return arange_block_box(elements=(show_test_block(obj.tests.first()),))
 
     show_test.short_description = "Название теста 👇"
+
+    form = AccountTestProgressForm
 
     list_display = (
         "show_linked_user",
@@ -65,4 +74,5 @@ class AccountTestProgressAdmin(admin.ModelAdmin):
 
 
 admin.site.unregister(User)
+admin.site.unregister(Group)
 admin.site.register(User, ProfileAdmin)

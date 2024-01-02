@@ -120,3 +120,4 @@ class Article(models.Model):
     class Meta:
         verbose_name = "2.1. Статья"
         verbose_name_plural = "2.1. Статьи"
+        ordering = ["-title"]

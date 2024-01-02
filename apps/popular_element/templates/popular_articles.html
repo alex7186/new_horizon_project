@@ -31,7 +31,7 @@
                                             <span>{{ article.title }}</span>
                                         </h2>
                                     </a>
-                                    <p class="card-text project_card_text">{{ article.attractive_text | safe }}</p>
+                                    <p class="card-text project_card_text">{{ article.attractive_text | safe |slice:":200"}} ...</p>
                                     <div class="uicore-post-footer uicore-body"><span>{{ article.last_modified.date | date:"d-m-Y"}}</span></div>                            
                                 </div>
                             </div>

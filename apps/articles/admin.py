@@ -10,6 +10,7 @@ from misc.admin_supprotive_blocks import (
 )
 from misc.admin_styling_components import (
     show_data_colored_border_block,
+    show_article,
     arange_block_box,
 )
 
@@ -29,12 +30,7 @@ class ArticleAdmin(admin.ModelAdmin):
 
     def show_title(self, obj):
 
-        return show_data_colored_border_block(
-            text=obj.title,
-            text_bold=True,
-            color="yellow",
-            link_href=f"/admin/articles/article/{obj.pk}/change/",
-        )
+        return show_article(obj)
 
     show_title.short_description = "Название 👇"
 
@@ -121,6 +117,14 @@ class ArticleAdmin(admin.ModelAdmin):
 
     show_text_length.short_description = mark_safe("Длинна<br>текста")
 
+    fields = (
+        "title",
+        "categories",
+        "image_base",
+        "main_text",
+        "flag_article_enabled",
+    )
+
     list_display = (
         "show_title",
         "show_flag_article_enabled",
@@ -190,13 +194,7 @@ class CategoryAdmin(admin.ModelAdmin):
         res = []
 
         for article in obj.articles.all():
-            res.append(
-                show_data_colored_border_block(
-                    link_href=f"/admin/articles/article/{article.pk}/change/",
-                    text=article.title,
-                    color="yellow",
-                )
-            )
+            res.append(show_article(article))
 
         return arange_block_box(elements=res, min_width=250, max_width=450)
 

@@ -26,6 +26,10 @@ stop:
 	-@sudo systemctl stop $(app_name).service
 	@echo "\n ❌  stopped "
 
+status:
+	-@sudo systemctl status $(app_name).service
+
+
 makemigrations:
 	
 

@@ -46,6 +46,7 @@ def show_data_colored_border_block(
     text="",
     text_bold=False,
     link_href=None,
+    extra_styles="",
 ):
 
     link_text = (
@@ -57,7 +58,7 @@ def show_data_colored_border_block(
 
     return mark_safe(
         f"""<div style="background-color: #353535;display: inline-block;
-        padding:5px;font-size: 75%;
+        padding:5px;font-size: 75%;{extra_styles}
         margin-bottom:5px;margin-right:5px;
         {'font-weight: 700;' if text_bold else ''}
         line-height: 1;text-align: left;min-width:50px;border-left:5px solid {color};

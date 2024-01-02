@@ -14,7 +14,7 @@
 
   <link href="{% static 'favicon/favicon.ico' %}" rel="icon" type="image/x-icon"/>
 
-  <title>Повесть лет словесных</title>
+  <title>Повесть лет</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="keywords" content="{{ keys }}" />
   <meta property="og:title" content="{{ keys }}">
@@ -26,7 +26,7 @@
     <div class="container nav-container">
       <!-- <a class="navbar-brand" href="{% url 'home' %}#top">Наш образовательный поратл</a> -->
       <a class="nav-link" style="margin-left: 0px;padding-left: 0px;" href="{% url 'home' %}">
-        <p class="nav-link">Повесть лет словесных</p>
+        <p class="nav-link" style="font-size: 24px !important;">Повесть лет</p>
       </a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" 
@@ -54,11 +54,11 @@
     </div>
   </nav>
 
-  <!-- <div class="container"> -->
+  <div class="container" style="margin-bottom: auto;">
     <div id="top" class="main-content" >
       {% block page_content %}{% endblock %}
     </div>
-  <!-- </div> -->
+  </div>
   <!-- <button onclick="topFunction()" id="myBtn" title="Наверх" class="button_up card mb-2 shadow p-2 mb-5 bg-white rounded decorations_non">⬆️</button> -->
   <div class="footer">
     {% include 'footer.html' %}

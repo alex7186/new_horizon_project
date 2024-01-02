@@ -21,39 +21,7 @@
                 <a class="logout_button button_common_style" href="{% url 'logout' %}">Выйти</a>
             </div>
         </div>
-        <div class="tests_array">
-            {% for test in tests_list %}
-                <div class="show_test_passing">
-                    <div class="test_card_name">
-                        <div class="test_name">{{ test.header_text }}</div>
-                    </div>
-                    <div class="test_description">{{ test.detailed_text }}</div>
-                    <div class="test_status">{{ test.current_status }}</div>
-                    <div class="test_result">
-                        {% if test.type == "bar" %}
-                            {% if test.result > 50 %}
-                                <div class="test_result_green"><p>Пройдено</p></div> 
-                            {% else %}
-                                <div class="test_result_red"><p>Не пройдено</p></div> 
-                            {% endif %}
-
-                        {% elif test.type == 1 %}
-                            <div class="test_progress_frame">
-                                
-                                {% if test.result > 50 %}
-                                <div class="test_progress_bar test_progress_bar_green" 
-                                    style="width:{{ test.result }}%">
-                                {% else %}
-                                <div class="test_progress_bar test_progress_bar_red" 
-                                    style="width:{{ test.result }}%">
-                                {% endif %}
-                                </div>
-                            </div> 
-                        {% endif %}
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
+        {{ tests_list }}
     </div>
     
 </div>

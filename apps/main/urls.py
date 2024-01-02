@@ -23,6 +23,10 @@ from apps.main.views import main_page
 
 # from apps.main.views import logout
 
+admin.site.site_header = "Повесть лет словесных"
+admin.site.site_title = "Повесть лет словесных"
+admin.site.index_title = "Панель управления"
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", main_page, name="home"),

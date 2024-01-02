@@ -3,6 +3,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from apps.test_progress.models import TestObject
 
+import sys
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -24,10 +26,25 @@ class AccountTestProgress(models.Model):
     # 1 - В процессе
     # 2 - Завершено
 
-    result = models.JSONField(null=True)
+    # result = models.JSONField(null=True)
+    result = models.IntegerField(default=-1)
     # 0.0 - не пройдено или результат 0%
     # 0.0 - 1.0 - результат в процентах для type=1
     # 1.0 - пройдено или результат 100%
+
+    def save(self, *args, **kwargs):
+
+        test = self.tests.first()
+        print(f"{test=}", file=sys.stdout)
+
+        if self.result == -1:
+            self.current_status = 0
+        elif self.result < test.test_required_result:
+            self.current_status = 2
+        elif self.result >= test.test_required_result:
+            self.current_status = 3
+
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = "Связка 'Профиль' - 'Тест'"
