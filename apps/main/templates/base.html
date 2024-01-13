@@ -40,13 +40,13 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link button_common_style article_hover" href="{% url 'articles_index' %}">Статьи</a>
+            <a class="next_action_btn next_action_btn_nav" href="{% url 'articles_index' %}">Статьи</a>
           </li>
           <li class="nav-item">
             {% if request.user.is_authenticated %}
-              <a class="nav-link button_common_style login_cabinet_hover" href="{% url 'account_page' %}">Аккаунт</a>
+              <a class="next_action_btn next_action_btn_nav" href="{% url 'account_page' %}">Аккаунт</a>
             {% else %}
-              <a class="nav-link button_common_style login_cabinet_hover" href="{% url 'login' %}">Войти</a>
+              <a class="next_action_btn next_action_btn_nav" href="{% url 'login' %}">Войти</a>
             {% endif %}
           </li>
         </ul>
@@ -55,12 +55,12 @@
     </div>
   </nav>
 
-  <div class="container" style="margin-bottom: auto;">
+  <div class="container" style="margin-bottom: auto; ">
     <div id="top" class="main-content" >
       {% block page_content %}{% endblock %}
     </div>
   </div>
-  <!-- <button onclick="topFunction()" id="myBtn" title="Наверх" class="button_up card mb-2 shadow p-2 mb-5 bg-white rounded decorations_non">⬆️</button> -->
+  <!-- <button onclick="topFunction()" id="myBtn" title="Наверх" class="button_up card mb-2 shadow p-2 mb-5 bg-white decorations_non">⬆️</button> -->
   <div class="footer">
     {% include 'footer.html' %}
   </div>

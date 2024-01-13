@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from apps.test_progress.models import TestObject
 
-import sys
+from datetime import datetime
 
 
 class Profile(models.Model):
@@ -33,11 +33,12 @@ class AccountTestProgress(models.Model):
     # 0.0 - 1.0 - результат в процентах для type=1
     # 1.0 - пройдено или результат 100%
 
+    attemp_started = models.DateTimeField(default=datetime(1970, 1, 1))
+    attemp_finished = models.DateTimeField(default=datetime(1970, 1, 1))
+
     def save(self, *args, **kwargs):
 
         super().save(*args, **kwargs)
-
-        # print(f"{dir(self.tests)=}", file=sys.stdout)
 
         test = self.tests.first()
 

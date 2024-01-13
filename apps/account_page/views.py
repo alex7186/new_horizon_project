@@ -4,6 +4,8 @@ from django.utils.safestring import mark_safe
 from django.http import HttpResponse
 from django.urls import reverse
 
+from datetime import datetime
+
 from apps.account_page.models import AccountTestProgress, Profile
 from apps.account_page.forms import (
     AccountTestProgressForm,
@@ -36,9 +38,7 @@ def view_account_page(request):
         )
 
     context["tests_list"] = mark_safe(
-        '<div style="margin-top:45px; display: inline-block; width: 100%;">'
-        + "".join(res)
-        + "</div>"
+        '<div class="test_row">' + "".join(res) + "</div>"
     )
 
     return render(request, "account_page.html", context)
@@ -107,6 +107,10 @@ def question_details(request, pk, question_pk):
         question = get_object_or_404(Question, pk=question_pk)
         answers = Answer.objects.filter(question=question).order_by("?")
 
+        if test_progress.attemp_started == None:
+            test_progress.attemp_started = datetime.now()
+            test_progress.save()
+
         context = {
             "test": test,
             "question": question,
@@ -120,11 +124,9 @@ def question_details(request, pk, question_pk):
 
         if request.method == "POST":
 
-            print(f'before adding {request.session["answers"]=}', file=sys.stdout)
-
             if "last" not in request.POST:
 
-                checked_answers_pk_list = request.POST.getlist("radio")
+                checked_answers_pk_list = request.POST.getlist("radio")[0]
                 answers_dict = request.session.get("answers", {})
                 answers_dict.update(
                     {
@@ -136,17 +138,13 @@ def question_details(request, pk, question_pk):
 
                 request.session["answers"] = answers_dict
 
-                print(f'after adding {request.session["answers"]=}', file=sys.stdout)
-
             if "last" in request.POST:
 
-                checked_answers_pk_list = request.POST.getlist("radio")
+                checked_answers_pk_list = request.POST.getlist("radio")[0]
                 answers_dict = request.session.get("answers", {})
                 answers_dict.update(
                     {str(question_pk_list[-1]): checked_answers_pk_list}
                 )
-
-                print(f'after adding {request.session["answers"]=}', file=sys.stdout)
 
                 total_points = 0
 
@@ -171,7 +169,7 @@ def question_details(request, pk, question_pk):
                     "total_points": total_points,
                     "answers": request.session["answers"],
                 }
-
+                test_progress.attemp_finished = datetime.now()
                 test_progress.result = total_points
 
                 test_progress.save()

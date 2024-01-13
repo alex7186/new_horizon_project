@@ -75,7 +75,7 @@
     border: 2px solid #e1e1e1;
     border-radius: 10px;
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .test_header {
@@ -102,6 +102,7 @@
 
 .test_result_progress_bar {
     display: flex;
+    margin-bottom: 15px;
 }
 
 .test_result_progress_bar_bracket {

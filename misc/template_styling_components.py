@@ -42,6 +42,26 @@ def show_test_card(
             link_to_test = ""
 
     result_bar_mergin_right = 2 if test_progress.result < test.test_max_result else 4
+
+    if test_progress.current_status != 0:
+        test_started = f"""
+            <div class="test_result_passed_comment">
+                <div class="test_notes_text test_result_passed_text">Начало прохождения</div>
+                <div class="test_notes_text test_result_passed_points">{test_progress.attemp_started.strftime("%H:%M:%S %d.%m.%Y")}</div>
+            </div>
+            """
+    else:
+        test_started = ""
+
+    if test_progress.current_status in (2, 3):
+        test_finished = f"""<div class="test_result_passed_comment">
+                <div class="test_notes_text test_result_passed_text">Конец прохождения</div>
+                <div class="test_notes_text test_result_passed_points">{test_progress.attemp_finished.strftime("%H:%M:%S %d.%m.%Y")}</div>
+            </div>"""
+
+    else:
+        test_finished = ""
+
     result = f"""
         <div class="test_card slight_card_shadow">
             <div class="test_header">
@@ -69,7 +89,10 @@ def show_test_card(
                     </div>
                 </div>
             </div>
+            {test_started}
+            {test_finished}
             {link_to_test}
+            
         </div>
         """
 

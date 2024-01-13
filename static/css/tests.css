@@ -41,7 +41,7 @@
     margin-top: 10px;
 }
 
-.test_result_passed {
+.test_result_passed_comment {
     display: flex;
 }
 
@@ -49,5 +49,12 @@
 
 .test_result_passed_points {
     text-align: right;
-    margin-left: auto;
+    margin-left: auto !important;
+}
+
+.test_row{
+    margin-top: 45px;
+    margin-bottom: 15px;
+    display: inline-block;
+    width: 100%;
 }

@@ -8,6 +8,8 @@
         <div class="article_detail_title">{{ article.title }}</div>
     </div>
 
+
+
     <div class="article_detail_info">
         
         <div class="article_detail_categories">
@@ -23,19 +25,19 @@
     </div>
 
     <div class="row row_tight"> 
-        <!-- <img class="article_detail_img shadow bg-white rounded" src="{% static article.image_base %}" alt="" > -->
+        <!-- <img class="article_detail_img shadow bg-white" src="{% static article.image_base %}" alt="" > -->
         
         {% if article.main_text_headers_list|length > 0 %}
-        <div class="article_subheaders_navigation card bg-white rounded">
+        <div class="article_subheaders_navigation">
             
             <h2>Содержание</h2>
             
             {% for queried_header in article.main_text_headers_list %}
-            <a href="/articles/{{article.pk}}#queried_header{{ forloop.counter }}">
+            <div><a href="/articles/{{article.pk}}#queried_header{{ forloop.counter }}">
                 <!-- <span class="badge badge-primary big_badge"> -->
                     {{ forloop.counter }}. {{ queried_header  }}
                 <!-- </span> -->
-            </a><br>
+            </a></div>
             {% endfor %}     
             
         </div>   
@@ -53,7 +55,7 @@
 
     {% if article|rel_articles|length > 0 %}
 
-        <div class="block_header margin_top100">
+        <div class="block_header">
             <h1>Связанные статьи</h1>
         </div>
         

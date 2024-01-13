@@ -848,7 +848,7 @@ header.uicore-single-header .uicore-entry-meta span {
   margin-bottom: 0px !important;
   left: -5px;
   position: relative;
-  height: 75px;
+  min-height: 75px;
 }
 
 .card-body {
@@ -864,11 +864,6 @@ header.uicore-single-header .uicore-entry-meta span {
 
 .card-article-detail .badge {
   font-size: 12px;
-}
-
-
-.rounded {
-  border-left: 8px solid #353535;
 }
 
 .uicore-grid-item {
