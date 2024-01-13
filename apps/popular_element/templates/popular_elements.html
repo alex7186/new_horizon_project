@@ -1,12 +1,36 @@
-{% extends "base.html" %}
-{% load articles_filters %}
 {% load static %}
-{% block page_content %}
-<div class="container">
-    <h1 class="block_header first_block_header">Архив статей </h1>
-    <hr>
-    <div class="uicore-grid-container uicore-blog-grid uicore-grid-row uicore-masonry uicore-landscape-ratio uicore-medium-space animate-3 ui-st-boxed " data-grid="masonryb" data-col="3" data-space="30">
-        {% for article in articles|sort_by_creation_date %}
+{% load articles_filters %}
+
+
+<h1 class="block_header">{{ category_tiles_title }}</h1>
+<hr>
+<div class="category_tiles_grid uicore-grid-container">
+    {% for category_tile in category_tiles %}
+        
+        <div class="category_tiles_element">
+            
+            <a
+            href="/articles/{{category_tile.name}}/"
+            style="background-color:{{ category_tile.color }};"
+            class="category_tiles_element_text spanking"
+            >
+                
+                    {{ category_tile.name }}
+                
+            </a>
+        
+        </div>
+    
+    {% endfor %}
+</div>
+
+
+
+<h1 class="block_header">{{ popular_articles_title }}</h1>
+<hr>
+
+<div class="uicore-grid-container uicore-blog-grid uicore-grid-row uicore-masonry uicore-landscape-ratio uicore-medium-space animate-3 ui-st-boxed " data-grid="masonryb" data-col="3" data-space="30">
+    {% for article in popular_articles|sort_by_creation_date %}
         <div class="uicore-grid-item uicore-col-md-6 uicore-col-lg-4  uicore-float uicore-animate post-15671 post type-post status-publish format-standard has-post-thumbnail hentry category-smm category-lichnyj-opyt category-nejroseti"  >
             <article class="uicore-post">
                 <div class="uicore-post-wrapper">
@@ -20,8 +44,8 @@
                             </h2>
                             <div class="uicore-post-category uicore-body">
                                 {% for category in article.categories.all %}
-                                    <a href="{% url 'articles_category' category.name %}" title="View {{ category.name }}">
-                                        <div class="badge badge-primary" style="background-color: {{ category.color }}">
+                                    <a href="{% url 'articles_category' category.name %}" title="{{ category.name }}">
+                                        <div class="badge badge-primary sh4s" style="background-color: {{ category.color }}">
                                             {{ category.name }}
                                         </div>
                                     </a>
@@ -40,7 +64,5 @@
                 </div>
             </article>
         </div>
-        {% endfor %}
-    </div>
+    {% endfor %}
 </div>
-{% endblock %}

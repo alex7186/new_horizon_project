@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_content %}
+
+
+<div style="margin-top:100px;"></div>
+
+<div class="container profile_test_card">
+    <div class="test_card">
+        <div class="test_header" style="margin-bottom: 0px;">
+            <div class="test_header_title">{{ test.test_object_name }}</div>
+            <div class="test_header_status">
+                Вопрос {{ current_question_number }} / {{ test_question_amount }}
+            </div>
+        </div>
+        <div>
+            <a href="/tests/{{ test_progress.pk }}" class="secondary_action_btn">
+            &#8634; Начать заново</a>
+        </div>
+    </div>
+
+
+    <div class="test_card">
+        <div class="test_header" style="margin-bottom: 20px;">
+            {{ current_question_number }}. {{ question }}
+        </div>  
+
+            <form action="/tests/{{ test_progress.pk }}/{{ next_question_id.pk }}" method="POST">
+                {% csrf_token %}
+
+                
+
+                {% for answer in answers %}
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" value="{{answer.id}}" id="{{answer}}"
+                            name="radio">
+                    <label class="form-check-label" for="{{answer}}">{{answer}}</label>
+
+                </div>
+                {% endfor %}
+
+                {% if not last_question %}
+                <div class="text-center" style="margin-top: 20px;">
+                    <button type="submit" class="next_action_btn" name="next">Далее</button>
+                </div>
+                {% else %}
+                <div class="text-center" style="margin-top: 20px;">
+                    <button type="submit" class="next_action_btn" name="last">Далее</button>
+                </div>
+                {% endif %}
+            </form>
+    </div>  
+</div>
+
+
+
+
+
+
+
+<script>
+$(function() {
+if (window.history && window.history.pushState) {
+$(window).on('popstate', function () {
+window.history.pushState('forward', null, '#');
+window.history.forward(1);
+});
+}
+ window.history.pushState ('forward', null, '#');
+window.history.forward(1);
+})
+</script>
+
+{% endblock %}
+

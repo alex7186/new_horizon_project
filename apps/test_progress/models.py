@@ -4,7 +4,7 @@ import random
 
 class TestObject(models.Model):
 
-    test_object_name = models.CharField(max_length=100)
+    test_object_name = models.CharField(max_length=100, verbose_name="Название")
     test_required_result = models.IntegerField(default=75)
     test_max_result = models.IntegerField(default=50)
 

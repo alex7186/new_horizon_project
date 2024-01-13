@@ -32,10 +32,9 @@ def register_user_activity(function):
             + "\n"
         )
 
+        flag_skip_local_usage = False
         # loacal data is not interested
-        if "127.0.0.1" in str(user_ip):
-            flag_skip_local_usage = True
-        elif "10.8.0." in str(user_ip):
+        if str(user_ip) in ("127.0.0.1", "192.168.0.17", "10.8.0.8"):
             flag_skip_local_usage = True
 
         if not flag_skip_local_usage:

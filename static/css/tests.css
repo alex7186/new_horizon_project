@@ -1,0 +1,53 @@
+.test_object_header_title {
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.test_object_notes_text {
+    font-size: 16px;
+}
+
+.test_object_card {
+    padding: 10px 10px 20px 10px;
+    border: 2px solid #e1e1e1;
+    border-radius: 10px;
+    margin-bottom: 60px;
+}
+
+.form-check {
+    margin: 0px 0px 10px 0px;
+}
+
+.test_card form {
+    padding: 10px;
+}
+
+.test_card_form_check {
+    margin-bottom: 10px;
+}
+
+.test_result_answer_correct {
+    background-color: #96c83c;
+}
+
+.test_result_answer_incorrect {
+    text-decoration: line-through;
+    background-color: #f04040;
+}
+
+.test_result_answer {
+    padding: 3px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.test_result_passed {
+    display: flex;
+}
+
+.test_result_passed_text {}
+
+.test_result_passed_points {
+    text-align: right;
+    margin-left: auto;
+}

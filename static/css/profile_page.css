@@ -1,25 +1,25 @@
-
-.profile_page_container{
+.profile_page_container {
     max-width: 800px;
+    padding: 100px 0 50px 0;
 }
 
-.logout_button{
-    padding:5px; 
-    background-color: #989898; 
-    border-left:8px solid #780000;
+.logout_button {
+    padding: 5px;
+    background-color: #989898;
+    border-left: 8px solid #780000;
     border-radius: 5px;
-    color:white;
+    color: white;
     text-decoration: none;
     height: 35px;
     width: 70px;
 }
 
-.greeting_row ul{
+.greeting_row ul {
     padding: 0px;
     margin: 0px;
 }
 
-.greeting_row li{
+.greeting_row li {
     margin-bottom: 0px;
     list-style-type: none;
 }
@@ -27,46 +27,116 @@
 .logout_button:hover {
     background-color: #d9d9d9;
     border-left: 8px solid #b30000;
-    color:grey;
+    color: grey;
     text-decoration: none;
 }
 
-.profile_card{
+.profile_test_card {
     margin-left: auto;
     margin-right: auto;
-    width: 500px;
-    
-
+    max-width: 500px;
 }
 
-.greeting_row{
+.greeting_row {
     display: flex;
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
     align-items: center;
-    
+
     /* border-left: 10px solid black; */
     border-radius: 10px;
     background-color: #f7f7f7;
     border: 2px solid #e1e1e1;
 }
 
-.profile_picture{
+.profile_picture {
     float: left;
     margin-left: 0px;
     margin-right: 16px;
     font-size: 60px;
 }
 
-.account_data{
-    float:left
+.account_data {
+    float: left
 }
 
-.logout_toggler{
+.logout_toggler {
     float: right;
     margin-left: auto;
     margin-right: 10px;
     margin-top: 12px;
     margin-bottom: auto;
+}
+
+
+
+.test_card {
+    border: 2px solid #e1e1e1;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.test_header {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.test_header_title {
+    width: 350px;
+}
+
+.test_header_status {
+    font-size: 12px;
+    color: #6e7a84;
+    margin-left: auto;
+    padding-left: 10px;
+}
+
+.test_notes_text {
+    font-size: 12px;
+    margin-left: 3px;
+    color: grey;
+}
+
+.test_result_progress_bar {
+    display: flex;
+}
+
+.test_result_progress_bar_bracket {
+    border: 1.5px solid #606090;
+    border-radius: 5px;
+    width: calc(100% - 80px);
+}
+
+
+
+.test_result_progress_bar_achieved_progress {
+    height: calc(100% - 4px);
+    border-radius: 3px;
+    margin: 2px 2px 0 2px;
+}
+
+.test_result_progress_bar_required_point {
+    height: calc(100% + 2px);
+    background-color: #606090;
+    width: 2px;
+    position: relative;
+    top: calc(-100% + 1px);
+}
+
+.tick {
+    background-color: #606090;
+    width: 1.5px;
+    position: relative;
+}
+
+.slight_card_shadow {
+    transition: 0.3s;
+}
+
+.slight_card_shadow:hover {
+    box-shadow: 1px 1px 6px 0 grey;
+    transition: 0.3s;
 }

@@ -20,26 +20,33 @@ class AnswerInlineAdmin(admin.StackedInline):
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
+    def has_module_permission(self, request):
+        return False
+
     def show_test(self):
 
         return show_test_block(
-            test=TestObject.objects.filter(test_object_name=self.test_object).first()
+            test=TestObject.objects.get(test_object_name=self.test_object)
         )
 
     show_test.short_description = "Название теста 👇"
 
     def show_questions(self):
 
-        return show_answer_block_quiestions(self)
+        return arange_block_box(
+            show_answer_block_quiestions(self),
+        )
 
     show_questions.short_description = "Вопросы 👇"
 
     list_display = (
-        show_test,
         show_questions,
+        # show_test,
     )
 
     inlines = (AnswerInlineAdmin,)
+
+    list_filter = ("test_object__test_object_name",)
 
 
 class QuestionInlineAdmin(admin.StackedInline):
@@ -59,13 +66,9 @@ class TestObjectAdmin(admin.ModelAdmin):
         res = []
         for question_object in list(Question.objects.filter(test_object=self)):
 
-            res.append(
-                show_answer_block_quiestions(question_object)
-                # show_answer_block(question_object)
-            )
+            res.append(show_answer_block_quiestions(question_object))
 
         return arange_block_box(res)
-        # return mark_safe(res)
 
     show_questions.short_description = "Вопросы 👇"
 
@@ -78,8 +81,4 @@ class TestObjectAdmin(admin.ModelAdmin):
 
     inlines = (QuestionInlineAdmin,)
 
-    # list_filter = (
-    #     "test_object_name",
-    # )
-
-    # readonly_fields = ('test_object_name',)
+    list_filter = ("test_object_name",)

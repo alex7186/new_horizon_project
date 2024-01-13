@@ -16,7 +16,7 @@
 
 {% for about_info_object in about_info %}
 <div class="container">
-    <h1 class="articles_header" style="margin-top: 20px;">
+    <h1 class="block_header" style="margin-top: 20px;">
         {{ about_info_object.title }}
     </h1>
     <hr>
@@ -27,9 +27,7 @@
 {% endfor %}
 
 <div class="container">
-    <div class="popular_articles">
-        {% include 'popular_articles.html' %}
-    </div>
+    {% include 'popular_elements.html' %}
     
 </div>
 {% endblock %}

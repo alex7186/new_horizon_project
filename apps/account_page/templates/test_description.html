@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_content %}
+
+
+<div style="margin-top:100px;"></div>
+
+<div class="container profile_test_card">
+
+    <div class="test_object_card">
+        <div class="test_header" style="margin-bottom: 0px;">
+            <div class="test_object_header_title">{{ test.test_object_name }}</div>
+        </div>
+
+        <div class="test_object_notes_text" style="margin: 0 0 10px 0;">
+            Вопросов в тесте: {{ test_question_amount }}</div>
+        
+        {% if editable %}
+
+        <div class="text-center">
+            <a href="{% url 'question_details' test_progress.pk first_question_id %}"
+                class="next_action_btn">Начать тест</a>
+        </div>
+
+        {% else %}
+        
+            {% for question_answer in questions_answers %}
+            <div class="test_card">
+                <div class="test_header" style="margin-bottom: 0px;">
+                    <div class="test_header_title">{{ question_answer.0.0 }}</div>
+                
+                    <div class="test_notes_text" style="margin: 0 0 10px auto;">
+                        {% if question_answer.1.1 %}
+                        Баллов: {{ question_answer.0.1 }}/{{ question_answer.0.1 }}</div>
+                        {% else %}
+                        Баллов: 0/{{ question_answer.0.1 }}</div>
+                        {% endif %}
+                </div>
+
+                {% if question_answer.1.1 %}
+                    <div class="test_result_answer_correct test_result_answer">
+                {% else %}
+                    <div class="test_result_answer_incorrect test_result_answer">
+                {% endif %}
+                {{ question_answer.1.0 }} </div>
+            </div>
+            {% endfor %}
+            
+            <div class="test_result_passed">
+                <div class="test_result_passed_text">Набрано баллов:</div><div class="test_result_passed_points">{{ test_progress.result }} / {{ test.test_max_result }}</div>
+            </div>
+            
+            <div class="test_result_passed">
+                <div class="test_result_passed_text">Необходимо было набрать:</div><div class="test_result_passed_points">{{ test.test_required_result }}</div>
+            </div>
+            
+        
+        {% endif %}
+
+    </div>
+
+</div>
+{% endblock %}

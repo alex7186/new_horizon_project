@@ -28,14 +28,18 @@ class AccountTestProgress(models.Model):
 
     # result = models.JSONField(null=True)
     result = models.IntegerField(default=-1)
+    result_detailed = models.JSONField(default=dict({"total_points": 0, "answers": {}}))
     # 0.0 - не пройдено или результат 0%
     # 0.0 - 1.0 - результат в процентах для type=1
     # 1.0 - пройдено или результат 100%
 
     def save(self, *args, **kwargs):
 
+        super().save(*args, **kwargs)
+
+        # print(f"{dir(self.tests)=}", file=sys.stdout)
+
         test = self.tests.first()
-        print(f"{test=}", file=sys.stdout)
 
         if self.result == -1:
             self.current_status = 0

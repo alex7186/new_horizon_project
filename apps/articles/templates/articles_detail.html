@@ -3,27 +3,30 @@
 {% load static %}
 {% load articles_filters %}
 <div class="container article_detail">
-    <h1 class="article_detail_title">{{ article.title }}</h1>
+    
+    <div class="article_detail_cover" style="background-image: url({{ article.image_base.url }});">
+        <div class="article_detail_title">{{ article.title }}</div>
+    </div>
+
     <div class="article_detail_info">
-        <span> Дата публикации {{ article.last_modified.date | date:"d-m-Y"}}</span>
-        {% for category in article.categories.all %}
         
-        <a href="{% url 'articles_category' category.name %}">
-            <span class="badge badge-primary article_detailed_badge" style="background-color: {{ category.color }}">
-                
-                    {{ category.name }}
-                
-            </span>
-        </a>
-        
-        {% endfor %}
+        <div class="article_detail_categories">
+            {% for category in article.categories.all %}
+            <a href="{% url 'articles_category' category.name %}">
+                <span class="badge badge-primary article_detailed_badge" style="background-color: {{ category.color }}">
+                        {{ category.name }}
+                </span>
+            </a>
+            {% endfor %}
+        </div>
+        <div class="article_detail_date">{{ article.last_modified.date | date:"M. Y"}}</div>
     </div>
 
     <div class="row row_tight"> 
         <!-- <img class="article_detail_img shadow bg-white rounded" src="{% static article.image_base %}" alt="" > -->
         
         {% if article.main_text_headers_list|length > 0 %}
-        <div class="leftbar_nav card bg-white rounded">
+        <div class="article_subheaders_navigation card bg-white rounded">
             
             <h2>Содержание</h2>
             
@@ -50,45 +53,46 @@
 
     {% if article|rel_articles|length > 0 %}
 
-        <div class="articles_header margin_top100">
+        <div class="block_header margin_top100">
             <h1>Связанные статьи</h1>
         </div>
         
         <hr>
         <div class="uicore-grid-container uicore-blog-grid uicore-grid-row uicore-masonry uicore-landscape-ratio uicore-medium-space animate-3 ui-st-boxed " data-grid="masonryb" data-col="3" data-space="30">
             {% for rel_article in article|rel_articles|sort_by_creation_date %}
-                <div class="uicore-grid-item uicore-col-md-6 uicore-col-lg-4  uicore-float uicore-animate post-15671 post type-post status-publish format-standard has-post-thumbnail hentry category-smm category-lichnyj-opyt category-nejroseti" 
-                 >
-                    <article class="uicore-post">
-                        <div class="uicore-post-wrapper">
-                            <a href="{% url 'articles_detail' rel_article.pk %}" title=" View Post: {{ rel_article.title }}">  
-                                <div class="uicore-blog-img-container uicore-zoom-wrapper">
-                                    <img class="uicore-cover-img" src="{{ rel_article.image_base.url }}"  alt="{{ rel_article.title }}">
-                                </div>
-                            </a>
-                            <div class="uicore-post-info">
-                                <div class="uicore-post-info-wrapper">
-                                    <div class="uicore-post-category uicore-body">
-                                        {% for category in article.categories.all %}
-                                            <a href="{% url 'articles_category' category.name %}" title="View {{ category.name }}">
-                                                <span class="badge badge-primary" style="background-color: {{ category.color }}">
-                                                    {{ category.name }}
-                                                </span>
-                                            </a>
-                                        {% endfor %}
-                                    </div>
-                                    <a href="{% url 'articles_detail' rel_article.pk %}" title="View Post: {{ rel_article.title }}">                             
-                                        <h2 class="card-title project_card_title">
-                                            <span>{{ rel_article.title }}</span>
-                                        </h2>
-                                    </a>
-                                    <p class="card-text project_card_text">{{ rel_article.attractive_text | safe }}</p>
-                                    <div class="uicore-post-footer uicore-body"><span>{{ rel_article.last_modified.date | date:"d-m-Y"}}</span></div>                            
-                                </div>
-                            </div>
+            <div class="uicore-grid-item uicore-col-md-6 uicore-col-lg-4  uicore-float uicore-animate post-15671 post type-post status-publish format-standard has-post-thumbnail hentry category-smm category-lichnyj-opyt category-nejroseti"  >
+                <article class="uicore-post">
+                    <div class="uicore-post-wrapper">
+                        <div class="uicore-blog-img-container uicore-zoom-wrapper">
+                            <img class="uicore-cover-img" src="{{ article.image_base.url }}" width="100%" alt="{{ article.title }}">
                         </div>
-                    </article>
-                </div>
+                        <div class="uicore-post-info">
+                            <div class="uicore-post-info-wrapper">
+                                <h2 class="card-title project_card_title">
+                                    <span>{{ article.title }}</span>
+                                </h2>
+                                <div class="uicore-post-category uicore-body">
+                                    {% for category in article.categories.all %}
+                                        <a href="{% url 'articles_category' category.name %}" title="View {{ category.name }}">
+                                            <span class="badge badge-primary" style="background-color: {{ category.color }}">
+                                                {{ category.name }}
+                                            </span>
+                                        </a>
+                                    {% endfor %}
+                                </div>
+                                <p class="card-text">{{ article.attractive_text | safe |slice:":200"}} ...</p>
+                                <div class="aricle_card_footer">
+                                    <div class="uicore-post-footer uicore-body"><span>{{ article.last_modified.date | date:"d-m-Y"}}</span></div>
+                                    <a 
+                                        href="{% url 'articles_detail' article.pk %}" 
+                                        title="{{ article.title }}"
+                                        class="next_action_btn">Читать далее ...</a>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                </article>
+            </div>
             {% endfor %}
         </div>
 

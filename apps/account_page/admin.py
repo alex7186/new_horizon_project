@@ -3,7 +3,7 @@ from django.contrib.auth.models import User, Group
 from django.utils.safestring import mark_safe
 
 from apps.account_page.models import Profile, AccountTestProgress
-from apps.account_page.forms import AccountTestProgressForm
+from apps.account_page.forms import AccountTestProgressFormAdmin
 from apps.test_progress.models import TestObject
 
 from misc.admin_styling_components import (
@@ -23,7 +23,7 @@ class ProfileInlineAdmin(admin.StackedInline):
 # @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     def show_linked_user(self):
-        profile = Profile.objects.filter(user=self).first()
+        profile = Profile.objects.get(user=self)
 
         return show_user_profile_card(user=profile.user)
 
@@ -49,7 +49,7 @@ class ProfileAdmin(admin.ModelAdmin):
 class AccountTestProgressAdmin(admin.ModelAdmin):
     def show_linked_user(self, obj):
 
-        return show_user_profile_card(user=obj.profile.all().first().user)
+        return show_user_profile_card(user=obj.profile.first().user)
 
     show_linked_user.short_description = "Пользователь 👇"
 
@@ -64,7 +64,7 @@ class AccountTestProgressAdmin(admin.ModelAdmin):
 
     show_test.short_description = "Название теста 👇"
 
-    form = AccountTestProgressForm
+    form = AccountTestProgressFormAdmin
 
     list_display = (
         "show_linked_user",
