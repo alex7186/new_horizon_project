@@ -19,11 +19,16 @@
             </div>
             <div class="logout_toggler">
                 <a 
-                class="secondary_action_btn" 
+                class="secondary_action_btn red_shadov_hovered" 
                 style="background-color:#f04040;max-width:60px;"
                 href="{% url 'logout' %}">Выйти</a>
+                {% if profile.is_admin %}
+                <a href="/admin/" 
+                class="secondary_action_btn blue_shadov_hovered"
+                style="max-width:60px;margin-top:8px;background-color: #1976d2;">Admin</a>
+                {% endif %}
             </div>
-        </div>
+        </div>        
         {{ tests_list }}
     </div>
     

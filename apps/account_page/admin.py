@@ -14,33 +14,18 @@ from misc.admin_styling_components import (
 )
 
 
-class ProfileInlineAdmin(admin.StackedInline):
-    model = Profile
-    max_num = 1
-    can_delete = False
-
-
-# @admin.register(Profile)
+@admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     def show_linked_user(self):
-        profile = Profile.objects.get(user=self)
+        # profile = Profile.objects.get(pk=self.pk)
 
-        return show_user_profile_card(user=profile.user)
+        return show_user_profile_card(profile=self)
 
     show_linked_user.short_description = "Пользователь 👇"
 
-    fields = ("email", "first_name", "last_name", "password")
+    # fields = ("email", "first_name", "last_name", "password", "is_superuser", "groups")
 
-    exclude = (
-        "user_permissions",
-        "username",
-        "last_login",
-        "is_superuser",
-        "is_staff",
-        "is_active",
-        "groups",
-        "date_joined",
-    )
+    exclude = ()
 
     list_display = (show_linked_user,)
 
@@ -49,7 +34,7 @@ class ProfileAdmin(admin.ModelAdmin):
 class AccountTestProgressAdmin(admin.ModelAdmin):
     def show_linked_user(self, obj):
 
-        return show_user_profile_card(user=obj.profile.first().user)
+        return show_user_profile_card(profile=obj.profile.first())
 
     show_linked_user.short_description = "Пользователь 👇"
 
@@ -73,6 +58,6 @@ class AccountTestProgressAdmin(admin.ModelAdmin):
     )
 
 
-admin.site.unregister(User)
-admin.site.unregister(Group)
-admin.site.register(User, ProfileAdmin)
+# admin.site.unregister(User)
+# admin.site.unregister(Group)
+# admin.site.register(User, UserAdmin)

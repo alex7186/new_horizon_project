@@ -15,6 +15,8 @@ setup:
 	@sudo systemctl daemon-reload
 	@sudo systemctl enable $(app_name).service
 
+	@ln -s static apps/main/static
+
 
 	@echo "\n ✅  setup done "
 

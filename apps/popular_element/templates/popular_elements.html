@@ -12,10 +12,10 @@
             <a
             href="/articles/{{category_tile.name}}/"
             style="background-color:{{ category_tile.color }};"
-            class="category_tiles_element_text spanking"
+            class="category_tiles_element_text"
             >
                 
-                    {{ category_tile.name }}
+                {{ category_tile.name }}
                 
             </a>
         
@@ -53,7 +53,7 @@
                             </div>
                             <p class="card-text">{{ article.attractive_text | safe |slice:":200"}} ...</p>
                             <div class="aricle_card_footer">
-                                <div class="uicore-post-footer uicore-body"><span>{{ article.last_modified.date | date:"d-m-Y"}}</span></div>
+                                <div class="uicore-post-footer uicore-body"><span>{{ article.last_modified.date | date:"M. Y"}}</span></div>
                                 <a 
                                     href="{% url 'articles_detail' article.pk %}" 
                                     title="{{ article.title }}"

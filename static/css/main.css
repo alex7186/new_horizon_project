@@ -450,3 +450,11 @@ a {
 .secondary_action_btn a {
     text-decoration: none;
 }
+
+.red_shadov_hovered:hover{
+    box-shadow: 0px 0px 15px 0 #f04040;
+}
+
+.blue_shadov_hovered:hover{
+    box-shadow: 0px 0px 15px 0 #1976d2;
+}

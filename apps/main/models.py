@@ -6,5 +6,5 @@ class AboutInfo(models.Model):
     main_text = models.TextField(default="Основной текст")
 
     class Meta:
-        verbose_name = "Главный текст"
-        verbose_name_plural = "Главный текст"
+        verbose_name = "4.1 Главный текст"
+        verbose_name_plural = "4.1 Главный текст"

@@ -28,15 +28,14 @@ def show_test_card(
 
         if test_progress.current_status in (0, 1):
             link_to_test = f"""
-            <div class="next_action_btn" 
-            style="margin-top: 15px;">
-            <a href="/tests/{test_progress.pk}" style="color:white;">Пройти</a></div>
+            <a href="/tests/{test_progress.pk}" 
+                class="next_action_btn"  style="color:white;margin-top: 15px;">Пройти</a>
             """
         elif test_progress.current_status in (2, 3):
             link_to_test = f"""
-            <div class="secondary_action_btn" 
-            style="margin-top: 15px;">
-            <a href="/tests/{test_progress.pk}" style="color:white;">Просмотреть</a></div>
+            <a href="/tests/{test_progress.pk}" class="secondary_action_btn" style="margin-top: 15px;color:white;">
+            <div  style="">
+            Просмотреть</div></a>
             """
         else:
             link_to_test = ""
@@ -63,7 +62,7 @@ def show_test_card(
         test_finished = ""
 
     result = f"""
-        <div class="test_card slight_card_shadow">
+        <div class="test_card">
             <div class="test_header">
                 <div class="test_header_title">{test.test_object_name}</div>
                 <div class="test_header_status">

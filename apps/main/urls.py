@@ -31,6 +31,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", main_page, name="home"),
     path("", include("apps.account_page.urls"), name="account_page"),
+    path("", include("apps.test_progress.urls"), name="test_progress"),
     path("articles/", include("apps.articles.urls")),
     re_path(r"^static/(?P<path>.*)$", serve, {"document_root": settings.STATIC_ROOT}),
 ]

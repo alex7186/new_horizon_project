@@ -1,6 +1,6 @@
 .profile_page_container {
     max-width: 800px;
-    padding: 100px 0 50px 0;
+    padding: 100px 0 0 0;
 }
 
 .logout_button {
@@ -43,11 +43,10 @@
     margin-right: auto;
     justify-content: center;
     align-items: center;
-
-    /* border-left: 10px solid black; */
     border-radius: 10px;
     background-color: #f7f7f7;
     border: 2px solid #e1e1e1;
+    box-shadow: 0px 0px 20px 0 #808080
 }
 
 .profile_picture {
@@ -76,6 +75,7 @@
     border-radius: 10px;
     padding: 10px;
     margin-bottom: 10px;
+    box-shadow: 0px 0px 15px 0 #808080
 }
 
 .test_header {
@@ -131,13 +131,4 @@
     background-color: #606090;
     width: 1.5px;
     position: relative;
-}
-
-.slight_card_shadow {
-    transition: 0.3s;
-}
-
-.slight_card_shadow:hover {
-    box-shadow: 1px 1px 6px 0 grey;
-    transition: 0.3s;
 }

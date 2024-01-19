@@ -42,8 +42,8 @@ class Question(models.Model):
         return data
 
     class Meta:
-        verbose_name = "3.2. Вариант ответа (Выбор вариантов)"
-        verbose_name_plural = "3.2. Вариант ответа (Выбор вариантов)"
+        verbose_name = "3.2. Вопрос (Выбор вариантов)"
+        verbose_name_plural = "3.2. Вопросы (Выбор вариантов)"
 
 
 class Answer(models.Model):
@@ -56,3 +56,7 @@ class Answer(models.Model):
 
     def __str__(self) -> str:
         return self.answer
+
+    class Meta:
+        verbose_name = "3.3. Вариант ответа (Выбор вариантов)"
+        verbose_name_plural = "3.3. Вариант ответа (Выбор вариантов)"

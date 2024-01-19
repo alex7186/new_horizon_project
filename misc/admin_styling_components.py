@@ -23,21 +23,28 @@ def show_article(article):
 
 
 def show_user_profile_card(
-    user,
+    profile,
 ):
 
     text = f"""
-    <div style="font-size:18px;margin-bottom:auto;margin-top:0px">{user.email}</div>
-    <div style="font-size:14px;margin-bottom:0px;margin-top:auto">{user.first_name} {user.last_name}</div>
+    <div style="font-size:18px;margin-bottom:auto;margin-top:0px">{profile.user.email}</div>
+    <div style="font-size:14px;margin-bottom:0px;margin-top:auto">{profile.user.first_name} {profile.user.last_name}</div>
     """
 
-    link_text = f"""<a href="{reverse("admin:auth_user_change", args=[user.pk])}" 
+    # _ = ''
+
+    link_text = f"""<a href="{reverse("admin:account_page_profile_change", args=[profile.pk])}" 
         style="color:white;padding:0px; height:52px;display: grid;">"""
+
+    if profile.is_admin:
+        profile_type_style = "border-left:5px solid tomato;"
+    else:
+        profile_type_style = "border-left:5px solid blue;"
 
     return mark_safe(
         f"""<div style="background-color: #353535;display: flex;
         padding: 5px;margin-bottom:5px;margin-right:5px;width:250px;
-        line-height: 1;text-align: left;min-width:50px;border-left:5px solid tomato;
+        line-height: 1;text-align: left;min-width:50px;{profile_type_style}
         vertical-align: baseline;border-radius:5px;font-size: 12px;">
         {link_text}{text}</a></div>"""
     )
