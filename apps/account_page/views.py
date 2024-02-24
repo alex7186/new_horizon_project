@@ -6,7 +6,8 @@ from django.utils.safestring import mark_safe
 import sys
 from datetime import datetime
 
-from apps.account_page.models import AccountTestProgress, Profile
+from apps.account_page.models import Profile
+from apps.test_progress.models import AccountTestProgress
 
 from misc.template_styling_components import show_test_card
 

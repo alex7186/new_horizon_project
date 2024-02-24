@@ -10,37 +10,24 @@ setup:
 
 	@echo "\n⚙️  moving systemd services from $(_local_dir)/service/ to $(_common-service-path)\n"
 	@sudo cp $(_local_dir)/service/$(app_name).service $(_common-service-path)/$(app_name).service
-	@python3 manage.py collectstatic    
 	
 	@sudo systemctl daemon-reload
 	@sudo systemctl enable $(app_name).service
 
-	@ln -s static apps/main/static
-
-
-	@echo "\n ✅  setup done "
+	@ln -s -f $(_local_dir)/static $(_local_dir)/apps/main/static
+	@echo " ✅  setup done "
 
 start:
 	-@sudo systemctl start $(app_name).service
-	@echo "\n ✅  started "
+	@echo " ✅  started "
 
 stop:
 	-@sudo systemctl stop $(app_name).service
-	@echo "\n ❌  stopped "
+	@echo " ❌  stopped "
 
 status:
 	-@sudo systemctl status $(app_name).service
 
-
-makemigrations:
-	
-
-migrate:
-	@python3 manage.py makemigrations
-	@echo "\n ✅  migrations made "
-	@python3 manage.py migrate
-	@echo "\n ✅  migrations done "
-	
 cat-service:
 	@systemctl cat $(app_name)
 

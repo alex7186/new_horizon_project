@@ -2,3 +2,4 @@ __pycache__
 users_logfile.log
 apps/main/static
 hints
+static/admin

@@ -2,9 +2,9 @@ from django.contrib import admin
 from django.contrib.auth.models import User, Group
 from django.utils.safestring import mark_safe
 
-from apps.account_page.models import Profile, AccountTestProgress
-from apps.account_page.forms import AccountTestProgressFormAdmin
-from apps.test_progress.models import TestObject
+from apps.account_page.models import Profile
+from apps.test_progress.forms import AccountTestProgressFormAdmin
+from apps.test_progress.models import TestObject, AccountTestProgress
 
 from misc.admin_styling_components import (
     show_user_profile_card,

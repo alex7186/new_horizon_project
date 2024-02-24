@@ -3,9 +3,14 @@ from django.urls import reverse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
-from apps.test_progress.models import TestObject, Question, Answer
+from datetime import datetime
+
+from apps.test_progress.models import TestObject, Question, Answer, AccountTestProgress
+
+from apps.account_page.views import view_account_page
+
 from apps.main.scripts import register_user_activity
-from apps.account_page.forms import (
+from apps.test_progress.forms import (
     AccountTestProgressForm,
     CURRENT_STATUS_CODES,
     FINAL_STATUS_CODES,

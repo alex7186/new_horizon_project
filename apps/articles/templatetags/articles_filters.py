@@ -1,5 +1,6 @@
 from django import template
 import time
+import sys
 
 register = template.Library()
 
@@ -8,7 +9,7 @@ register = template.Library()
 def rel_articles(article):
     categories = list(article.categories.all())
     rel_articles = []
-    for relevant_article in categories[-1].articles.all():
+    for relevant_article in categories[-1].articles.filter(flag_article_enabled=True):
         rel_articles.append(relevant_article)
 
     rel_articles.remove(article)

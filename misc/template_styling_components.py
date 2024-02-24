@@ -1,6 +1,6 @@
 from django.utils.safestring import mark_safe
 
-from apps.account_page.forms import CURRENT_STATUS_CODES, FINAL_STATUS_CODES
+from apps.test_progress.forms import CURRENT_STATUS_CODES, FINAL_STATUS_CODES
 
 
 def show_test_card(
@@ -46,7 +46,7 @@ def show_test_card(
         test_started = f"""
             <div class="test_result_passed_comment">
                 <div class="test_notes_text test_result_passed_text">Начало прохождения</div>
-                <div class="test_notes_text test_result_passed_points">{test_progress.attemp_started.strftime("%H:%M:%S %d.%m.%Y")}</div>
+                <div class="test_notes_text test_result_passed_points">{test_progress.attemp_started.strftime("%H:%M %d.%m.%Y")}</div>
             </div>
             """
     else:
@@ -55,7 +55,7 @@ def show_test_card(
     if test_progress.current_status in (2, 3):
         test_finished = f"""<div class="test_result_passed_comment">
                 <div class="test_notes_text test_result_passed_text">Конец прохождения</div>
-                <div class="test_notes_text test_result_passed_points">{test_progress.attemp_finished.strftime("%H:%M:%S %d.%m.%Y")}</div>
+                <div class="test_notes_text test_result_passed_points">{test_progress.attemp_finished.strftime("%H:%M %d.%m.%Y")}</div>
             </div>"""
 
     else:

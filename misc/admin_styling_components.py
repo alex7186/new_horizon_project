@@ -8,7 +8,7 @@ from misc.admin_supprotive_blocks import (
     show_data_colored_badge,
 )
 
-from apps.account_page.forms import CURRENT_STATUS_CODES
+from apps.test_progress.forms import CURRENT_STATUS_CODES
 
 
 def show_article(article):

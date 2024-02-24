@@ -66,15 +66,15 @@
                 <article class="uicore-post">
                     <div class="uicore-post-wrapper">
                         <div class="uicore-blog-img-container uicore-zoom-wrapper">
-                            <img class="uicore-cover-img" src="{{ article.image_base.url }}" width="100%" alt="{{ article.title }}">
+                            <img class="uicore-cover-img" src="{{ rel_article.image_base.url }}" width="100%" alt="{{ rel_article.title }}">
                         </div>
                         <div class="uicore-post-info">
                             <div class="uicore-post-info-wrapper">
                                 <h2 class="card-title project_card_title">
-                                    <span>{{ article.title }}</span>
+                                    <span>{{ rel_article.title }}</span>
                                 </h2>
                                 <div class="uicore-post-category uicore-body">
-                                    {% for category in article.categories.all %}
+                                    {% for category in rel_article.categories.all %}
                                         <a href="{% url 'articles_category' category.name %}" title="View {{ category.name }}">
                                             <span class="badge badge-primary" style="background-color: {{ category.color }}">
                                                 {{ category.name }}
@@ -82,12 +82,12 @@
                                         </a>
                                     {% endfor %}
                                 </div>
-                                <p class="card-text">{{ article.attractive_text | safe |slice:":200"}} ...</p>
+                                <p class="card-text">{{ rel_article.attractive_text | safe |slice:":200"}} ...</p>
                                 <div class="aricle_card_footer">
-                                    <div class="uicore-post-footer uicore-body"><span>{{ article.last_modified.date | date:"M. Y"}}</span></div>
+                                    <div class="uicore-post-footer uicore-body"><span>{{ rel_article.last_modified.date | date:"M. Y"}}</span></div>
                                     <a 
-                                        href="{% url 'articles_detail' article.pk %}" 
-                                        title="{{ article.title }}"
+                                        href="{% url 'articles_detail' rel_article.pk %}" 
+                                        title="{{ rel_article.title }}"
                                         class="next_action_btn">Читать далее ...</a>
                                 </div>
                             </div> 
