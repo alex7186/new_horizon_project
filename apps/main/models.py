@@ -6,5 +6,11 @@ class AboutInfo(models.Model):
     main_text = models.TextField(default="Основной текст")
 
     class Meta:
-        verbose_name = "4.1 Главный текст"
-        verbose_name_plural = "4.1 Главный текст"
+        verbose_name = "4.1. Текст на главном постере"
+        verbose_name_plural = "4.1. Текст на главном постере"
+
+
+class ExcelFile(models.Model):
+    file = models.FileField(
+        upload_to="static/files",
+    )

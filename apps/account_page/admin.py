@@ -1,16 +1,18 @@
 from django.contrib import admin
-from django.contrib.auth.models import User, Group
-from django.utils.safestring import mark_safe
 
-from apps.account_page.models import Profile
-from apps.test_progress.forms import AccountTestProgressFormAdmin
-from apps.test_progress.models import TestObject, AccountTestProgress
+from datetime import datetime
+import pandas as pd
+
+from apps.account_page.models import (
+    Profile,
+    InterfaceDownloadUsersList,
+    InterfaceUploadUsersList,
+)
+from apps.account_page.admin_filters import IsAdminFilter
 
 from misc.admin_styling_components import (
     show_user_profile_card,
-    show_linker_block,
-    show_test_block,
-    arange_block_box,
+    show_load_excel_block,
 )
 
 
@@ -29,33 +31,75 @@ class ProfileAdmin(admin.ModelAdmin):
 
     list_display = (show_linked_user,)
 
+    list_filter = (IsAdminFilter,)
 
-@admin.register(AccountTestProgress)
-class AccountTestProgressAdmin(admin.ModelAdmin):
-    def show_linked_user(self, obj):
 
-        return show_user_profile_card(profile=obj.profile.first())
+@admin.register(InterfaceDownloadUsersList)
+class InterfaceDownloadUsersListAdmin(admin.ModelAdmin):
+    def get_actions(self, request):
+        actions = super().get_actions(request)
+        if "delete_selected" in actions:
+            del actions["delete_selected"]
+        return actions
 
-    show_linked_user.short_description = "Пользователь 👇"
+    def has_add_permission(self, request, obj=None):
+        return False
 
-    def show_connection(self, obj):
-        return show_linker_block(linker=obj)
+    @admin.action(description="Сформировать выгрузку")
+    def generate_file(modeladmin, request, queryset):
+        # queryset.update(flag_article_enabled=False)
+        res = []
+        for profile in Profile.objects.filter(is_admin=False):
+            res.append(
+                [
+                    profile.user.email,
+                    profile.user.first_name,
+                    profile.user.last_name,
+                    profile.user.password,
+                ]
+            )
 
-    show_connection.short_description = mark_safe("Связывающий объект 👇")
+        pd.DataFrame(res, columns=["Почта", "Имя", "Фамилия", "Пароль"]).to_excel(
+            f"/root/new_horizon_project/static/files/users.xlsx",
+            index=False,
+        )
 
-    def show_test(self, obj):
+        InterfaceDownloadUsersList.objects.first().last_used_at = datetime.now()
+        InterfaceDownloadUsersList.objects.first().save()
 
-        return arange_block_box(elements=(show_test_block(obj.tests.first()),))
+    def show_download_element(self, obj):
+        return show_load_excel_block(obj)
 
-    show_test.short_description = "Название теста 👇"
+    show_download_element.short_description = ""
 
-    form = AccountTestProgressFormAdmin
+    def show_download_settings(self, obj):
+        return ""
+
+    show_download_settings.short_description = ""
 
     list_display = (
-        "show_linked_user",
-        "show_connection",
-        "show_test",
+        "show_download_settings",
+        "show_download_element",
     )
+
+    readonly_fields = ("last_used_at",)
+
+    actions = (generate_file,)
+
+
+@admin.register(InterfaceUploadUsersList)
+class InterfaceUploadUsersListAdmin(admin.ModelAdmin):
+    def show_upload_element(self, obj):
+        return show_load_excel_block(obj, show_link=False)
+
+    show_upload_element.short_description = ""
+
+    list_display = ("show_upload_element",)
+
+    readonly_fields = ("last_used_at",)
+
+    # def has_add_permission(self, request, obj=None):
+    #     return False
 
 
 # admin.site.unregister(User)

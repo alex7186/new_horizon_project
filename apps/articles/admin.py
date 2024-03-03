@@ -1,21 +1,18 @@
 from django.utils.safestring import mark_safe
-from django.utils.html import escape
 from django.contrib import admin
 
 from apps.articles.admin_filters import DateFieldListFilter, ShowingFieldListFilter
+from apps.articles.models import Article, Category
+from apps.articles.forms import CategoryForm
 
 from misc.admin_supprotive_blocks import (
     show_data_colored_block,
     show_data_colored_badge,
 )
 from misc.admin_styling_components import (
-    show_data_colored_border_block,
     show_article,
     arange_block_box,
 )
-
-from apps.articles.models import Article, Category
-from apps.articles.forms import CategoryForm
 
 
 @admin.register(Article)
@@ -74,7 +71,7 @@ class ArticleAdmin(admin.ModelAdmin):
 
     def image_tag(self, obj):
 
-        img_show_tag = f'<img src="{escape(obj.image_base.url)}" style="height:60px"/>'
+        img_show_tag = f'<img src="{str(obj.image_base.url)}" style="height:60px"/>'
         img_show_desc = f"""
             <p style="padding:0px; margin:0px;border-top-right-radius: 10px;
             padding-right: 2px;padding-top: 2px;display: inline-flex;font-size:14px;

@@ -130,6 +130,8 @@ USE_TZ = True
 STATIC_ROOT = "static/"
 STATIC_URL = "/static/"
 
+MEDIA_ROOT = "/root/new_horizon_project/"
+
 
 LOG_FILENAME = "users_logfile.log"
 LOG_FILEPATH = os.path.join(BASE_DIR, "misc")

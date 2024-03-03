@@ -14,10 +14,10 @@ CURRENT_STATUS_CODES = (
     ("3", "Засчитано"),
 )
 
-FINAL_STATUS_CODES = {
-    "2": "Не пройдено",
-    "3": "Пройдено",
-}
+FINAL_STATUS_CODES = (
+    ("2", "Не пройдено"),
+    ("3", "Пройдено"),
+)
 
 
 class AccountTestProgressFormAdmin(forms.ModelForm):

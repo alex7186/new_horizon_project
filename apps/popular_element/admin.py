@@ -5,12 +5,9 @@ from apps.popular_element.models import PopularArticle, CategoriesTiles
 from django.utils.safestring import mark_safe
 
 from misc.admin_supprotive_blocks import (
-    show_data_colored_badge,
     show_data_colored_block,
 )
 from misc.admin_styling_components import (
-    show_data_colored_border_block,
-    show_categories_tiles_block,
     arange_block_box,
     show_popular_block,
     show_article,
@@ -37,7 +34,7 @@ class PopularArticleAdmin(admin.ModelAdmin):
         queryset.update(enabled=False)
 
     def show_popular_element(self, obj):
-        return show_popular_block(obj)
+        return show_popular_block(obj, count=str(len(obj.articles.all())))
 
     show_popular_element.short_description = mark_safe("Группа статей 👇")
 
@@ -78,7 +75,7 @@ class CategoriesTilesAdmin(admin.ModelAdmin):
         queryset.update(enabled=False)
 
     def show_categories_tiles_element(self, obj):
-        return show_categories_tiles_block(obj)
+        return show_popular_block(obj, count=len(obj.categories.all()))
 
     show_categories_tiles_element.short_description = mark_safe("Группа категорий 👇")
 

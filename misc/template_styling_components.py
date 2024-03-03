@@ -1,6 +1,6 @@
 from django.utils.safestring import mark_safe
 
-from apps.test_progress.forms import CURRENT_STATUS_CODES, FINAL_STATUS_CODES
+from apps.test_progress.forms import CURRENT_STATUS_CODES
 
 
 def show_test_card(

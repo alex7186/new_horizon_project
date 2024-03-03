@@ -1,15 +1,15 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from apps.test_progress.models import Question, Answer, TestObject
-from apps.test_progress.forms import TestObjectForm
+from apps.test_progress.models import Question, Answer, TestObject, AccountTestProgress
+from apps.test_progress.forms import TestObjectForm, AccountTestProgressFormAdmin
+from apps.test_progress.addmin_filters import TestResultStatusListFilter
 
-from misc.admin_supprotive_blocks import show_data_colored_border_block
 from misc.admin_styling_components import (
     show_test_block,
-    show_question_block,
+    show_linker_block,
     arange_block_box,
-    show_answer_block,
+    show_user_profile_card,
     show_answer_block_quiestions,
 )
 
@@ -82,3 +82,33 @@ class TestObjectAdmin(admin.ModelAdmin):
     inlines = (QuestionInlineAdmin,)
 
     list_filter = ("test_object_name",)
+
+
+@admin.register(AccountTestProgress)
+class AccountTestProgressAdmin(admin.ModelAdmin):
+    def show_linked_user(self, obj):
+
+        return show_user_profile_card(profile=obj.profile.first())
+
+    show_linked_user.short_description = "Пользователь 👇"
+
+    def show_connection(self, obj):
+        return show_linker_block(linker=obj)
+
+    show_connection.short_description = mark_safe("Связывающий объект 👇")
+
+    def show_test(self, obj):
+
+        return arange_block_box(elements=(show_test_block(obj.tests.first()),))
+
+    show_test.short_description = "Название теста 👇"
+
+    form = AccountTestProgressFormAdmin
+
+    list_display = (
+        "show_linked_user",
+        "show_connection",
+        "show_test",
+    )
+
+    list_filter = (TestResultStatusListFilter,)

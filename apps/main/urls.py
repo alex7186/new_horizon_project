@@ -34,6 +34,7 @@ urlpatterns = [
     path("", include("apps.test_progress.urls"), name="test_progress"),
     path("articles/", include("apps.articles.urls")),
     re_path(r"^static/(?P<path>.*)$", serve, {"document_root": settings.STATIC_ROOT}),
+    re_path(r"^files/(?P<path>.*)$", serve, {"document_root": settings.STATIC_ROOT}),
 ]
 
 

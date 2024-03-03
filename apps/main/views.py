@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import render, redirect
-from django.contrib import auth
+from django.shortcuts import render
+from django.conf import settings
+from django.http import HttpResponse, Http404
+from django.views import generic
+
+import os
 
 from apps.main.scripts import register_user_activity
-from apps.main.models import AboutInfo
+from apps.main.models import AboutInfo, ExcelFile
 
 from apps.popular_element.models import PopularArticle, CategoriesTiles
 
@@ -34,6 +38,35 @@ def main_page(request):
     }
 
     return render(request, "main_page.html", context)
+
+
+def download(request, path):
+    file_path = os.path.join(settings.MEDIA_ROOT, path)
+    if not os.path.exists(file_path):
+        raise Http404
+
+    with open(file_path, "rb") as file_object:
+        response = HttpResponse(
+            file_object.read(), content_type="application/vnd.ms-excel"
+        )
+        response["Content-Disposition"] = "inline; filename=" + os.path.basename(
+            file_path
+        )
+        return response
+
+
+class CsvDownloadView(generic.ListView):
+
+    model = ExcelFile
+    fields = ["file"]
+    template_name = "download.html"
+
+
+class CsvUploadView(generic.CreateView):
+
+    model = ExcelFile
+    fields = ["file"]
+    template_name = "upload.html"
 
 
 def err404(request, exception):
