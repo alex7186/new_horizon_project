@@ -6,6 +6,7 @@ from apps.articles.models import Article, Category
 
 
 from apps.main.scripts import register_user_activity
+from apps.popular_element.models import CategoriesTiles
 
 
 @register_user_activity
@@ -13,8 +14,14 @@ def articles_index(request):
     articles = Article.objects.filter(flag_article_enabled=True).order_by(
         "-last_modified"
     )
+
+    category_tiles_object = CategoriesTiles.objects.first()
+    category_tiles_list = category_tiles_object.categories.all()
+
     context = {
         "articles": articles,
+        "category_tiles": category_tiles_list,
+        "category_tiles_title": category_tiles_object.title,
     }
 
     return render(request, "articles_index.html", context)

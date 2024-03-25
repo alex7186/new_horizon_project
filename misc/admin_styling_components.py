@@ -75,17 +75,14 @@ def show_linker_block(
     )
 
 
-def show_popular_block(
-    popular_element,
-    count,
-):
+def show_popular_block(popular_element, count, link):
     enabled_text, enabled_color = (
         ("Да", "green") if popular_element.enabled else ("Нет", "red")
     )
 
     return mark_safe(
         f"""
-            <a href="{reverse("admin:popular_element_populararticle_change", args=[popular_element.pk])}">
+            <a href="{link}">
                 <div style="display:flex;font-weight: normal;">                  
                     <div style="width:190px;background:#353535;text-align: left;font-size: 10px;
                     text-align: left;align-items: center;padding:3px 10px 3px 10px;

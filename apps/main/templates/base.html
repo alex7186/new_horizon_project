@@ -3,71 +3,36 @@
 <head>
   <meta charset="utf-8">
   {% load static %}
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  
+  <link href="{% static 'css/base_general.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/article_card.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/category_elements.css' %}" rel="stylesheet" />
 
-  <link href="{% static 'css/main.css' %}" rel="stylesheet" />
-  <link href="{% static 'css/card.css' %}" rel="stylesheet" />
-  <link href="{% static 'css/footer.css' %}" rel="stylesheet" />
-  <link href="{% static 'css/tests.css' %}" rel="stylesheet" />
-  <link href="{% static 'css/article.css' %}" rel="stylesheet" />
-  <link href="{% static 'css/popular_element.css' %}" rel="stylesheet" />
-  <link href="{% static 'css/profile_page.css' %}" rel="stylesheet" />
   <link href="{% static 'favicon/favicon.ico' %}" rel="icon" type="image/x-icon"/>
 
   <title>Повесть лет</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="keywords" content="{{ keys }}" />
-  <meta property="og:title" content="{{ keys }}">
-  <meta property="og:description" content="Повесть лет словесных">
-  <meta property="og:site-name" content="Повесть лет словесных">
+
 </head>
 <body>
-  <nav class="navbar navbar-expand-md navbar-light bg-light p-3 mb-5 bg-white">
-    
-    <div class="container nav-container" style="max-width: min(1300px, 80%);">
-      <!-- <a class="navbar-brand" href="{% url 'home' %}#top">Наш образовательный поратл</a> -->
-      <a class="nav-link" style="margin-left: 0px;padding-left: 0px;" href="{% url 'home' %}">
-        <p class="nav-link" style="font-size: 24px !important;">Повесть лет</p>
-      </a>
-
-      <button class="navbar-toggler" type="button" data-toggle="collapse" 
-        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
-        aria-expanded="false" aria-label="Toggle navigation"
-        style="margin-left: auto;">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="next_action_btn next_action_btn_nav" href="{% url 'articles_index' %}">Статьи</a>
-          </li>
-          <li class="nav-item">
-            {% if request.user.is_authenticated %}
-              <a class="next_action_btn next_action_btn_nav" href="{% url 'account_page' %}">Аккаунт</a>
-            {% else %}
-              <a class="next_action_btn next_action_btn_nav" href="{% url 'login' %}">Войти</a>
-            {% endif %}
-          </li>
-        </ul>
+  <div class="base_container">
+    <div class="base_navigation">
+      <a class="base_navigation_logo" href="{% url 'home' %}"><div></div></a>
+      <div class="base_navigation_row">
+        <a class="base_navigation_element" href="{% url 'articles_index' %}">Статьи</a>
+        {% if request.user.is_authenticated %}
+          <a class="base_navigation_element base_navigation_element_background" href="{% url 'account_page' %}">Аккаунт</a>
+        {% else %}
+          <a class="base_navigation_element base_navigation_element_background" href="{% url 'login' %}">Войти</a>
+        {% endif %}
       </div>
-      
     </div>
-  </nav>
 
-  <div class="container" style="margin-bottom: auto; ">
-    <div id="top" class="main-content" >
-      {% block page_content %}{% endblock %}
+    <div style="margin-bottom: auto;">
+        {% block page_content %}{% endblock %}
     </div>
   </div>
-  <!-- <button onclick="topFunction()" id="myBtn" title="Наверх" class="button_up card mb-2 shadow p-2 mb-5 bg-white decorations_non">⬆️</button> -->
-  <div class="footer">
-    {% include 'footer.html' %}
-  </div>
-  <!-- <script src="{% static 'scripts.js' %}"></script>   -->
-  <script src="{% static 'btn_test_submit_result.js' %}"></script>  
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-</body>
+  
+  {% include 'footer.html' %}
+
+  </body>
 </html>

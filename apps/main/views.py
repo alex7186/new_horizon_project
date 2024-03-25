@@ -33,7 +33,6 @@ def main_page(request):
         "popular_articles_title": popular_article_object.title,
         "category_tiles": category_tiles_list,
         "category_tiles_title": category_tiles_object.title,
-        # "popular_articles": PopularArticle.objects.all(),
         "about_info": about_info,
     }
 

@@ -1,22 +1,20 @@
-<footer class="site-footer">
-    <div class="container">
-        <div class="row footer_row">
-            <div class="col-sm-12 col-md-6">
-                <h6>Контакты:</h6>
-                  <ul>
-                    <li><a href="https://vk.com/povest_let_slovenih">Сообщество ВКонтакте</a></li>
-                    <li><a href="https://vk.com/thalium">CTO - Александр</a></li>
-                    <li><a href="https://vk.com/mariya_music">Leading Methodologist - Мария</a></li>
-                    
-                  </ul>
-            </div>
-            <div class="col-sm-12 col-md-6">
-              <h6>Быстрые ссылки:</h6>                
-                  <ul>
-                    <li><a class="nav-link4" href="{% url 'home' %}">Главная</a></li>
-                    <li><a class="nav-link4" href="{% url 'articles_index' %}">Архив статей</a></li>
-                  </ul>
-            </div>
-        </div>
-      </div>
-</footer>
+
+<div class="base_footer">
+  <a class="base_navigation_logo" href="{% url 'home' %}"><div></div></a>
+  <div class="base_footer_actual_year">© Фиолетовый {% now 'Y' %}</div>
+  
+  <div class="base_footer_links_row">
+    <div class="base_footer_links_element">
+      <a href="https://vk.com/thalium">CTO - Александр</a>
+    </div>
+    <div class="base_footer_links_element">
+      <a href="https://vk.com/mariya_music">Leading Methodologist - Мария</a>
+    </div>
+  </div>
+</div>
+
+<!-- <a href="https://vk.com/povest_let_slovenih">Сообщество ВКонтакте</a>
+<a href="https://vk.com/thalium">CTO - Александр</a>
+<a href="https://vk.com/mariya_music">Leading Methodologist - Мария</a>
+<a class="nav-link4" href="{% url 'home' %}">Главная</a>
+<a class="nav-link4" href="{% url 'articles_index' %}">Архив статей</a> -->
